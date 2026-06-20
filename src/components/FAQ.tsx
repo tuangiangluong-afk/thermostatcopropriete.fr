@@ -6,41 +6,41 @@ import { ChevronDown } from "lucide-react";
 interface FAQProps {
     city?: string;
     type?: string;
-    themeColor?: 'blue' | 'emerald' | 'amber' | 'purple' | 'rose';
+    themeColor?: 'blue' | 'emerald' | 'amber' | 'purple' | 'rose' | 'slate';
+    items?: { question: string; answer: string; }[];
 }
 
-export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
-    const questions = [
+export default function FAQ({ city, type, themeColor = 'slate', items }: FAQProps) {
+    const defaultQuestions = [
         {
-            q: "Combien coûte l'installation d'une pompe à chaleur ?",
-            a: "Le coût d'installation d'une pompe à chaleur (PAC) Air-Eau oscille généralement entre 10 000€ et 16 000€ TTC selon la surface à chauffer. Grâce aux subventions de l'État (MaPrimeRénov', CEE), le reste à charge peut être réduit à moins de 3 000€ pour les foyers aux revenus modestes."
+            question: "L'installation de thermostats est-elle obligatoire en copropriété ?",
+            answer: "Oui, la réglementation impose l'individualisation des frais de chauffage (RFC) et l'installation d'équipements permettant la régulation de la température pièce par pièce pour les bâtiments équipés d'un chauffage collectif."
         },
         {
-            q: "Quelles sont les aides financières disponibles en 2026 ?",
-            a: "Pour le remplacement d'un chauffage fossile (fioul ou gaz), vous pouvez cumuler MaPrimeRénov' (jusqu'à 9 000€), la prime CEE (jusqu'à 5 000€), l'éco-prêt à taux zéro (éco-PTZ) jusqu'à 50 000€ et une TVA réduite à 5.5% appliquée directement sur la facture de pose."
+            question: "Qu'est-ce que le plan 'Coup de pouce Thermostat' ?",
+            answer: "Il s'agit d'une aide de l'État dans le cadre des CEE qui finance une grande partie de l'installation de thermostats programmables connectés. Cette prime s'applique directement sur la facture pour les copropriétés."
         },
         {
-            q: "Quelle est la durée de vie d'une pompe à chaleur ?",
-            a: "Une pompe à chaleur a une durée de vie moyenne de 15 à 20 ans. Pour optimiser ses performances et sa longévité, il est recommandé de souscrire à un contrat d'entretien annuel auprès d'un technicien certifié."
+            question: "Comment gérer l'installation dans les appartements privés ?",
+            answer: "Nos équipes se chargent de planifier les interventions avec chaque résident. La pose d'une tête thermostatique connectée sur un radiateur existant prend en moyenne moins de 15 minutes par radiateur, sans vidange du circuit."
         },
         {
-            q: "Ma maison est-elle adaptée à l'installation d'une PAC ?",
-            a: "Les pompes à chaleur s'adaptent à la majorité des logements. L'idéal est de disposer d'un système de chauffage central existant (radiateurs hydrauliques ou plancher chauffant) et d'un espace extérieur dégagé (jardin, cour, cour intérieure) pour positionner l'unité extérieure."
-        },
-        {
-            q: "Pourquoi choisir un installateur certifié RGE QualiPAC ?",
-            a: "La certification RGE (Reconnu Garant de l'Environnement) option QualiPAC garantit que l'artisan maîtrise la pose de ces systèmes et respecte les normes thermiques. Elle est également obligatoire pour bénéficier des subventions de l'État."
+            question: "Quel est le gain espéré sur la facture d'énergie ?",
+            answer: "L'ADEME estime que l'installation d'une régulation performante permet de réaliser en moyenne 15% à 25% d'économies d'énergie sur le chauffage."
         }
     ];
 
+    const questions = items || defaultQuestions;
+
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const themeStyles = {
+    const themeStyles: Record<string, string> = {
         blue: "bg-blue-100 text-blue-700",
         emerald: "bg-emerald-100 text-emerald-700",
         amber: "bg-amber-100 text-amber-800",
         purple: "bg-purple-100 text-purple-700",
-        rose: "bg-slate-100 text-slate-800"
+        rose: "bg-slate-100 text-slate-800",
+        slate: "bg-slate-100 text-slate-800"
     };
 
     const faqSchema = {
@@ -48,14 +48,14 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
         "@type": "FAQPage",
         "mainEntity": questions.map(item => ({
             "@type": "Question",
-            "name": item.q,
+            "name": item.question,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": item.a
+                "text": item.answer
             }
         }))
     };
-    const badgeClass = themeStyles[themeColor] || themeStyles.rose;
+    const badgeClass = themeStyles[themeColor] || themeStyles.slate;
 
     return (
         <section className="py-20 bg-slate-50 border-t border-slate-200">
@@ -69,10 +69,10 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                         Questions Fréquentes
                     </span>
                     <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-                        Des questions sur les pompes à chaleur ?
+                        Des questions sur les thermostats en copropriété ?
                     </h2>
                     <p className="text-xl text-slate-600 mt-4">
-                        Nous avons réuni les réponses pour vous guider dans votre projet de transition énergétique.
+                        Nous avons réuni les réponses pour vous guider dans votre projet de régulation thermique.
                     </p>
                 </div>
 
@@ -86,7 +86,7 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                                 className="w-full flex items-center justify-between p-6 text-left"
                             >
-                                <span className="font-bold text-lg text-slate-900 pr-8">{item.q}</span>
+                                <span className="font-bold text-lg text-slate-900 pr-8">{item.question}</span>
                                 <ChevronDown
                                     className={`text-slate-400 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`}
                                 />
@@ -99,7 +99,7 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                                 `}
                             >
                                 <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100">
-                                    {item.a}
+                                    {item.answer}
                                 </div>
                             </div>
                         </div>
