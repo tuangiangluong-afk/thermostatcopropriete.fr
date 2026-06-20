@@ -15,7 +15,7 @@ export default function NotFound() {
                 </h2>
 
                 <p className="text-slate-500 mb-10 leading-relaxed">
-                    La page que vous cherchez n'existe pas ou a été déplacée. Mais rassurez-vous, nos artisans béton sont, eux, bien disponibles.
+                    La page que vous cherchez n'existe pas ou a été déplacée. Mais rassurez-vous, nos installateurs RGE sont, eux, bien disponibles.
                 </p>
 
                 <Link

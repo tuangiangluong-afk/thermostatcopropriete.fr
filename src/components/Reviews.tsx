@@ -23,40 +23,40 @@ const REVIEW_POOL = [
     {
         author: "Thomas D.",
         templates: [
-            "Artisan très pro. La pose du béton imprimé à {city} est magnifique. Le rendu imitation bois est bluffant.",
+            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant.",
             "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable.",
-            "Service parfait. Coulage du béton désactivé impeccable à {city}, notre terrasse est superbe."
+            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe."
         ]
     },
     {
         author: "Lucie F.",
         templates: [
             "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable.",
-            "Service parfait. Coulage du béton désactivé impeccable à {city}, notre terrasse est superbe.",
+            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe.",
             "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes."
         ]
     },
     {
         author: "Éric L.",
         templates: [
-            "Service parfait. Coulage du béton désactivé impeccable à {city}, notre terrasse est superbe.",
+            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe.",
             "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes.",
-            "Le résultat est au delà de nos attentes. L'artisan béton à {city} a été très à l'écoute de nos envies pour la plage de piscine."
+            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine."
         ]
     },
     {
         author: "Marc-Antoine P.",
         templates: [
             "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes.",
-            "Le résultat est au delà de nos attentes. L'artisan béton à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
-            "Artisan très pro. La pose du béton imprimé à {city} est magnifique. Le rendu imitation bois est bluffant."
+            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
+            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant."
         ]
     },
     {
         author: "Sophie G.",
         templates: [
-            "Le résultat est au delà de nos attentes. L'artisan béton à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
-            "Artisan très pro. La pose du béton imprimé à {city} est magnifique. Le rendu imitation bois est bluffant.",
+            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
+            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant.",
             "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable."
         ]
     }

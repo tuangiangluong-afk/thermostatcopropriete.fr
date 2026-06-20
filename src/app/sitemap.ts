@@ -5,7 +5,7 @@ import { slugify } from '@/lib/slugify';
 import { createClient } from '@supabase/supabase-js';
 
 // Base URL (Hub)
-const BASE_URL = 'https://www.expertbetondecoratif.com';
+const BASE_URL = 'https://www.thermostatcopropriete.fr';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const guides = getAllGuides();
@@ -94,7 +94,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // 4. City Routes (From CITIES Config)
     const uniqueSites = new Map();
     Object.values(CITIES).forEach(site => {
-        if (site.slug !== 'home' && site.slug !== 'expertbetondecoratif.com' && site.slug !== 'www.expertbetondecoratif.com') {
+        if (site.slug !== 'home' && site.slug !== 'thermostatcopropriete.fr' && site.slug !== 'www.thermostatcopropriete.fr') {
             uniqueSites.set(site.slug, site);
         }
     });

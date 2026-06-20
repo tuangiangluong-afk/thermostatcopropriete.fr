@@ -33,7 +33,7 @@ export default function Header({
         rose: "hover:text-rose-500",
         teal: "hover:text-teal-500",
         indigo: "hover:text-indigo-500",
-        orange: "hover:text-orange-500",
+        orange: "hover:text-blue-500",
         gold: "hover:text-amber-500"
     };
     const hoverClass = hoverColors[themeColor] || "hover:text-blue-500";
@@ -95,7 +95,7 @@ export default function Header({
                         className={`hidden md:flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-lg transition transform hover:-translate-y-0.5 bg-slate-600 hover:bg-slate-700 shadow-slate-500/20`}
                     >
                         <Zap size={16} fill="currentColor" />
-                        <span>Devis Gratuit</span>
+                        <span>Audit Gratuit</span>
                     </Link>
                 
                     {showMobileMenu && (

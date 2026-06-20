@@ -2,15 +2,15 @@ import { CityConfig } from "@/lib/db";
 
 export const NATIONAL_CONFIG: CityConfig = {
     slug: "home",
-    domain: "expertbetondecoratif.com",
-    name: "Expert Béton Décoratif",
+    domain: "thermostatcopropriete.fr",
+    name: "Expert Thermostat Copropriété",
     city: "France",
     phoneNumber: "01 84 80 00 00",
-    email: "contact@expertbetondecoratif.com",
+    email: "contact@thermostatcopropriete.fr",
     heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
     description: "Le réseau n°1 d'installateurs de pompes à chaleur en France. Devis gratuit, étude de rentabilité et artisans certifiés RGE.",
     meta: {
-        title: "Expert Béton Décoratif | Chauffage Écologique & Économies d'Énergie",
+        title: "Expert Thermostat Copropriété | Chauffage Écologique & Économies d'Énergie",
         description: "Installation de pompes à chaleur pour particuliers partout en France. Devis gratuit sous 24h. Simulateur d'éligibilité aux aides RGE QualiPAC."
     },
     features: [

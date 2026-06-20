@@ -12,8 +12,8 @@ export const config = {
 export default async function middleware(req: NextRequest) {
     const url = req.nextUrl;
 
-    // Get hostname (e.g. bornerechargeparis.fr, expertbetondecoratif.com)
-    let hostname = req.headers.get("host") || "expertbetondecoratif.com";
+    // Get hostname (e.g. bornerechargeparis.fr, thermostatcopropriete.fr)
+    let hostname = req.headers.get("host") || "thermostatcopropriete.fr";
     hostname = hostname.split(":")[0]; // Remove port if present
 
     // Check if we are on the main hub
@@ -112,7 +112,7 @@ export default async function middleware(req: NextRequest) {
 
     // Shared routes must point back to the main hub as their canonical source
     if (cleanPath.startsWith("/guides") || cleanPath.startsWith("/solutions") || cleanPath.startsWith("/service") || cleanPath.startsWith("/poi") || cleanPath.startsWith("/outils") || cleanPath.startsWith("/installation")) {
-        response.headers.set("x-irve-canonical-domain", "www.expertbetondecoratif.com");
+        response.headers.set("x-irve-canonical-domain", "www.thermostatcopropriete.fr");
     } else {
         response.headers.set("x-irve-canonical-domain", "www." + domainKey);
     }

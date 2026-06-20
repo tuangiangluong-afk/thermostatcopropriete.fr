@@ -20,7 +20,7 @@ export function Footer({ config }: FooterProps) {
     );
 
     const sitesByRegion = uniqueSites
-        .filter(site => site.slug !== 'home' && site.slug !== 'expertbetondecoratif.com' && site.slug !== 'www.expertbetondecoratif.com')
+        .filter(site => site.slug !== 'home' && site.slug !== 'thermostatcopropriete.fr' && site.slug !== 'www.thermostatcopropriete.fr')
         .reduce((acc, site) => {
             const region = site.region || 'Autres';
             if (!acc[region]) acc[region] = [];
@@ -29,7 +29,7 @@ export function Footer({ config }: FooterProps) {
         }, {} as Record<string, SiteConfig[]>);
 
     const getGlobalDiverseAnchor = (cityName: string, index: number) => {
-        const variations = ["Béton désactivé ${cityName}","Béton imprimé ${cityName}","Terrasse béton ${cityName}","Artisan béton ${cityName}","Devis béton décoratif ${cityName}"];
+        const variations = ["Thermostats connectés ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostats Connectés ${cityName}"];
         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
     };
 
@@ -38,7 +38,7 @@ export function Footer({ config }: FooterProps) {
             <div className="container mx-auto px-4 text-center">
                 <h4 className="text-white font-bold mb-4">À propos de {config.name}</h4>
                 <p className="max-w-2xl mx-auto text-sm mb-8">
-                    {config.name} est le comparateur n°1 pour la pose de béton décoratif et désactivé à {config.city}. Nous sélectionnons des artisans locaux hautement qualifiés et assurés en décennale.
+                    {config.name} est le comparateur n°1 pour la pose de Thermostats Connectés et désactivé à {config.city}. Nous sélectionnons des artisans locaux hautement qualifiés et assurés en décennale.
                 </p>
 
                 <div className="inline-flex items-center gap-2 bg-slate-500/10 border-slate-500/20 text-slate-400 px-4 py-2 rounded-full mb-8">
@@ -108,7 +108,7 @@ export function Footer({ config }: FooterProps) {
                                     }
 
                                     const getVariedFooterAnchor = (cityName: string, index: number) => {
-                                        const variations = ["Béton désactivé ${cityName}","Béton imprimé ${cityName}","Terrasse béton ${cityName}","Artisan béton ${cityName}","Devis béton décoratif ${cityName}"];
+                                        const variations = ["Thermostats connectés ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostats Connectés ${cityName}"];
                                         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
                                     };
 
@@ -133,13 +133,13 @@ export function Footer({ config }: FooterProps) {
                                 <li>
                                     <Link href="/guides/prix-beton-desactive-m2" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Prix du Béton Désactivé 2026
+                                        Prix du Thermostats connectés 2026
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/guides/avantages-beton-imprime" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Avantages du Béton Imprimé
+                                        Avantages du Vannes thermostatiques
                                     </Link>
                                 </li>
                                 <li>
@@ -166,7 +166,7 @@ export function Footer({ config }: FooterProps) {
                         <div>
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Finitions</h5>
                             <ul className="space-y-3 text-sm mb-8">
-                                {["Béton Désactivé","Béton Imprimé","Béton Lissé","Béton Balayé"].map((brand) => (
+                                {["Thermostats connectés","Vannes thermostatiques","Têtes thermostatiques","Béton Balayé"].map((brand) => (
                                     <li key={brand}>
                                         <Link href={`#simulateur`} className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                             <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
@@ -184,7 +184,7 @@ export function Footer({ config }: FooterProps) {
                                             <Mail size={20} />
                                         </div>
                                         <div>
-                                            <span className="block text-white font-bold text-lg">{(config as any).email || 'contact@expertbetondecoratif.com'}</span>
+                                            <span className="block text-white font-bold text-lg">{(config as any).email || 'contact@thermostatcopropriete.fr'}</span>
                                         </div>
                                     </Link>
                                 </li>
@@ -195,7 +195,7 @@ export function Footer({ config }: FooterProps) {
 
                 <div className="border-t border-white/10 pt-12 mt-4 text-left max-w-7xl mx-auto mb-16 px-4 md:px-0">
                     <h5 className="text-white font-bold mb-8 text-xl tracking-tight text-center md:text-left">
-                        Notre Réseau National d&apos;Artisans Béton Décoratif
+                        Notre Réseau National d&apos;Artisans Thermostats Connectés
                     </h5>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
                         {Object.entries(sitesByRegion).map(([region, sites]) => (

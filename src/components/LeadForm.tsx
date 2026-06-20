@@ -16,7 +16,7 @@ interface FormData {
     projectType: 'terrasse' | 'allee_garage' | 'tour_piscine' | 'autre' | null;
     monthlyBill: 'plus_50' | '20_50' | 'moins_20' | null;
     roofType: 'toupie_oui' | 'toupie_non' | 'toupie_nsp' | null;
-    solarLocation: 'beton_desactive' | 'beton_imprime' | 'beton_lisse_cire' | 'autre' | null;
+    solarLocation: 'moins_de_20' | 'entre_20_et_50' | 'plus_de_50' | 'autre' | null;
     name: string;
     email: string;
     phone: string;
@@ -124,7 +124,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 <CheckCircle className="text-slate-500 mx-auto mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-slate-800 mb-3">Votre demande de devis est validée !</h3>
                 <p className="text-neutral-700 mb-6">
-                    Votre demande a été transmise. Nos artisans partenaires certifiés en béton décoratif vont réaliser vos devis sous **24h** pour votre projet à **{city}**.
+                    Votre demande a été transmise. Nos artisans partenaires certifiés en Thermostats Connectés vont réaliser vos devis sous **24h** pour votre projet à **{city}**.
                 </p>
             </div>
         );
@@ -133,7 +133,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
     return (
         <div className="bg-white rounded-3xl shadow-2xl border border-neutral-200 overflow-hidden font-sans">
             <div className="bg-gradient-to-r from-slate-600 to-slate-700 p-6 text-white">
-                <h3 className="font-bold text-lg">{`Simulateur Béton Décoratif ${city} 2026`}</h3>
+                <h3 className="font-bold text-lg">{`Simulateur Thermostats Connectés ${city} 2026`}</h3>
                 <div className="h-2 bg-white/20 rounded-full mt-4">
                     <div className="h-full bg-white rounded-full" style={{ width: `${progress}%` }} />
                 </div>
@@ -146,7 +146,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                         <button onClick={() => { handleOptionSelect('projectType', 'terrasse'); setStep(2); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Home className="text-slate-500" />
                             <div>
-                                <div className="font-bold">Terrasse en béton</div>
+                                <div className="font-bold">chauffage collectif</div>
                                 <div className="text-sm text-neutral-500">Pour un espace de vie extérieur convivial</div>
                             </div>
                         </button>
@@ -154,14 +154,14 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                             <Home />
                             <div>
                                 <div className="font-bold">Allée de garage ou cour</div>
-                                <div className="text-sm text-neutral-500">Béton carrossable haute résistance</div>
+                                <div className="text-sm text-neutral-500">Vannes connectées haute précision</div>
                             </div>
                         </button>
                         <button onClick={() => { handleOptionSelect('projectType', 'tour_piscine'); setStep(2); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Home />
                             <div>
                                 <div className="font-bold">Tour de piscine (plage)</div>
-                                <div className="text-sm text-neutral-500">Béton anti-dérapant et esthétique</div>
+                                <div className="text-sm text-neutral-500">Régulation thermique intelligente</div>
                             </div>
                         </button>
                     </div>
@@ -201,14 +201,14 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                             <Home className="text-slate-500" />
                             <div>
                                 <div className="font-bold">Oui, accès direct possible</div>
-                                <div className="text-sm text-neutral-500">Livraison de béton facilitée</div>
+                                <div className="text-sm text-neutral-500">Oui, chaudière collective</div>
                             </div>
                         </button>
                         <button onClick={() => { handleOptionSelect('roofType', 'toupie_non'); setStep(4); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <AlertTriangle />
                             <div>
                                 <div className="font-bold">Non, le camion ne peut pas approcher</div>
-                                <div className="text-sm text-neutral-500">Prévoir tapis ou pompe à béton</div>
+                                <div className="text-sm text-neutral-500">Non, chauffage individuel</div>
                             </div>
                         </button>
                     </div>
@@ -216,18 +216,18 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
 
                 {step === 4 && (
                     <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-neutral-900 mb-4">Quel type de béton décoratif souhaitez-vous ?</h4>
-                        <button onClick={() => { handleOptionSelect('solarLocation', 'beton_desactive'); setStep(5); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
+                        <h4 className="text-xl font-bold text-neutral-900 mb-4">Quel type de Thermostats Connectés souhaitez-vous ?</h4>
+                        <button onClick={() => { handleOptionSelect('solarLocation', 'moins_de_20'); setStep(5); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Zap className="text-slate-500" />
                             <div>
-                                <div className="font-bold">Béton désactivé (aspect gravillons)</div>
+                                <div className="font-bold">Thermostats connectés (aspect gravillons)</div>
                                 <div className="text-sm text-neutral-500">Idéal pour les allées, anti-dérapant</div>
                             </div>
                         </button>
-                        <button onClick={() => { handleOptionSelect('solarLocation', 'beton_imprime'); setStep(5); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
+                        <button onClick={() => { handleOptionSelect('solarLocation', 'entre_20_et_50'); setStep(5); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Zap />
                             <div>
-                                <div className="font-bold">Béton imprimé (aspect pierre, bois)</div>
+                                <div className="font-bold">Vannes thermostatiques (aspect pierre, bois)</div>
                                 <div className="text-sm text-neutral-500">Esthétique personnalisée infinie</div>
                             </div>
                         </button>
@@ -244,7 +244,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
                         
                         <button onClick={handleSubmit} disabled={status === 'loading'} className="w-full py-4 bg-slate-600 text-white rounded-xl font-bold text-lg hover:bg-slate-700 transition">
-                            {status === 'loading' ? 'Envoi...' : 'Obtenir mes devis béton décoratif'}
+                            {status === 'loading' ? 'Envoi...' : 'Obtenir mes devis Thermostats Connectés'}
                         </button>
                     </div>
                 )}

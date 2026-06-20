@@ -14,8 +14,8 @@ import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
 
 export const metadata = {
-    title: "Expert Béton Décoratif | Devis Béton Désactivé & Imprimé",
-    description: "Trouvez un artisan qualifié pour la réalisation de vos allées et terrasses en béton décoratif.",
+    title: "Expert Thermostat Copropriété | Devis Thermostat Copropriété",
+    description: "Trouvez un artisan qualifié pour la réalisation de vos allées et terrasses en Thermostats Connectés.",
 };
 
 export default function HomePage() {
@@ -33,9 +33,9 @@ export default function HomePage() {
                             <div>
                                 <div className="inline-flex items-center rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-sm font-bold text-rose-700 mb-6">
                                     <CheckCircle size={16} className="mr-2" />
-                                    Devis Gratuits sous 48h & Assurance Décennale
+                                    Audit Gratuits sous 48h & Assurance Décennale
                                 </div>
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Donnez du cachet à votre extérieur avec le <span class="text-slate-600">Béton Décoratif</span>` }} />
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Donnez du cachet à votre extérieur avec le <span class="text-slate-600">Thermostats Connectés</span>` }} />
                                 <p className="text-xl text-slate-600 mb-4 max-w-xl mx-auto lg:mx-0">
                                     Esthétique, durable et sans entretien. Allée de garage carrossable ou terrasse personnalisée : estimez vos travaux sous 24h.
                                 </p>
@@ -46,12 +46,12 @@ export default function HomePage() {
                                     <div className="p-1 bg-gradient-to-r from-rose-600 to-red-600"></div>
                                     <div className="p-6 md:p-8">
                                         <div className="mb-6">
-                                            <h3 className="text-lg font-bold text-slate-900">Simulateur de Devis</h3>
+                                            <h3 className="text-lg font-bold text-slate-900">Audit Technique Gratuit</h3>
                                             <p className="text-sm text-slate-500">Gratuit • Sans engagement • 2 min</p>
                                         </div>
                                         <LeadForm
                                             city="France"
-                                            domain="expertbetondecoratif.com"
+                                            domain="thermostatcopropriete.fr"
                                             targetType="MIXED"
                                             themeColor="rose"
                                         />
@@ -64,7 +64,7 @@ export default function HomePage() {
                             <div className="relative h-[300px] lg:h-[450px] w-full rounded-2xl overflow-hidden border bg-white">
                                 <Image
                                     src="/images/generated/concrete-hero.webp"
-                                    alt="Expert Béton Décoratif"
+                                    alt="Expert Thermostat Copropriété"
                                     fill
                                     className="object-cover"
                                 />
@@ -82,7 +82,7 @@ export default function HomePage() {
             {/* Local Cities Section */}
             <section className="py-16 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Artisans bétonneurs dans votre ville</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Artisans chauffagistes RGE dans votre ville</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                         {cities.map((city, idx) => (
                             <Link href={`/ville/${city.slug}`} key={idx} className="p-4 bg-white border rounded-xl hover:border-rose-500 shadow-sm text-center font-semibold text-slate-800">

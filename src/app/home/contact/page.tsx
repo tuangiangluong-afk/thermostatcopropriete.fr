@@ -60,7 +60,7 @@ export default function HubContactPage() {
                             </div>
                             <h3 className="font-bold text-slate-900 text-lg mb-2">Siège Social</h3>
                             <p className="text-slate-500 text-sm mb-4">Paris, France</p>
-                            <p className="font-bold text-slate-900">Expert Béton Décoratif</p>
+                            <p className="font-bold text-slate-900">Expert Thermostat Copropriété</p>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@ export default function HubContactPage() {
                                 <h2 className="text-2xl font-bold text-slate-900">Envoyer un message</h2>
                                 <p className="text-slate-500">Remplissez le formulaire ci-dessous pour lancer votre étude thermique.</p>
                             </div>
-                            <ContactForm domain="expertbetondecoratif.com" city="Hub National" theme={getTheme('national')} />
+                            <ContactForm domain="thermostatcopropriete.fr" city="Hub National" theme={getTheme('national')} />
                         </div>
                     </div>
                 </div>

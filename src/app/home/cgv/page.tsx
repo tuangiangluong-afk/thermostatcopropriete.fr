@@ -3,8 +3,8 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Conditions Générales de Vente - Expert Béton Décoratif",
-    description: "Consultez les CGV du réseau Expert Béton Décoratif : mise en relation avec des installateurs certifiés RGE QualiPAC, devis gratuits.",
+    title: "Conditions Générales de Vente - Expert Thermostat Copropriété",
+    description: "Consultez les CGV du réseau Expert Thermostat Copropriété : mise en relation avec des installateurs certifiés RGE QualiPAC, devis gratuits.",
 };
 
 export default function CGV() {
@@ -21,7 +21,7 @@ export default function CGV() {
                         Retour Accueil
                     </Link>
                     <span className="text-sm font-bold">
-                        Expert Béton Décoratif<span className="text-slate-500">.</span>
+                        Expert Thermostat Copropriété<span className="text-slate-500">.</span>
                     </span>
                 </div>
             </nav>
@@ -35,7 +35,7 @@ export default function CGV() {
                     <div className="mb-8 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
                         <p className="text-sm text-neutral-500">Dernière mise à jour : 25/01/2026</p>
                         <p>
-                            Les présentes Conditions Générales de Vente régissent les relations contractuelles entre la société <strong>WELINK TECH</strong>, sise au 6 RUE DES BATELIERS, 92110 CLICHY (SIREN 984 800 136), ci-après &quot;L&apos;Éditeur&quot;, et toute personne utilisant le site <strong>Expert Béton Décoratif</strong> pour la mise en relation avec des installateurs pompes à chaleur certifiés RGE.
+                            Les présentes Conditions Générales de Vente régissent les relations contractuelles entre la société <strong>WELINK TECH</strong>, sise au 6 RUE DES BATELIERS, 92110 CLICHY (SIREN 984 800 136), ci-après &quot;L&apos;Éditeur&quot;, et toute personne utilisant le site <strong>Expert Thermostat Copropriété</strong> pour la mise en relation avec des installateurs pompes à chaleur certifiés RGE.
                         </p>
                     </div>
 
@@ -66,10 +66,10 @@ export default function CGV() {
                     <div className="mb-8 rounded-2xl border-2 border-slate-200 bg-slate-50 p-8 shadow-sm">
                         <h2 className="mb-4 text-2xl font-bold text-slate-900">4. Nature du Service - Mise en Relation</h2>
                         <p className="font-semibold text-slate-800">
-                            Expert Béton Décoratif est une <strong>plateforme de mise en relation technique</strong> entre les utilisateurs et des installateurs de pompes à chaleur indépendants.
+                            Expert Thermostat Copropriété est une <strong>plateforme de mise en relation technique</strong> entre les utilisateurs et des installateurs de pompes à chaleur indépendants.
                         </p>
                         <p className="mt-4 text-slate-700">
-                            <strong>Expert Béton Décoratif n&apos;est pas une entreprise d&apos;installation ou de travaux.</strong> Les prestations de pose sont effectuées par des professionnels indépendants ou des sociétés tierces, dûment certifiés RGE et assurés.
+                            <strong>Expert Thermostat Copropriété n&apos;est pas une entreprise d&apos;installation ou de travaux.</strong> Les prestations de pose sont effectuées par des professionnels indépendants ou des sociétés tierces, dûment certifiés RGE et assurés.
                         </p>
                         <p className="mt-4 text-slate-700">
                             En conséquence, <strong>WELINK TECH décline toute responsabilité</strong> en cas de litige lié à l&apos;exécution des travaux, incluant mais non limité à : malfaçons, retards de pose, non-obtention des subventions de l'État (MaPrimeRénov', CEE) ou tout dommage survenu pendant l'installation.

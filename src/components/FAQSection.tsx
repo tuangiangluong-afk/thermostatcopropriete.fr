@@ -1,52 +1,32 @@
 "use client";
-import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import FAQ from "./FAQ";
 
-export default function FAQSection({ city }: { city?: string }) {
-    const cityText = city ? ` à ${city}` : "";
+export default function FAQSection() {
     const faqs = [
         {
-            question: "Qu&apos;est-ce que le béton désactivé" + cityText + " ?",
-            answer: "Le béton désactivé est un béton décoratif obtenu par pulvérisation d&apos;un retardateur de prise sur la surface fraîche du béton, suivi d&apos;un lavage haute pression. Cela laisse apparaître les gravillons en relief, offrant un aspect esthétique naturel et antidérapant idéal pour les allées et terrasses."
+            question: "L'installation de thermostats est-elle obligatoire en copropriété ?",
+            answer: "Oui, la réglementation impose l'individualisation des frais de chauffage (RFC) et l'installation d'équipements permettant la régulation de la température pièce par pièce pour les bâtiments équipés d'un chauffage collectif."
         },
         {
-            question: "Quel est le prix moyen au m² du béton décoratif ?",
-            answer: "Le tarif d&apos;une dalle de béton décoratif varie entre 70€ et 150€ par m² (fourniture, préparation du sol et pose comprise). Le prix final dépend de la surface totale (tarifs dégressifs au-delà de 50m²), du terrassement nécessaire et du type de finition (imprimé, désactivé)."
+            question: "Qu'est-ce que le plan 'Coup de pouce Thermostat' ?",
+            answer: "Il s'agit d'une aide de l'État dans le cadre des CEE qui finance une grande partie de l'installation de thermostats programmables connectés. Cette prime s'applique directement sur la facture pour les copropriétés."
         },
         {
-            question: "Le passage d&apos;un camion toupie est-il obligatoire ?",
-            answer: "Pour les surfaces importantes (supérieures à 20m²), l&apos;acheminement du béton prêt à l&apos;emploi par camion toupie est fortement recommandé pour garantir l&apos;homogénéité du mélange. Si le camion ne peut pas accéder directement, un système de pompe ou de tapis peut être déployé."
+            question: "Comment gérer l'installation dans les appartements privés ?",
+            answer: "Nos équipes se chargent de planifier les interventions avec chaque résident. La pose d'une tête thermostatique connectée sur un radiateur existant prend en moyenne moins de 15 minutes par radiateur, sans vidange du circuit."
+        },
+        {
+            question: "Quel est le gain espéré sur la facture d'énergie ?",
+            answer: "L'ADEME estime que l'installation d'une régulation performante permet de réaliser en moyenne 15% à 25% d'économies d'énergie sur le chauffage."
         }
     ];
 
     return (
-        <section className="py-16 md:py-24 bg-white">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-black text-slate-900 mb-4">Questions fréquentes</h2>
-                    <p className="text-slate-600">Tout savoir sur votre projet de béton décoratif.</p>
-                </div>
-                <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                        <div key={index} className="border border-slate-200 rounded-xl overflow-hidden">
-                            <FAQItem question={faq.question} answer={faq.answer} />
-                        </div>
-                    ))}
-                </div>
+        <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4">
+                <h2 className="text-3xl font-extrabold text-center mb-8">Questions Fréquentes (Syndics & Copros)</h2>
+                <FAQ items={faqs} />
             </div>
         </section>
-    );
-}
-
-function FAQItem({ question, answer }: { question: string, answer: string }) {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div className="bg-white">
-            <button onClick={() => setIsOpen(!isOpen)} className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
-                <span className="font-bold text-slate-900 pr-8" dangerouslySetInnerHTML={{ __html: question }} />
-                {isOpen ? <Minus className="w-5 h-5 text-slate-600 shrink-0" /> : <Plus className="w-5 h-5 text-slate-400 shrink-0" />}
-            </button>
-            {isOpen && <div className="p-6 pt-0 text-slate-600 border-t border-slate-100 mt-2" dangerouslySetInnerHTML={{ __html: answer }} />}
-        </div>
     );
 }

@@ -4,10 +4,10 @@ export default function StructuredData() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Expert Béton Décoratif",
-        "url": "https://www.expertbetondecoratif.com",
-        "logo": "https://www.expertbetondecoratif.com/logo.png",
-        "description": "Réseau national d'artisans spécialisés dans la pose de béton décoratif (désactivé, imprimé, lissé) pour terrasses, allées et plages de piscine en France.",
+        "name": "Expert Thermostat Copropriété",
+        "url": "https://www.thermostatcopropriete.fr",
+        "logo": "https://www.thermostatcopropriete.fr/logo.png",
+        "description": "Réseau national d'artisans spécialisés dans la pose de Thermostats Connectés (désactivé, imprimé, lissé) pour terrasses, allées et plages de piscine en France.",
         "sameAs": [],
         "foundingDate": "2020",
         "address": {
@@ -23,7 +23,7 @@ export default function StructuredData() {
         },
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.expertbetondecoratif.com/ville/{search_term_string}",
+            "target": "https://www.thermostatcopropriete.fr/ville/{search_term_string}",
             "query-input": "required name=search_term_string"
         }
     };
@@ -31,11 +31,12 @@ export default function StructuredData() {
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "url": "https://www.expertbetondecoratif.com",
-        "name": "expertbetondecoratif",
+        "name": "thermostatcopropriete",
+        "alternateName": "Expert Thermostat Copropriété",
+        "url": "https://www.thermostatcopropriete.fr",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.expertbetondecoratif.com/ville/{search_term_string}",
+            "target": "https://www.thermostatcopropriete.fr/ville/{search_term_string}",
             "query-input": "required name=search_term_string"
         }
     };
@@ -43,8 +44,8 @@ export default function StructuredData() {
     const serviceSchema = {
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "Pose de Béton Décoratif",
-        "provider": { "@type": "Organization", "name": "expertbetondecoratif" },
+        "serviceType": "Installation de Thermostats Copropriété",
+        "provider": { "@type": "Organization", "name": "thermostatcopropriete" },
         "areaServed": { "@type": "Country", "name": "France" }
     };
 

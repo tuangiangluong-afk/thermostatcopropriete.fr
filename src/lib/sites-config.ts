@@ -50,22 +50,22 @@ const TEMPLATE_FEATURES = [
 
 const _hubConfig: SiteConfig = {
     slug: "home",
-    domain: "expertbetondecoratif.com",
+    domain: "thermostatcopropriete.fr",
     city: "France",
     postalCode: "",
     department: "",
     region: "National",
-    name: "Expert Béton Décoratif",
+    name: "Expert Thermostat Copropriété",
     phoneNumber: "01 84 80 00 00",
-    email: "contact@expertbetondecoratif.com",
+    email: "contact@thermostatcopropriete.fr",
     targetType: "CONCRETE",
     priceRange: 'STANDARD',
     theme: 'premium',
     heroImage: "/images/generated/concrete-hero.webp",
-    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en béton décoratif en France.",
+    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France.",
     meta: {
-        title: "Expert Béton Décoratif | Devis Béton Désactivé & Imprimé",
-        description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en béton décoratif en France."
+        title: "Expert Thermostat Copropriété | Devis Thermostat Copropriété",
+        description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France."
     },
     certifications: TEMPLATE_CERTIFICATIONS,
     aidesDisponibles: TEMPLATE_AIDES,
@@ -261,8 +261,8 @@ export const SITES: Record<string, SiteConfig> = {
         department: "30",
         coordinates: { lat: 43.8367, lng: 4.3601 }
     },
-    "expertbetondecoratif.com": _hubConfig,
-    "www.expertbetondecoratif.com": _hubConfig,
+    "thermostatcopropriete.fr": _hubConfig,
+    "www.thermostatcopropriete.fr": _hubConfig,
     "home": _hubConfig
 };
 

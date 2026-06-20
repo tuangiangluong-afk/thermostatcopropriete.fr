@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
         let leadScore = body.leadScore || 60;
         const currentCountry = 'FR' as string;
-        const currentNiche = 'beton';
+        const currentNiche = 'thermostat';
         
         // ----------------------------------------------------
         // ARBITRAGE GEOGRAPHIQUE
@@ -54,9 +54,9 @@ export async function POST(request: Request) {
                 nom, prenom, email, tel: phone, cp: postalCode, ville: city,
                 cp_projet: postalCode, ville_projet: city, pays: 'fr', adresse1: 'Adresse non communiquée',
                 tp: 1, type_bien: 2, situation: 1, delais: 2,
-                description: `Demande de devis pour béton décoratif à ${city} (${postalCode}). Type de projet : ${projectType || 'N/A'}. Surface estimée : ${monthlyBill || 'N/A'}. Accès camion toupie : ${roofType || 'N/A'}. Finition souhaitée : ${solarLocation || 'N/A'}. Généré via ${domain}.`,
+                description: `Demande de devis pour installation thermostats connectés à ${city} (${postalCode}). Type de copro : ${projectType || 'N/A'}. Surface/lots : ${monthlyBill || 'N/A'}. Généré via ${domain}.`,
                 cat_id: '108',
-                site_name: domain || 'expertbetondecoratif.com'
+                site_name: domain || 'thermostatcopropriete.fr'
             };
             try {
                 arbitrageResult = await sendLeadToViteUnDevis(vudPayload);
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
 
         const leadPayload: any = {
             name, email, phone, city, postal_code: postalCode,
-            tenant_id: domain || 'expertbetondecoratif.com',
+            tenant_id: domain || 'thermostatcopropriete.fr',
             type: `${currentNiche}_lead`,
             housing_type: projectType,
             status: 'new',

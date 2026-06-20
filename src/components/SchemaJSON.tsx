@@ -13,10 +13,10 @@ interface SchemaJSONProps {
 export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: SchemaJSONProps) {
     let schema = {};
 
-    const baseUrl = "https://www.expertbetondecoratif.com";
+    const baseUrl = "https://www.thermostatcopropriete.fr";
 
     if (type === "LocalBusiness" && site) {
-        const canonicalUrl = site.slug === 'home' || site.slug === 'expertbetondecoratif.com' || site.slug === 'www.expertbetondecoratif.com'
+        const canonicalUrl = site.slug === 'home' || site.slug === 'thermostatcopropriete.fr' || site.slug === 'www.thermostatcopropriete.fr'
             ? baseUrl
             : `${baseUrl}/ville/${slugify(site.city)}`;
 
@@ -74,7 +74,7 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
         schema = {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Expert Béton Décoratif",
+            "name": "Expert Thermostat Copropriété",
             "url": baseUrl,
             "logo": `${baseUrl}/logo.png`,
             "sameAs": [

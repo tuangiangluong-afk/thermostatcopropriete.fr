@@ -14,7 +14,7 @@ const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supaba
 export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
-    title: "Guides et Conseils Pompes à Chaleur | Expert Béton Décoratif",
+    title: "Guides et Conseils Pompes à Chaleur | Expert Thermostat Copropriété",
     description: "Tout comprendre sur l'installation de pompes à chaleur. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
 };
 

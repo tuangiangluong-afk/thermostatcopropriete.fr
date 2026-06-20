@@ -23,11 +23,11 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
 
     function getVariedAnchor(name: string, index: number) {
         const variations = [
-            `Béton imprimé ${name}`,
-            `Artisan béton désactivé ${name}`,
-            `Terrasse en béton ${name}`,
+            `Vannes thermostatiques ${name}`,
+            `Artisan Thermostats connectés ${name}`,
+            `chauffage collectif ${name}`,
             `Aménagement allée ${name}`,
-            `Béton lissé ${name}`
+            `Têtes thermostatiques ${name}`
         ];
         return variations[index % variations.length];
     }
@@ -40,9 +40,9 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Nos Services</h4>
                         <ul className="space-y-3">
                             {[
-                                "Pose de Béton Imprimé",
-                                "Réalisation de Béton Désactivé",
-                                "Béton Lissé et Ciré",
+                                "Pose de Vannes thermostatiques",
+                                "Réalisation de Thermostats connectés",
+                                "Têtes thermostatiques et Ciré",
                                 "Rénovation de Terrasses",
                                 "Aménagement Extérieur"
                             ].map((service, i) => (
@@ -96,9 +96,9 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Documentation & Conseils</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Prix du Béton Imprimé", href: "/guides/prix-beton-imprime-m2" },
-                                { label: "Béton Désactivé vs Imprimé", href: "/guides/beton-desactive-ou-imprime" },
-                                { label: "Entretien du Béton", href: "/guides/entretien-beton-decoratif" },
+                                { label: "Prix du Vannes thermostatiques", href: "/guides/prix-beton-imprime-m2" },
+                                { label: "Thermostats connectés vs Imprimé", href: "/guides/beton-desactive-ou-imprime" },
+                                { label: "Entretien des Thermostats", href: "/guides/entretien-beton-decoratif" },
                                 { label: "Tous nos guides", href: "/guides" }
                             ].map((link, i) => (
                                 <li key={i}>

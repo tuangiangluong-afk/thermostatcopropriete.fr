@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { getSiteConfig } from "@/lib/sites-config";
 
 export const metadata = {
-    title: "Glossaire technique et définitions | expertbetondecoratif",
+    title: "Glossaire technique et définitions | thermostatcopropriete",
     description: "Découvrez notre glossaire complet pour comprendre tous les termes techniques et réglementaires de votre projet.",
 };
 

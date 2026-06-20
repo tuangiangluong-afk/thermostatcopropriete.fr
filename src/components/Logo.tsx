@@ -49,7 +49,7 @@ export default function Logo({
             </div>
             <div className={`${s.text} font-bold tracking-tight leading-tight`}>
                 <span className={colors.expert}>Expert </span>
-                <span className={`${colors.niche} ${city ? '' : 'bg-clip-text text-transparent bg-gradient-to-r from-slate-600 to-slate-400'}`}>Béton Décoratif</span>
+                <span className={`${colors.niche} ${city ? '' : 'bg-clip-text text-transparent bg-gradient-to-r from-slate-600 to-slate-400'}`}>Thermostats Connectés</span>
                 {city && (
                     <span className={`${colors.niche} block text-sm font-semibold uppercase tracking-wider`}>{city}</span>
                 )}

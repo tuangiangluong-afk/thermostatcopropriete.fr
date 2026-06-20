@@ -89,7 +89,7 @@ export async function sendLeadToViteUnDevis(payload: VUDLeadPayload): Promise<VU
         description: payload.description,
         cat_id: payload.cat_id,
         format_return: 'json',
-        site_name: payload.site_name || 'expertbetondecoratif.com'
+        site_name: payload.site_name || 'thermostatcopropriete.fr'
       })
     });
 

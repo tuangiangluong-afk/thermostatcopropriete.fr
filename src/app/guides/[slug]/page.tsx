@@ -175,19 +175,19 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         "@type": "Article",
         "headline": guide.title,
         "description": guide.description,
-        "image": guide.image ? [`https://www.expertbetondecoratif.com${guide.image}`] : [`https://www.expertbetondecoratif.com/images/og-image.png`],
+        "image": guide.image ? [`https://www.thermostatcopropriete.fr${guide.image}`] : [`https://www.thermostatcopropriete.fr/images/og-image.png`],
         "datePublished": guide.date,
         "author": [{
             "@type": "Organization",
-            "name": "Expert Béton Décoratif",
-            "url": "https://www.expertbetondecoratif.com"
+            "name": "Expert Thermostat Copropriété",
+            "url": "https://www.thermostatcopropriete.fr"
         }],
         "publisher": {
             "@type": "Organization",
-            "name": "Expert Béton Décoratif",
+            "name": "Expert Thermostat Copropriété",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.expertbetondecoratif.com/logo.png"
+                "url": "https://www.thermostatcopropriete.fr/logo.png"
             }
         }
     };
@@ -269,7 +269,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                                     EP
                                 </div>
                                 <div>
-                                    <div className="font-bold text-lg text-slate-900">Expert Béton Décoratif</div>
+                                    <div className="font-bold text-lg text-slate-900">Expert Thermostat Copropriété</div>
                                     <div className="text-sm text-slate-500">Pôle Technique & Réglementation</div>
                                 </div>
                             </div>

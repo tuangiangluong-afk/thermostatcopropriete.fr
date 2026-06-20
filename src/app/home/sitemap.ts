@@ -4,7 +4,7 @@ import { slugify } from '@/lib/slugify';
 import { getAllGuides } from '@/lib/mdx';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.expertbetondecoratif.com';
+    const baseUrl = 'https://www.thermostatcopropriete.fr';
 
     // 1. CORE STATIC PAGES
     const coreRoutes: MetadataRoute.Sitemap = [

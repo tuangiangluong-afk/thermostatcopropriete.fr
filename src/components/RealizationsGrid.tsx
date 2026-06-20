@@ -2,28 +2,28 @@ import Image from "next/image";
 
 const projects = [
     {
-        "city": "Paris",
-        "desc": "Allée de Garage Carrossable",
-        "type": "Béton Désactivé avec gravillons clairs (120m²)",
-        "img": "/images/generated/concrete-realization-1.webp"
+        "city": "Paris 15e",
+        "desc": "Mise aux normes Chaufferie Collective",
+        "type": "Installation de 450 têtes thermostatiques connectées",
+        "img": "/images/generated/thermostat-realization-1.png"
     },
     {
-        "city": "Lyon",
-        "desc": "Plage de Piscine Antidérapante",
-        "type": "Béton Imprimé effet dalles de pierre grise (80m²)",
-        "img": "/images/generated/concrete-realization-2.webp"
+        "city": "Lyon 3e",
+        "desc": "Individualisation des Frais",
+        "type": "Régulation par appartement (75 lots)",
+        "img": "/images/generated/thermostat-realization-2.png"
     },
     {
-        "city": "Marseille",
-        "desc": "Terrasse Moderne de Villa",
-        "type": "Béton Taloché et lissé anthracite (65m²)",
-        "img": "/images/generated/concrete-realization-3.png"
+        "city": "Strasbourg",
+        "desc": "Équipement Résidence Années 70",
+        "type": "Mise en place de vannes thermostatiques avec CEE",
+        "img": "/images/generated/thermostat-realization-3.png"
     },
     {
         "city": "Bordeaux",
-        "desc": "Rénovation Entrée de Maison",
-        "type": "Béton Désactivé haute résistance (45m²)",
-        "img": "/images/generated/concrete-realization-4.png"
+        "desc": "Système de Gestion Technique (GTB)",
+        "type": "Contrôle centralisé de la chaufferie pour le Syndic",
+        "img": "/images/generated/thermostat-realization-4.png"
     }
 ];
 
@@ -32,13 +32,12 @@ export default function RealizationsGrid() {
         <section className="py-20 bg-neutral-900 text-white">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: `Dernières réalisations en <span class="text-slate-500">Béton Décoratif</span>` }} />
+                    <h2 className="text-3xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: `Dernières interventions en <span class="text-blue-500">France</span>` }} />
                     <p className="text-neutral-400">
-                        Revêtement extérieur esthétique, durable et sans entretien pour terrasses et allées.
+                        Accompagnement des syndics dans la transition énergétique des bâtiments collectifs.
                     </p>
                 </div>
 
-                {/* BENTO GRID */}
                 <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-[600px]">
                     {projects.map((proj, i) => (
                         <div
@@ -56,7 +55,7 @@ export default function RealizationsGrid() {
 
                             <div className="absolute bottom-0 left-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                                 <div className="text-neutral-400 text-xs font-bold uppercase tracking-wider mb-1 flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-slate-500"></span>
+                                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                                     {proj.city}
                                 </div>
                                 <div className="text-2xl font-bold mb-1">{proj.desc}</div>

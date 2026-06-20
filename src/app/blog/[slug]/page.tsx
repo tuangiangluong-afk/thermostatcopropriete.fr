@@ -72,11 +72,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = await getPost(slug);
 
     if (!post) {
-        return { title: 'Article non trouvé | Expert Béton Décoratif' };
+        return { title: 'Article non trouvé | Expert Thermostat Copropriété' };
     }
 
     return {
-        title: post.seo_title || `${post.title} | Expert Béton Décoratif`,
+        title: post.seo_title || `${post.title} | Expert Thermostat Copropriété`,
         description: post.seo_description || post.excerpt,
         openGraph: {
             title: post.title,
@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             type: 'article',
             publishedTime: post.published_at,
             modifiedTime: post.updated_at,
-            authors: [post.author_name || 'Expert Béton Décoratif'],
+            authors: [post.author_name || 'Expert Thermostat Copropriété'],
         },
     };
 }
@@ -122,7 +122,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         "dateModified": post.updated_at,
         "author": {
             "@type": "Person",
-            "name": post.author_name || "Expert Béton Décoratif"
+            "name": post.author_name || "Expert Thermostat Copropriété"
         }
     };
 
@@ -234,7 +234,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="font-bold text-neutral-900">{post.author_name || 'Expert Béton Décoratif'}</p>
+                                    <p className="font-bold text-neutral-900">{post.author_name || 'Expert Thermostat Copropriété'}</p>
                                     <p className="text-xs text-neutral-500">Expert Chauffage &amp; PAC</p>
                                 </div>
                             </div>
@@ -251,7 +251,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
                          {/* CTA */}
                          <div className="bg-gradient-to-br from-slate-950 to-slate-900 text-white rounded-2xl p-8 text-center shadow-lg">
-                            <h4 className="text-xl font-bold mb-2">Devis Gratuit</h4>
+                            <h4 className="text-xl font-bold mb-2">Audit Gratuit</h4>
                             <p className="text-slate-100 text-sm mb-6">Comparez les prix des installateurs RGE près de chez vous.</p>
                             <Link href="/devis" className="inline-block bg-white text-slate-900 px-6 py-3 rounded-full font-bold hover:bg-slate-50 transition-colors w-full">
                                 Commencer

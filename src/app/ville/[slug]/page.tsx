@@ -38,7 +38,7 @@ export async function generateMetadata({
         title: pseo.meta_title,
         description: pseo.meta_description,
         alternates: {
-            canonical: `https://www.expertbetondecoratif.com/ville/${resolvedParams.slug}`,
+            canonical: `https://www.thermostatcopropriete.fr/ville/${resolvedParams.slug}`,
         },
         openGraph: {
             title: pseo.meta_title,
@@ -136,6 +136,25 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 </div>
             </section>
 
+            <section className="py-16 bg-white">
+                <div className="container mx-auto px-4 max-w-4xl">
+                    <div className="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">Réglementation Copropriété à {site.city}</h2>
+                            <p className="text-slate-600 leading-relaxed">
+                                {pseo.local_compliance_info}
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">Logistique d'Installation</h2>
+                            <p className="text-slate-600 leading-relaxed">
+                                {pseo.installation_timeline}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="py-16 bg-slate-50 border-y border-slate-200" id="simulateur">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-xl">
@@ -145,7 +164,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                         </div>
                         <LeadForm
                             city={site.city}
-                            domain="expertbetondecoratif.com"
+                            domain="thermostatcopropriete.fr"
                             targetType="MIXED"
                             themeColor="rose"
                         />

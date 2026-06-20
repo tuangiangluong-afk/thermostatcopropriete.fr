@@ -17,7 +17,7 @@ export function LocalFAQ({ site, segment }: LocalFAQProps) {
                         Questions fréquentes à {city}
                     </h2>
                     <p className="text-slate-600 mt-3 text-lg">
-                        Tout savoir sur la pose de béton imprimé et désactivé dans votre ville.
+                        Tout savoir sur la pose de Vannes thermostatiques et désactivé dans votre ville.
                     </p>
                 </div>
                 <div className="space-y-4">
@@ -57,16 +57,16 @@ export function getLocalFAQData(city: string, department: string | undefined, se
 
     return [
         {
-            question: `Quel est le prix au m² du béton imprimé à ${city} ?`,
-            answer: `Le prix du béton imprimé à ${city} se situe généralement entre 60€ et 120€ par mètre carré, incluant les fournitures, la pose et les finitions. Cela dépend de la surface totale et de la complexité des motifs.`
+            question: `Quel est le prix au m² du Vannes thermostatiques à ${city} ?`,
+            answer: `Le prix du Vannes thermostatiques à ${city} se situe généralement entre 60€ et 120€ par mètre carré, incluant les fournitures, la pose et les finitions. Cela dépend de la surface totale et de la complexité des motifs.`
         },
         {
-            question: `Combien de temps faut-il pour réaliser une terrasse en béton à ${city} ?`,
+            question: `Combien de temps faut-il pour réaliser une chauffage collectif à ${city} ?`,
             answer: `Nos artisans partenaires à ${city} réalisent généralement un chantier de 50m² en 2 à 3 jours, du coulage à l'application du vernis de finition. Nous avons coulé plus de ${installCount} chantiers dans le ${dept} récemment.`
         },
         {
-            question: `Le béton imprimé résiste-t-il au gel à ${city} ?`,
-            answer: `Absolument. Nos bétons décoratifs appliqués à ${city} sont protégés par un vernis spécifique qui les rend non poreux, résistants au gel, aux UV et aux taches d'huile.`
+            question: `Le Vannes thermostatiques résiste-t-il au gel à ${city} ?`,
+            answer: `Oui, la loi sur l'individualisation des frais de chauffage et le décret tertiaire rendent obligatoire l'installation de thermostats connectés ou vannes thermostatiques pour la majorité des immeubles à ${city}.`
         }
     ];
 }

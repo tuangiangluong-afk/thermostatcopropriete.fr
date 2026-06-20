@@ -13,16 +13,16 @@ import AttributionTracker from "@/components/AttributionTracker";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const canonicalDomain = headersList.get("x-irve-canonical-domain") || "www.expertbetondecoratif.com";
+  const canonicalDomain = headersList.get("x-irve-canonical-domain") || "www.thermostatcopropriete.fr";
   const path = headersList.get("x-irve-path") || "";
   const baseUrl = `https://${canonicalDomain}`;
 
   return {
     title: {
-      template: `%s | Expert Béton Décoratif`,
-      default: "Expert Béton Décoratif - Devis Béton Désactivé & Imprimé",
+      template: `%s | Expert Thermostat Copropriété`,
+      default: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
     },
-    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en béton décoratif en France. Devis sous 48h gratuit.",
+    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}${path}`,
@@ -39,9 +39,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: "Expert Béton Décoratif - Devis Béton Désactivé & Imprimé",
-      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en béton décoratif en France. Devis sous 48h gratuit.",
-      siteName: "Expert Béton Décoratif",
+      title: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
+      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
+      siteName: "Expert Thermostat Copropriété",
       locale: "fr_FR",
       type: "website",
       url: `${baseUrl}${path}`,
@@ -50,14 +50,14 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${baseUrl}/images/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Expert Béton Décoratif - Devis Béton Désactivé & Imprimé",
+          alt: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Expert Béton Décoratif - Devis Béton Désactivé & Imprimé",
-      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en béton décoratif en France. Devis sous 48h gratuit.",
+      title: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
+      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
       images: [`${baseUrl}/images/og-image.png`],
     },
     icons: {
