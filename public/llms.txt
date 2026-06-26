@@ -17,10 +17,10 @@ Expert Béton Décoratif est la plateforme de référence en France pour trouver
 - Coverage: National (Toutes régions et départements de France métropolitaine)
 
 ## Contact
-- Website: https://expertbetondecoratif.com
+- [Website](https://expertbetondecoratif.com)
 - Service: Simulation de devis pour béton décoratif.
 
 ## Links
-- Sitemap: https://expertbetondecoratif.com/sitemap.xml
-- Guide et Conseils: https://expertbetondecoratif.com/guides
-- Simulation: https://expertbetondecoratif.com/#simulateur
+- [Sitemap](https://expertbetondecoratif.com/sitemap.xml)
+- [Guide et Conseils](https://expertbetondecoratif.com/guides)
+- [Simulation](https://expertbetondecoratif.com/#simulateur)
