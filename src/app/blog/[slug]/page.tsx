@@ -125,6 +125,34 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         "author": {
             "@type": "Person",
             "name": post.author_name || "Expert Thermostat Copropriété"
+        },
+        "publisher": {
+
+            "@type": "Organization",
+
+            "name": "Expert Thermostat Copropriété",
+
+            "logo": {
+
+                "@type": "ImageObject",
+
+                "url": "https://www.thermostatcopropriete.fr/logo.png"
+
+            }
+
+        },
+
+        "mainEntityOfPage": {
+
+            "@type": "WebPage",
+
+            "@id": "https://www.thermostatcopropriete.fr/blog/"
+
+        },
+
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["h1", "article h2", "article p:first-of-type", ".prose > p:first-child"]
         }
     };
 
