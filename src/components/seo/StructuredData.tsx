@@ -1,15 +1,16 @@
 import Script from "next/script";
 
 export default function StructuredData() {
-    const schema = {
+    const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Thermostat Copropriété",
         "legalName": "Thermostat Copropriété SAS",
-        "alternateName": ["ThermostatCopropriété", "Thermostat Copropriété Global"],
+        "alternateName": ["ThermostatCopropriété", "Thermostat Copropriété Official"],
         "url": "https://thermostatcopropriete.fr",
         "logo": "https://thermostatcopropriete.fr/icon.png",
-        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
+        "image": "https://thermostatcopropriete.fr/icon.png",
+        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "8 Rue de la Paix",
@@ -30,13 +31,44 @@ export default function StructuredData() {
         }
     };
 
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Régulation & Suivi Thermique pour Copropriétés",
+        "serviceType": "Régulation & Suivi Thermique pour Copropriétés",
+        "provider": {
+            "@type": "Organization",
+            "name": "Thermostat Copropriété",
+            "url": "https://thermostatcopropriete.fr"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "FR"
+        },
+        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "price": "290",
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2026-01-01"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "86",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    };
+
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "url": "https://thermostatcopropriete.fr",
         "name": "Thermostat Copropriété",
         "alternateName": "thermostatcopropriete.fr",
-        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
+        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
         "inLanguage": "fr-FR",
         "publisher": {
             "@type": "Organization",
@@ -44,17 +76,74 @@ export default function StructuredData() {
         }
     };
 
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Comment obtenir un devis gratuit pour Thermostat Copropriété ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Remplissez notre formulaire en ligne en 2 minutes pour recevoir une estimation gratuite, personnalisée et sans engagement par nos experts certifiés."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelles sont les garanties fournies par Thermostat Copropriété ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tous nos services et installations sont couverts par une garantie décennale, une certification de conformité aux normes en vigueur et un suivi technique réactif."
+                }
+            }
+        ]
+    };
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://thermostatcopropriete.fr"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Régulation & Suivi Thermique pour Copropriétés",
+                "item": "https://thermostatcopropriete.fr/#simulateur"
+            }
+        ]
+    };
+
     return (
         <>
             <Script
                 id="org-schema"
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            />
+            <Script
+                id="service-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
             />
             <Script
                 id="website-schema"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+            <Script
+                id="faq-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
         </>
     );
