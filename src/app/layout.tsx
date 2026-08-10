@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = `https://${canonicalDomain}`;
 
   return {
-      title: {
+        title: {
     template: `%s | Thermostat Copropriété®`,
     default: `Thermostat Copropriété® - N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.`,
   },
