@@ -18,10 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = `https://${canonicalDomain}`;
 
   return {
-    title: {
-      template: `%s | Expert Thermostat Copropriété`,
-      default: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
-    },
+      title: {
+    template: `%s | Thermostat Copropriété®`,
+    default: `Thermostat Copropriété® - N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.`,
+  },
     description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
     metadataBase: new URL(baseUrl),
     alternates: {
@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#475569",
+  themeColor: "#16a34a",
 };
 
 export default function RootLayout({

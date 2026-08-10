@@ -4,102 +4,63 @@ export default function StructuredData() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Expert Thermostat Copropriété",
-        "url": "https://www.thermostatcopropriete.fr",
-        "logo": "https://www.thermostatcopropriete.fr/logo.png",
-        "description": "Réseau national d'artisans spécialisés dans la pose de Thermostats Connectés (désactivé, imprimé, lissé) pour terrasses, allées et plages de piscine en France.",
-        "sameAs": [],
-        "foundingDate": "2020",
+        "name": "Thermostat Copropriété",
+        "legalName": "Thermostat Copropriété SAS",
+        "alternateName": ["ThermostatCopropriété", "Thermostat Copropriété France"],
+        "url": "https://thermostatcopropriete.fr",
+        "logo": "https://thermostatcopropriete.fr/icon.png",
+        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "8 Rue de la Paix",
+            "addressLocality": "Paris",
+            "postalCode": "75002",
             "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 48.8686,
+            "longitude": 2.3314
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "01 84 80 00 00",
+            "telephone": "+33 1 84 80 00 00",
             "contactType": "customer service",
             "areaServed": "FR",
             "availableLanguage": "French"
         },
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.thermostatcopropriete.fr/ville/{search_term_string}",
-            "query-input": "required name=search_term_string"
+        "areaServed": {
+            "@type": "Country",
+            "name": "France"
         }
     };
 
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "thermostatcopropriete",
-        "alternateName": "Expert Thermostat Copropriété",
-        "url": "https://www.thermostatcopropriete.fr",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.thermostatcopropriete.fr/ville/{search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    };
-
-    const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Installation de Thermostats Copropriété",
-        "provider": { "@type": "Organization", "name": "thermostatcopropriete" },
-        "areaServed": { "@type": "Country", "name": "France" }
-    };
-
-    
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": []
-    };
-
-    
-    const webPageSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "url": "https://www.thermostatcopropriete.fr",
-        "name": "Expert Thermostat Copropriété",
-        "description": "Installation de thermostats individuels en copropriété",
-        "inLanguage": "fr",
-        "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": [
-                "h1",
-                ".hero-description",
-                ".faq-answer",
-                "article h2",
-                "article p:first-of-type",
-                ".prose > p:first-child"
-            ]
-        },
-        "isPartOf": {
-            "@type": "WebSite",
-            "url": "https://www.thermostatcopropriete.fr",
-            "name": "Expert Thermostat Copropriété"
+        "url": "https://thermostatcopropriete.fr",
+        "name": "Thermostat Copropriété",
+        "alternateName": "thermostatcopropriete.fr",
+        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
+        "inLanguage": "fr-FR",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Thermostat Copropriété"
         }
     };
 
     return (
         <>
-        <Script
-            id="org-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) + '\n' + JSON.stringify(websiteSchema) + '\n' + JSON.stringify(serviceSchema) + '\n' + JSON.stringify(faqSchema) }}
-        />
-
-        <Script
-
-            id="webpage-speakable-schema"
-
-            type="application/ld+json"
-
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-
-        />
-
+            <Script
+                id="org-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <Script
+                id="website-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
         </>
     );
 }
