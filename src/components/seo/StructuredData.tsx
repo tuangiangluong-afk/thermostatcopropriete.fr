@@ -118,6 +118,26 @@ export default function StructuredData() {
         ]
     };
 
+    
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Thermostat Connecté Copropriété",
+        "image": "https://thermostatcopropriete/icon.png",
+        "description": "Thermostat Connecté Copropriété avec installation certifiée et garantie.",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "price": "290",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "86"
+        }
+    };
+
     return (
         <>
             <Script
@@ -145,6 +165,7 @@ export default function StructuredData() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
+            <Script id="product-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
         </>
     );
 }
