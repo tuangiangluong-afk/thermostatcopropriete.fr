@@ -119,17 +119,72 @@ export default function StructuredData() {
     };
 
     
-    const productSchema = {
+        const productSchema = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Thermostat Connecté Copropriété",
-        "image": "https://thermostatcopropriete/icon.png",
+        "image": [
+            "https://www.thermostatcopropriete.fr/icon.png"
+        ],
         "description": "Thermostat Connecté Copropriété avec installation certifiée et garantie.",
+        "sku": "THC-THERMO-001",
+        "mpn": "THC-THERMO-001",
+        "brand": {
+            "@type": "Brand",
+            "name": "Thermostat Copropriété"
+        },
         "offers": {
             "@type": "Offer",
+            "url": "https://www.thermostatcopropriete.fr",
             "priceCurrency": "EUR",
             "price": "290",
-            "availability": "https://schema.org/InStock"
+            "validFrom": "2026-01-01",
+            "priceValidUntil": "2026-12-31",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "FR",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+            },
+            "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "EUR"
+                },
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "FR"
+                },
+                "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "businessDays": {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "https://schema.org/Monday",
+                            "https://schema.org/Tuesday",
+                            "https://schema.org/Wednesday",
+                            "https://schema.org/Thursday",
+                            "https://schema.org/Friday"
+                        ]
+                    },
+                    "cutoffTime": "18:00:00Z",
+                    "handlingTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "maxValue": 3,
+                        "unitCode": "DAY"
+                    },
+                    "transitTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "maxValue": 5,
+                        "unitCode": "DAY"
+                    }
+                }
+            }
         },
         "aggregateRating": {
             "@type": "AggregateRating",
