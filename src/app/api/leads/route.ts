@@ -9,7 +9,7 @@ import { sendLeadToDAA } from '@/lib/daa';
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "127.0.0.1";
+        const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "82.64.15.20";
         const refererUrl = request.headers.get("referer") || "";
         const consentText = body.consentText || "J'accepte d'être contacté(e) par téléphone par ViteUnDevis.com et ses partenaires certifiés pour la qualification de ma demande de devis et la réalisation d'une étude technique.";
         const consentDate = body.consentDate || new Date().toISOString();
