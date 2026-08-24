@@ -126,7 +126,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 <CheckCircle className="text-slate-500 mx-auto mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-slate-800 mb-3">Votre demande de devis est validée !</h3>
                 <p className="text-neutral-700 mb-6">
-                    Votre demande a été transmise. Nos artisans partenaires certifiés en Thermostats Connectés vont réaliser vos devis sous **24h** pour votre projet à **{city}**.
+                    Votre demande a été transmise. Nos artisans partenaires certifiés en Thermostats Connectés vont réaliser vos devis sous <strong>24h</strong> pour votre projet {(!city || city.toLowerCase() === 'france' || city.toLowerCase() === 'national') ? 'en France' : <>à <strong>{city}</strong></>}.
                 </p>
             </div>
         );
