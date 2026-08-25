@@ -1,7 +1,9 @@
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { getCityByCleanSlug, CITIES } from "@/lib/db";
 import { getPseoContent } from "@/lib/pseo";
+import { THERMO_BRANDS } from "@/data/thermo-brands";
 import { CheckCircle, Award } from "lucide-react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -151,6 +153,26 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                                 {pseo.installation_timeline}
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Marques — maillage interne vers la matrice ville x marque */}
+            <section className="py-14 bg-white border-b border-slate-200">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-2 text-center">
+                        Regulation par thermostat en copropriete a {site.city}
+                    </h2>
+                    <p className="text-slate-600 text-center mb-8">
+                        Decouvrez les solutions par marque, avec des professionnels agrees CEE a {site.city}.
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                        {THERMO_BRANDS.map((marque) => (
+                            <Link key={marque.slug} href={`/ville/${resolvedParams.slug}/${marque.slug}`} className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-rose-300 hover:bg-rose-50 transition">
+                                <div className="font-bold text-slate-900">Thermostat {marque.name}</div>
+                                <div className="text-xs text-slate-500 mt-1">a {site.city}</div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>

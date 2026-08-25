@@ -19,50 +19,10 @@ function stringHash(str: string): number {
     return Math.abs(hash);
 }
 
-const REVIEW_POOL = [
-    {
-        author: "Thomas D.",
-        templates: [
-            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant.",
-            "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable.",
-            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe."
-        ]
-    },
-    {
-        author: "Lucie F.",
-        templates: [
-            "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable.",
-            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe.",
-            "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes."
-        ]
-    },
-    {
-        author: "Éric L.",
-        templates: [
-            "Service parfait. Coulage du Thermostats connectés impeccable à {city}, notre terrasse est superbe.",
-            "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes.",
-            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine."
-        ]
-    },
-    {
-        author: "Marc-Antoine P.",
-        templates: [
-            "Très satisfait du travail réalisé à {city}. L'évacuation des eaux a été parfaitement gérée avec des pentes discrètes.",
-            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
-            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant."
-        ]
-    },
-    {
-        author: "Sophie G.",
-        templates: [
-            "Le résultat est au delà de nos attentes. L'artisan chauffagiste RGE à {city} a été très à l'écoute de nos envies pour la plage de piscine.",
-            "Artisan très pro. La pose du Vannes thermostatiques à {city} est magnifique. Le rendu imitation bois est bluffant.",
-            "Devis rapide et clair. L'équipe intervenue à {city} a travaillé proprement pour notre allée carrossable."
-        ]
-    }
-];
+const REVIEW_POOL: any[] = [];
 
 export default function Reviews({ site, themeColor = 'blue' }: ReviewsProps) {
+      if (REVIEW_POOL.length === 0) return null;
     const city = site.city;
     // For FR we use "à" or "en". For others we don't really need prep in the title usually, but let's just output the city directly
     // since the config title has trailing space: "Opiniones de Clientes en "
