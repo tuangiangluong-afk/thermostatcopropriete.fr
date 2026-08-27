@@ -1,97 +1,38 @@
 import Script from "next/script";
 
 export default function StructuredData() {
-    const organizationSchema = {
+    const schema = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Thermostat Copropriété",
         "legalName": "Thermostat Copropriété SAS",
-        "alternateName": ["ThermostatCopropriété", "Thermostat Copropriété Official"],
+        "alternateName": ["ThermostatCopropriété", "Thermostat Copropriété France"],
         "url": "https://thermostatcopropriete.fr",
         "logo": "https://thermostatcopropriete.fr/icon.png",
-        "image": "https://thermostatcopropriete.fr/icon.png",
-        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
+        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "8 Rue de la Paix",
-            "addressLocality": "Paris",
-            "postalCode": "75002",
+            "streetAddress": "6 Rue des Bateliers",
+            "addressLocality": "Clichy",
+            "postalCode": "92110",
             "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 48.9022,
+            "longitude": 2.3060
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+33 1 84 80 00 00",
+            "telephone": "+33 1 49 14 02 64",
             "contactType": "customer service",
             "areaServed": "FR",
-            "availableLanguage": "fr-FR"
+            "availableLanguage": "French"
         },
         "areaServed": {
             "@type": "Country",
-            "name": "FR"
+            "name": "France"
         }
-    };
-
-    const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Régulation & Suivi Thermique pour Copropriétés",
-        "serviceType": "Régulation & Suivi Thermique pour Copropriétés",
-        "provider": {
-            "@type": "Organization",
-            "name": "Thermostat Copropriété",
-            "url": "https://thermostatcopropriete.fr"
-        },
-        "areaServed": {
-            "@type": "Country",
-            "name": "FR"
-        },
-        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
-        "offers": {
-            "@type": "Offer",
-            "priceCurrency": "EUR",
-            "price": "290",
-            "availability": "https://schema.org/InStock",
-            "validFrom": "2026-01-01"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "86",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
-        "review": [
-        {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": "Syndic Conseil Paris 15"
-            },
-            "datePublished": "2026-02-12",
-            "reviewBody": "Installation des thermostats connectés sur l'ensemble de notre immeuble de 45 lots. Économies d'énergie directes.",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5",
-                "worstRating": "1"
-            }
-        },
-        {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": "Philippe B."
-            },
-            "datePublished": "2026-03-19",
-            "reviewBody": "Prise en charge Coup de Pouce CEE à 100%, aucune avance de frais pour la copropriété.",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5",
-                "worstRating": "1"
-            }
-        }
-        ]
     };
 
     const websiteSchema = {
@@ -100,7 +41,7 @@ export default function StructuredData() {
         "url": "https://thermostatcopropriete.fr",
         "name": "Thermostat Copropriété",
         "alternateName": "thermostatcopropriete.fr",
-        "description": "N°1 du suivi de température et de la régulation thermique connectée pour syndics de copropriété et gestionnaires d'immeubles.",
+        "description": "N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.",
         "inLanguage": "fr-FR",
         "publisher": {
             "@type": "Organization",
@@ -108,147 +49,18 @@ export default function StructuredData() {
         }
     };
 
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Comment obtenir un devis gratuit pour Thermostat Copropriété ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Remplissez notre formulaire en ligne en 2 minutes pour recevoir une estimation gratuite, personnalisée et sans engagement par nos experts certifiés."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Quelles sont les garanties fournies par Thermostat Copropriété ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Tous nos services et installations sont couverts par une garantie décennale, une certification de conformité aux normes en vigueur et un suivi technique réactif."
-                }
-            }
-        ]
-    };
-
-    const breadcrumbSchema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Accueil",
-                "item": "https://thermostatcopropriete.fr"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Régulation & Suivi Thermique pour Copropriétés",
-                "item": "https://thermostatcopropriete.fr/#simulateur"
-            }
-        ]
-    };
-
-    
-        const productSchema = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Thermostat Connecté Copropriété",
-        "image": [
-            "https://www.thermostatcopropriete.fr/icon.png"
-        ],
-        "description": "Thermostat Connecté Copropriété avec installation certifiée et garantie.",
-        "sku": "THC-THERMO-001",
-        "mpn": "THC-THERMO-001",
-        "brand": {
-            "@type": "Brand",
-            "name": "Thermostat Copropriété"
-        },
-        "offers": {
-            "@type": "Offer",
-            "url": "https://www.thermostatcopropriete.fr",
-            "priceCurrency": "EUR",
-            "price": "290",
-            "validFrom": "2026-01-01",
-            "priceValidUntil": "2026-12-31",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock",
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "FR",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-            },
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": {
-                    "@type": "MonetaryAmount",
-                    "value": "0",
-                    "currency": "EUR"
-                },
-                "shippingDestination": {
-                    "@type": "DefinedRegion",
-                    "addressCountry": "FR"
-                },
-                "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "businessDays": {
-                        "@type": "OpeningHoursSpecification",
-                        "dayOfWeek": [
-                            "https://schema.org/Monday",
-                            "https://schema.org/Tuesday",
-                            "https://schema.org/Wednesday",
-                            "https://schema.org/Thursday",
-                            "https://schema.org/Friday"
-                        ]
-                    },
-                    "cutoffTime": "18:00:00Z",
-                    "handlingTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 1,
-                        "maxValue": 3,
-                        "unitCode": "DAY"
-                    },
-                    "transitTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 1,
-                        "maxValue": 5,
-                        "unitCode": "DAY"
-                    }
-                }
-            }
-        },
-        
-    };
-
     return (
         <>
             <Script
                 id="org-schema"
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-            />
-            <Script
-                id="service-schema"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             <Script
                 id="website-schema"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
             />
-            <Script
-                id="faq-schema"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-            />
-            <Script
-                id="breadcrumb-schema"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-            />
-            <Script id="product-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
         </>
     );
 }
