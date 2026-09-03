@@ -17,6 +17,41 @@ interface ThermoContentPageProps {
 export default function ThermoContentPage({ site, heroBadge, pageTitle, introHtml, facts, benefits, expertTip, faqs, canonicalUrl, heroImage, breadcrumb, sections = [], localHtml, themeColor = "rose" }: ThermoContentPageProps) {
     const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.reponse } })) };
     const bc = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.thermostatcopropriete.fr" }, ...breadcrumb.map((b, i) => ({ "@type": "ListItem", position: i + 2, name: b.name, item: b.item }))] };
+    
+    // Robust Price Parsing for AggregateOffer Schema (supporting Prix, Budget, Tarif)
+    const priceFact = facts.find(f => {
+        const l = f.label.toLowerCase();
+        return l.includes('prix') || l.includes('budget') || l.includes('tarif');
+    });
+    const priceStr = priceFact?.value || "5000";
+    const prices = priceStr.match(/\d+(?:[.,\s]\d+)?/g)?.map(p => parseInt(p.replace(/\D/g, ''), 10)) || [5000, 15000];
+    const lowPrice = Math.min(...prices) || 5000;
+    const highPrice = prices.length > 1 ? Math.max(...prices) : Math.floor(lowPrice * 1.2);
+
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": pageTitle,
+        "image": `https://www.thermostatcopropriete.fr${heroImage}`,
+        "description": introHtml.replace(/<[^>]*>?/gm, ''),
+        "brand": {
+            "@type": "Brand",
+            "name": "Thermostat Copropriété"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "EUR",
+            "lowPrice": lowPrice.toString(),
+            "highPrice": highPrice.toString(),
+            "offerCount": "12",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "Thermostat Copropriété"
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen font-sans text-slate-900 bg-white">
             <Header isHub={true} city={site.city} phoneNumber={site.phoneNumber} variant="default" themeColor={themeColor} />
