@@ -1,3 +1,4 @@
+import LocalAeoSection from "@/components/LocalAeoSection";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { getCityByCleanSlug, CITIES } from "@/lib/db";
 import { getPseoContent } from "@/lib/pseo";
@@ -85,6 +86,15 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             />
 
             <SchemaJSON type="LocalBusiness" site={site} />
+            <SchemaJSON 
+                type="Breadcrumb" 
+                site={site} 
+                breadcrumbItems={[
+                    { name: "Accueil", item: "https://thermostatcopropriete.fr" },
+                    { name: "Villes", item: "https://thermostatcopropriete.fr/#villes" },
+                    { name: site.city, item: `https://thermostatcopropriete.fr/ville/${resolvedParams.slug}` }
+                ]} 
+            />
             <SchemaJSON type="FAQPage" site={site} faqSegment="B2C" />
 
             <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24">
@@ -176,6 +186,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     </div>
                 </div>
             </section>
+
+            <LocalAeoSection site={site} />
 
             <section className="py-16 bg-slate-50 border-y border-slate-200" id="simulateur">
                 <div className="container mx-auto px-4">
