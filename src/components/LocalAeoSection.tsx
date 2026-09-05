@@ -1,17 +1,21 @@
 import Link from "next/link";
-import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText } from "lucide-react";
+import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText, Landmark, Building2 } from "lucide-react";
 import type { CityConfig } from "@/lib/db";
 
 interface LocalAeoSectionProps {
     site: CityConfig;
 }
 
-const pricingMatrix = [{"name": "Robinet Thermostatique Connecté (Radiateur)", "usage": "Régulation pièce par pièce", "price": "65€ - 95€", "aid": "Pris en charge 100% CEE", "net": "0€"}, {"name": "Sonde d'Ambiance Connectée LoRaWAN", "usage": "Relevé de température d'appartement", "price": "80€ - 120€", "aid": "Financement CEE BAR-TH-173", "net": "0€"}, {"name": "Régulateur GTB Chaufferie Collective", "usage": "Optimisation courbe de chauffe", "price": "1 500€ - 3 500€", "aid": "Financement CEE BAR-TH-118", "net": "0€"}];
-const steps = [{"title": "Audit chaufferie et faisabilité CEE", "desc": "Étude thermique du réseau collectif et calcul du volume de CEE mobilisables pour l'immeuble."}, {"title": "Présentation du projet en assemblée générale", "desc": "Fourniture des documents explicatifs pour le conseil syndical et le syndic avec engagement reste à charge 0€."}, {"title": "Installation sans coupure de chauffage", "desc": "Remplacement rapide des têtes de radiateurs dans les logements par nos équipes d'électriciens/chauffagistes."}, {"title": "Plateforme de gestion pour le syndic", "desc": "Accès au tableau de bord centralisé pour piloter les températures et constater les baisses de consommation."}];
+const pricingMatrix = [{"name": "Pack Thermostats Connectés (Par Logement)", "usage": "Têtes électroniques intelligentes par radiateur", "price": "350€ - 650€ / lot", "aid": "Prime CEE Coup de Pouce 100%", "net": "0€ reste à charge"}, {"name": "Régulation Centrale & Sonde d'ambiance", "usage": "Pilotage chaufferie & équilibrage colonnes", "price": "1 200€ - 2 800€", "aid": "Financement CEE éligible", "net": "0€ reste à charge"}, {"name": "Gestion Technique Bâtiment (GTB) Copro", "usage": "Suivi conso en temps réel pour le syndic", "price": "Sur devis", "aid": "Primes CEE Bonifiées", "net": "Sur mesure"}, {"name": "Maintenance & Accompagnement résidents", "usage": "Remplacement piles & hotline dédiée", "price": "Inclus contrat CEE", "aid": "Garantie matériel 5 ans", "net": "Inclus"}];
+const steps = [{"title": "Audit technique de la copropriété & Comptage", "desc": "Visite de la chaufferie, inventaire des radiateurs et vérification d'éligibilité CEE à 100%."}, {"title": "Préparation de la résolution d'AG", "desc": "Rédaction clé en main de la résolution pour le syndic avec vote à la majorité simple (art. 24)."}, {"title": "Planning de pose appartement par appartement", "desc": "Information des résidents, créneaux de 30 min par logement et remplacement des têtes thermostatiques."}, {"title": "Clôture du dossier CEE & Économies immédiates", "desc": "Signature des attestations sur l'honneur, versement de la prime CEE et baisse immédiate des charges."}];
 
 export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
+    const neighborhoods = site.neighborhoods || [];
+    const neighborhoodsText = neighborhoods.length > 0 
+        ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
+        : "";
 
     return (
         <section className="py-12 bg-slate-50/50 border-t border-slate-200">
@@ -32,33 +36,33 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-100">
                         <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-slate-900 text-white">
                             <FileText size={13} />
-                            Régulation & Thermostats Connectés à {city} (2026)
+                            Thermostat Copropriété à {city} (2026)
                         </span>
                         <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
-                            <Clock size={13} /> Chiffres & Aides certifiés 2026
+                            <Clock size={13} /> Données & Tarifs certifiés 2026
                         </span>
                     </div>
 
                     <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-6">
-                        <strong>En résumé : </strong>À {city}{dept}, équiper une copropriété chauffée collectivement en robinets et thermostats connectés permet de réduire les charges de chauffage de 15% à 25%. Le programme est finançable jusqu'à 100% via le dispositif des Certificats d'Économies d'Énergie (CEE), garantissant un reste à charge nul.
+                        <strong>En résumé : </strong>À {city}{dept}, le coût moyen d'une prestation de thermostat copropriété réalisée par nos artisans qualifiés s'établit entre 0€ de reste à charge (CEE) avant déduction des éventuelles aides financières. Nos techniciens certifiés interviennent sous 24h à 48h avec garantie décennale.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2">
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Prix estimé</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">0€ de reste à charge pour la copropriété</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">0€ de reste à charge (CEE)</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Aides & Primes</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Prise en charge CEE 100% (Fiches BAR-TH-118/173)</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Coup de Pouce Pilotage Connecté CEE</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Délai d'intervention</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Étude d'immeuble 48h, déploiement complet en AG</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Devis 24h, pose rapide</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Garantie & Norme</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Conformité décret BACS & Fiches CEE officielles</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Garantie Décennale & RGE</div>
                         </div>
                     </div>
                 </div>
@@ -67,10 +71,10 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                 <div className="mb-14">
                     <div className="mb-6">
                         <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-                            Grille tarifaire et aides à {city}
+                            Grille tarifaire et prestations à {city}
                         </h2>
                         <p className="text-slate-600 mt-1 text-sm md:text-base">
-                            Coûts moyens constatés pour une pose réalisée par nos artisans partenaires certifiés.
+                            Coûts indicatifs moyens constatés pour une pose réalisée dans les règles de l'art.
                         </p>
                     </div>
 
@@ -81,7 +85,7 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                                     <th className="px-5 py-4">Équipement / Prestation</th>
                                     <th className="px-5 py-4 hidden md:table-cell">Usage conseillé</th>
                                     <th className="px-5 py-4">Coût indicatif</th>
-                                    <th className="px-5 py-4">Aides déduites</th>
+                                    <th className="px-5 py-4">Avantage & Aides</th>
                                     <th className="px-5 py-4 font-bold text-slate-900">Reste à charge</th>
                                 </tr>
                             </thead>
@@ -100,14 +104,67 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                     </div>
                 </div>
 
+                {/* Guide & Spécificités d'installation à {city} */}
+                <div className="mb-14">
+                    <div className="mb-8">
+                        <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+                            Obligation 2027 & Déploiement en copropriété à {city}
+                        </h2>
+                        <p className="text-slate-600 mt-1 text-sm md:text-base">
+                            Réglementation nationale, démarches de syndic et financement sans reste à charge dans votre commune.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {/* Card 1: Urbanisme & Mairie */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600">
+                                    <Landmark size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Obligation légale 2027 & Démarches à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Le décret n° 2023-444 impose l'installation d'un dispositif de régulation automatique de la température par pièce pour tous les logements chauffés à {city}{dept} avant le 1er janvier 2027. Pour les copropriétés, notre bureau d'études rédige l'ensemble du dossier technique et le projet de résolution clé en main à inscrire à l'ordre du jour de votre prochaine Assemblée Générale, voté à la majorité simple de l'article 24.
+                            </p>
+                        </div>
+
+                        {/* Card 2: Typologie du bâti & Quartiers */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
+                                    <Building2 size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Résidences collectives & Quartiers à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Nos installateurs se déplacent dans toutes les résidences et grands ensembles de {city}{neighborhoodsText}. Nous intervenons directement sur chaque radiateur sans purge de circuit et sans arrêt de la chaudière collective, assurant un chantier silencieux et propre avec des créneaux de pose de 30 minutes convenus avec chaque copropriétaire ou locataire.
+                            </p>
+                        </div>
+
+                        {/* Card 3: Climat, Performance & Aides */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-amber-50 text-amber-600">
+                                    <ShieldCheck size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Financement CEE 100% pris en charge à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Dans le cadre de la fiche d'opération standardisée BAR-TH-173 (Coup de Pouce Pilotage Connecté du Chauffage), l'ensemble de la fourniture du matériel certifié et la main-d'œuvre de nos techniciens RGE sont intégralement financés par les certificats d'économies d'énergie (CEE). Les copropriétaires de {city} bénéficient ainsi d'une mise en conformité immédiate avec un reste à charge garanti de 0€.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Déroulement du chantier en 4 étapes */}
                 <div className="mb-14">
                     <div className="mb-8">
                         <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-                            Votre installation à {city} en 4 étapes
+                            Votre projet à {city} en 4 étapes
                         </h2>
                         <p className="text-slate-600 mt-1 text-sm md:text-base">
-                            Un accompagnement complet et transparent, de l'audit jusqu'à l'obtention des aides.
+                            Un accompagnement transparent de l'étude préliminaire jusqu'à la garantie de parfait achèvement.
                         </p>
                     </div>
 
@@ -127,16 +184,16 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                 {/* Bannière de Réassurance locale */}
                 <div className="rounded-3xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
                     <div>
-                        <h3 className="text-xl font-bold mb-1">Un projet d'installation à {city} ?</h3>
+                        <h3 className="text-xl font-bold mb-1">Un projet à {city} ?</h3>
                         <p className="text-slate-300 text-sm">
-                            Garantie matériel 5 ans & économies jusqu'à 25%. Devis gratuit sous 24h sans aucun engagement.
+                            Garantie décennale & devis gratuit sous 24h sans aucun engagement.
                         </p>
                     </div>
                     <a
                         href="#simulateur"
                         className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-white text-slate-900 px-6 py-3.5 font-bold hover:bg-slate-100 transition shadow"
                     >
-                        <span>Estimer mon devis</span>
+                        <span>Estimer mon projet</span>
                         <ArrowRight size={16} />
                     </a>
                 </div>

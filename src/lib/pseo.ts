@@ -10,73 +10,109 @@ export interface PseoPageContent {
     pricing_estimated: string;
     regional_subsidy: string;
     expert_tip: string;
-    local_compliance_info: string;
-    installation_timeline: string;
+    local_climate_info?: string;
+    installation_timeline?: string;
+    local_compliance_info?: string;
 }
 
 const DEFAULT_REGIONAL = {
-    subsidyName: "Aides CEE & Coup de Pouce",
-    subsidyAmount: "Jusqu'à 80% du financement",
-    avgPrice: "Dès 15€ de reste à charge/lot"
+    subsidyName: "Coup de Pouce Pilotage Connecté CEE",
+    subsidyAmount: "Jusqu'à 100% financé par les primes CEE",
+    avgPrice: "0€ de reste à charge (CEE)"
 };
 
+const TIPS = [
+        "À {city}, le décret national impose à tous les logements chauffés collectivement d'être équipés d'un système de régulation thermique par pièce avant le 1er janvier 2027.",
+        "Grâce au dispositif Coup de Pouce CEE, l'installation de têtes thermostatiques connectées est prise en charge jusqu'à 100% sans reste à charge pour votre copropriété à {city}.",
+        "L'installation permet aux résidents de {neighborhood_0} de réaliser immédiatement de 15% à 25% d'économies d'énergie sur la facture de chauffage collectif.",
+        "Le vote en Assemblée Générale à {city} s'effectue à la majorité simple de l'article 24 : notre équipe prépare la résolution clé en main pour votre syndic.",
+        "Nos techniciens posent les robinets thermostatiques intelligents en 30 minutes par appartement sans vidange du circuit ni coupure de chauffage.",
+        "Chaque copropriétaire à {city} pilote la température de son logement pièce par pièce depuis son smartphone ou directement sur la molette graduée.",
+        "Le système de détection d'ouverture de fenêtre coupe automatiquement le radiateur pour éviter tout gaspillage d'énergie lors de l'aération quotidienne.",
+        "Nos équipements sont compatibles avec tous les types de chauffage collectif à {city} : chaufferie gaz, fioul, biomasse ou réseau de chaleur urbain."
+];
+const INTROS = [
+        "<p class=\"mb-4 leading-relaxed\">Vous êtes membre d'un conseil syndical, copropriétaire ou gestionnaire de syndic à <strong>{city}{postalMention}</strong> ? Le <strong>Plan Thermostat gouvernemental</strong> rend obligatoire l'installation d'un système de pilotage de la température pièce par pièce pour l'ensemble des logements d'ici le 1er janvier 2027. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Notre entreprise spécialisée déploie des solutions de <strong>robinets thermostatiques connectés et de Gestion Technique du Bâtiment (GTB)</strong> pour les immeubles résidentiels collectifs de {city}. Grâce au programme Coup de Pouce CEE, l'intégralité du matériel et de la pose est financée par les fournisseurs d'énergie, garantissant un coût nul (0€ de reste à charge) pour la copropriété.</p><p class=\"leading-relaxed\">Réduisez immédiatement les charges de chauffage de vos copropriétaires de 15% à 25% tout en vous mettant en conformité légale. Demandez une étude d'éligibilité gratuite pour votre résidence sous 24h.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Modernisez le chauffage collectif de votre copropriété à <strong>{city}</strong>{deptMention} sans impacter les comptes de l'immeuble. En équipant chaque radiateur de têtes thermostatiques intelligentes communicantes, chaque résident programme la température souhaitée pièce par pièce selon son rythme de vie.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Nos techniciens spécialisés interviennent sans nuisance sonore ni coupure d'eau chaude grâce à des adaptateurs sur vannes existantes. Budget constaté : <strong>100% pris en charge par le dispositif CEE</strong>.</p><p class=\"leading-relaxed\">Nous fournissons à votre syndic le projet de résolution complet et l'attestation de conformité prêts pour l'inscription à l'ordre du jour de votre prochaine Assemblée Générale. Contactez nos conseillers de proximité.</p>",
+        "<p class=\"mb-4 leading-relaxed\">À <strong>{city}</strong>, faites baisser durablement les charges de copropriété grâce au pilotage thermique connecté nouvelle génération. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Dans un immeuble collectif classique, les logements du bas sont souvent sous-chauffés tandis que les étages supérieurs sont en surchauffe. Nos thermostats connectés équilibrent la distribution de chaleur dans toute la colonne thermique de votre bâtiment à {city}. Reste à charge garanti : <strong>0€ pour les copropriétaires</strong>.</p><p class=\"leading-relaxed\">Nos équipes assurent la communication auprès des résidents, la prise de rendez-vous individuelle et le service après-vente pour une adhésion totale du conseil syndical.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Recherchez-vous un <strong>installateur certifié RGE pour équiper votre copropriété à {city}{postalMention}</strong> ? Nous disposons de techniciens qualifiés intervenant sur l'ensemble de votre département pour le déploiement à grande échelle de têtes thermostatiques connectées.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Du premier audit de chaufferie jusqu'à la remise du certificat de fin de travaux RGE, nous prenons en charge la gestion administrative intégrale du dossier de prime CEE. Coût pour la copropriété : <strong>0€</strong>.</p><p class=\"leading-relaxed\">Bénéficiez d'une solution reconnue par l'ADEME et sécurisez la valorisation énergétique de votre patrimoine collectif. Recevez votre diagnostic gratuit.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Préparez sereinement votre copropriété à <strong>{city}</strong> aux obligations écologiques de 2027. L'installation de thermostats connectés est la mesure d'efficacité énergétique la plus rentable et la plus rapide à mettre en œuvre en habitat collectif.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} En quelques semaines, l'ensemble des appartements de votre résidence à {city} gagne en confort tout en réduisant l'empreinte carbone globale du bâtiment. Financement intégral CEE garanti.</p><p class=\"leading-relaxed\">Prenez contact dès maintenant avec nos experts pour programmer une présentation technique lors de votre prochaine réunion de conseil syndical.</p>"
+];
+
+function getExpertTip(city: string, dept: string, neighborhoods: string[]): string {
+    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const n0 = neighborhoods.length > 0 ? neighborhoods[0] : city;
+    const t = TIPS[hash % TIPS.length];
+    return t
+        .replace(/{city}/g, city)
+        .replace(/{dept}/g, dept || "votre département")
+        .replace(/{neighborhood_0}/g, n0);
+}
+
+function getIntroHtml(city: string, dept: string, neighborhoods: string[], postalCode: string, avgPrice: string): string {
+    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const isFrance = city.toLowerCase() === "france";
+    const prep = isFrance ? "en" : "à";
+
+    const neighborhoodMention = neighborhoods.length >= 2
+        ? `Nos artisans et techniciens spécialisés interviennent dans tous les secteurs de la commune : <strong>${neighborhoods.slice(0, 3).join(', ')}</strong> ainsi que dans les localités périphériques.`
+        : "Nos spécialistes qualifiés assurent une couverture totale de l'ensemble de votre secteur et de ses environs.";
+
+    const postalMention = postalCode ? ` (${postalCode})` : "";
+    const deptMention = dept ? ` (${dept})` : "";
+
+    const t = INTROS[hash % INTROS.length];
+    return t
+        .replace(/{city}/g, city)
+        .replace(/{prep}/g, prep)
+        .replace(/{postalMention}/g, postalMention)
+        .replace(/{deptMention}/g, deptMention)
+        .replace(/{neighborhoodMention}/g, neighborhoodMention)
+        .replace(/{avgPrice}/g, avgPrice);
+}
+
 export async function getPseoContent(cityConfig: CityConfig, targetType: string = 'MIXED'): Promise<PseoPageContent> {
-    const { city, postalCode, pricing } = cityConfig;
+    const { city, department, postalCode, neighborhoods, pricing } = cityConfig;
+    const dept = department || "";
     const postal = postalCode || "";
-    
+    const quartiers = neighborhoods || [];
+
     const regionalInfo = DEFAULT_REGIONAL;
     const realPrice = pricing?.base || regionalInfo.avgPrice;
 
-    const renderTip = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const tips = [
-        `Pour votre copropriété à ${c}, l'installation de robinets thermostatiques connectés est la solution la plus rapide pour se mettre en conformité avec la réglementation thermique avant l'hiver.`,
-        `À ${c}, nous recommandons d'inscrire l'installation des thermostats à l'ordre du jour de votre prochaine Assemblée Générale. Nous fournissons gratuitement un dossier de présentation complet.`,
-        `Les syndics de ${c} peuvent bénéficier d'une prise en charge majorée via la prime Coup de pouce CEE, applicable directement sur le devis d'installation.`
-      ];
-      return tips[hash % tips.length];
-    };
+    const isFrance = city.toLowerCase() === "france";
+    const prep = isFrance ? "en" : "à";
+    const postalSpan = postal ? ` <span class="text-slate-400 text-3xl">(${postal})</span>` : "";
 
-    const renderIntro = (c: string, p: string, avg: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const intros = [
-        `<p class="mb-4">Syndics et copropriétaires à <strong>${c}</strong>, mettez en conformité votre système de chauffage collectif avec l'installation de <strong>thermostats connectés</strong>. Nos installateurs certifiés RGE s'occupent de tout.</p><p>Le coût d'installation est estimé à <strong>${avg}</strong> grâce aux primes CEE déduites. Optimisez la température dans chaque appartement et réduisez la facture globale.</p>`,
-        `<p class="mb-4">Réduisez les charges de chauffage de votre copropriété à <strong>${c}</strong>. L'obligation d'individualisation des frais de chauffage nécessite l'installation d'une régulation performante.</p><p>Budget estimé : <strong>${avg}</strong> (aides déduites). Nous coordonnons l'ensemble du projet, de l'audit technique à la pose dans les logements.</p>`
-      ];
-      return intros[hash % intros.length];
-    };
+    const meta_title = `Thermostats Connectés Copropriété {city}{postal} | CEE 0€`
+        .replace("{city}", isFrance ? "en France" : city)
+        .replace("{postal}", postal ? ` (${postal})` : "");
 
-    const renderComplianceInfo = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const compliances = [
-        `Pour les copropriétés situées à ${c}, le décret tertiaire et la loi sur l'individualisation des frais de chauffage obligent les immeubles chauffés collectivement à s'équiper de vannes thermostatiques. Ne pas se mettre en conformité vous expose à des pénalités allant jusqu'à 1500€ par an et par logement.`,
-        `Les bâtiments résidentiels de ${c} construits avant les années 2000 présentent souvent une déperdition thermique majeure. En installant des têtes connectées, vous répondez instantanément aux obligations légales tout en garantissant l'accès direct aux subventions étatiques.`,
-        `À ${c}, le syndicat des copropriétaires doit inscrire l'installation de la régulation à l'ordre du jour. Nos équipes fournissent l'audit gratuit et la simulation CEE pour que vous puissiez voter la résolution sans avancer les frais d'installation lourds.`
-      ];
-      return compliances[hash % compliances.length];
-    };
+    const meta_description = `Installation de thermostats connectés et robinets thermostatiques en copropriété à {city}. Obligation légale 2027. Financement jusqu'à 100% CEE. Devis gratuit.`
+        .replace("{city}", city)
+        .replace("{price}", realPrice)
+        .replace("{prep}", prep);
 
-    const renderTimeline = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const timelines = [
-        `La logistique en copropriété à ${c} est notre force. Nous posons jusqu'à 50 têtes thermostatiques par jour, en coordonnant les interventions directement avec les résidents ou les gardiens, avec moins de 15 minutes d'intervention par appartement.`,
-        `Pour un immeuble moyen à ${c}, le chantier complet (du désembouage éventuel à la pose des robinets sur chaque radiateur) prend en moyenne entre 2 et 5 jours ouvrés. Aucune coupure de chauffage prolongée n'est à prévoir.`,
-        `Après le vote en AG à ${c}, nos techniciens planifient une campagne d'installation. Les vannes connectées sont montées directement sur les corps de chauffe existants, sans soudure ni vidange complexe de la chaufferie.`
-      ];
-      return timelines[hash % timelines.length];
-    };
+    const hero_title = `Thermostats <span class="text-blue-500">Connectés Copropriété</span> {prep} {city}{postalSpan}`
+        .replace("{city}", city)
+        .replace("{prep}", prep)
+        .replace("{postalSpan}", postalSpan);
+
+    const intro_html = getIntroHtml(city, dept, quartiers, postal, realPrice);
+    const expert_tip = getExpertTip(city, dept, quartiers);
 
     return {
-        meta_title: `Installation Thermostats Copropriété à ${city}${postal ? ` (${postal})` : ""} | RGE`,
-        meta_description: `Accompagnement des syndics à ${city} pour l'installation de thermostats collectifs. Mise aux normes, primes CEE déduites. Demandez un audit gratuit.`,
-        hero_title: `Installation de <span class="text-blue-600">Thermostats en Copropriété</span> à ${city}${postal ? ` <span class="text-slate-400 text-3xl">(${postal})</span>` : ""}`,
+        meta_title,
+        meta_description,
+        hero_title,
         hero_badge: regionalInfo.subsidyName,
-        intro_html: cityConfig.unique_intro || renderIntro(city, postal, realPrice),
-        cta_primary: "Obtenir un audit technique et financier",
+        intro_html,
+        cta_primary: "Vérifier l'éligibilité de ma copropriété",
         pricing_estimated: realPrice,
         regional_subsidy: regionalInfo.subsidyAmount,
-        expert_tip: cityConfig.unique_expert_tip || renderTip(city),
-        local_compliance_info: renderComplianceInfo(city),
-        installation_timeline: renderTimeline(city),
+        expert_tip,
+        local_climate_info: expert_tip,
+        installation_timeline: "Intervention sous 24h à 48h",
+        local_compliance_info: regionalInfo.subsidyAmount
     };
 }
