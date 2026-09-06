@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 24h ISR cache
 import { getCityBySlug, CITIES } from "@/lib/db";
 import { THERMO_TAILLES, getThermoTailleBySlug } from "@/data/thermo-tailles";
 import { notFound } from "next/navigation"; import type { Metadata } from "next";
