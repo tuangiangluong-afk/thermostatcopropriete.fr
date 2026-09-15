@@ -69,7 +69,7 @@ export async function POST(request: Request) {
             } catch (err) { console.error("❌ Failed to forward to DAA:", err); }
         }
 
-        // 4. SAVE TO DATABASE (Supabase)
+        // 4. SAVE TO DATABASE (Supabase) - NON-BLOCKING & SCHEMA SAFE
         const metadata = {
             project_type: projectType,
             monthly_bill: monthlyBill,
@@ -83,83 +83,98 @@ export async function POST(request: Request) {
             country: currentCountry
         };
 
-        const supabase = createSupabaseAdmin();
         const siteConfig = getSiteConfig(domain);
         const region = siteConfig?.region || 'National';
         const department = siteConfig?.department || (postalCode ? postalCode.substring(0, 2) : null);
 
-        const leadPayload: any = {
-            name, email, phone, city, postal_code: postalCode,
-            tenant_id: domain || 'thermostatcopropriete.fr',
-            type: `${currentNiche}_lead`,
-            housing_type: projectType,
-            status: 'new',
-            region: region,
-            department: department,
-            message: JSON.stringify(metadata, null, 2),
-            niche: currentNiche,
-            arbitrage_status: arbitrageStatus,
-            score: leadScore,
-            country: currentCountry
-        };
+        try {
+            const supabase = createSupabaseAdmin();
+            const leadPayload: any = {
+                name,
+                email,
+                phone,
+                city: city || 'France',
+                postal_code: postalCode || '75000',
+                tenant_id: domain || 'thermostatcopropriete.fr',
+                type: `${currentNiche}_lead`,
+                housing_type: projectType || 'copro_chauffage_collectif',
+                status: 'new',
+                region: region,
+                department: department,
+                message: JSON.stringify(metadata, null, 2)
+            };
 
-        const { error: dbError } = await supabase.from('leads').insert(leadPayload);
-        if (dbError && dbError.code === '42703') { 
-            console.log("⚠️ [Supabase] 'country' column missing, retrying without it...");
-            delete leadPayload.country;
-            await supabase.from('leads').insert(leadPayload);
+            const { error: dbError } = await supabase.from('leads').insert(leadPayload);
+            if (dbError) {
+                console.error("⚠️ [Supabase DB Error] (non-blocking):", dbError.message);
+            }
+        } catch (dbErr) {
+            console.error("⚠️ [Supabase Exception] (non-blocking):", dbErr);
         }
 
-        // 5. SEND NOTIFICATION EMAIL (Resend)
-        const apiKey = process.env.RESEND_API_KEY || "re_7pgxJbPq_CwqeXijSNtvzHdZeLk8CPKix";
-        const resend = apiKey ? new Resend(apiKey) : null;
-        if (resend) {
-            const siteName = siteConfig?.name || domain;
-            const emoji = arbitrageStatus === 'direct_partner' ? '💎' : '🤝';
-            const subject = `${emoji} Nouveau Lead [${city} - ${postalCode || 'N/A'}] - ${name}`;
-            const html = `
-                <h1>Nouveau Lead - ${currentNiche.toUpperCase()}</h1>
-                <p><strong>Domaine :</strong> ${domain} (${city} - ${postalCode || 'N/A'})</p>
-                
-                <div style="background-color: ${arbitrageStatus === 'direct_partner' ? '#f0fdf4' : '#f8fafc'}; border: 1.5px solid ${arbitrageStatus === 'direct_partner' ? '#22c55e' : '#cbd5e1'}; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
-                    <h2 style="margin-top:0; color: ${arbitrageStatus === 'direct_partner' ? '#166534' : '#334155'};">
-                        Scoring & Routage : ${arbitrageStatus === 'direct_partner' ? '💎 PARTENAIRE DIRECT' : '✉️ REVENDU (' + arbitrageStatus.toUpperCase() + ')'}
-                    </h2>
-                    <p><strong>Score :</strong> ${leadScore} / 100</p>
-                    <p><strong>Statut Arbitrage :</strong> ${arbitrageStatus}</p>
-                    <p><strong>Pays :</strong> ${currentCountry}</p>
-                </div>
+        // 5. SEND NOTIFICATION EMAIL (Resend) - NON-BLOCKING & VERIFIED ROUTING
+        try {
+            const apiKey = process.env.RESEND_API_KEY;
+            if (apiKey) {
+                const resend = new Resend(apiKey);
+                const siteName = siteConfig?.name || "Thermostat Copropriété";
+                const emoji = arbitrageStatus === 'direct_partner' ? '💎' : '🤝';
+                const subject = `${emoji} Nouveau Lead Copropriété [${city || 'France'} - ${postalCode || 'N/A'}] - ${name}`;
+                const html = `
+                    <h1>Nouveau Lead - ${currentNiche.toUpperCase()}</h1>
+                    <p><strong>Domaine :</strong> ${domain || 'thermostatcopropriete.fr'} (${city || 'France'} - ${postalCode || 'N/A'})</p>
+                    
+                    <div style="background-color: #f0fdf4; border: 1.5px solid #22c55e; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+                        <h2 style="margin-top:0; color: #166534;">
+                            💎 PARTENAIRE DIRECT - DÉCRET BACS & CEE COPROPRIÉTÉ
+                        </h2>
+                        <p><strong>Score :</strong> ${leadScore} / 100</p>
+                        <p><strong>Statut Arbitrage :</strong> ${arbitrageStatus}</p>
+                        <p><strong>Pays :</strong> ${currentCountry}</p>
+                    </div>
 
-                <h2>Informations de contact</h2>
-                <ul>
-                    <li><strong>Nom :</strong> ${name}</li>
-                    <li><strong>Email :</strong> ${email}</li>
-                    <li><strong>Téléphone :</strong> ${phone}</li>
-                </ul>
+                    <h2>Informations de contact</h2>
+                    <ul>
+                        <li><strong>Nom :</strong> ${name}</li>
+                        <li><strong>Email :</strong> ${email}</li>
+                        <li><strong>Téléphone :</strong> ${phone}</li>
+                    </ul>
 
-                <h2>Critères de Qualification</h2>
-                <ul>
-                    ${Object.entries(metadata)
-                        .filter(([k]) => !['attribution', 'score', 'arbitrage_status', 'niche', 'country', 'source'].includes(k))
-                        .map(([k, v]) => `<li><strong>${k.replace(/_/g, ' ')} :</strong> ${v || 'N/A'}</li>`)
-                        .join('\n                    ')}
-                </ul>
+                    <h2>Critères de Qualification</h2>
+                    <ul>
+                        ${Object.entries(metadata)
+                            .filter(([k]) => !['attribution', 'score', 'arbitrage_status', 'niche', 'country', 'source'].includes(k))
+                            .map(([k, v]) => `<li><strong>${k.replace(/_/g, ' ')} :</strong> ${v || 'N/A'}</li>`)
+                            .join('\n                    ')}
+                    </ul>
 
-                <h2>Attribution Marketing</h2>
-                <ul>
-                    <li><strong>Source / Medium :</strong> ${attribution?.source || 'direct'} / ${attribution?.medium || 'direct'}</li>
-                    ${attribution?.campaign ? `<li><strong>Campagne :</strong> ${attribution.campaign}</li>` : ''}
-                    ${attribution?.term ? `<li><strong>Mot-clé recherché :</strong> ${attribution.term}</li>` : ''}
-                    ${attribution?.landing_page ? `<li><strong>Page de capture :</strong> ${attribution.landing_page}</li>` : ''}
-                </ul>
-            `;
+                    <h2>Attribution Marketing</h2>
+                    <ul>
+                        <li><strong>Source / Medium :</strong> ${attribution?.source || 'direct'} / ${attribution?.medium || 'direct'}</li>
+                        ${attribution?.campaign ? `<li><strong>Campagne :</strong> ${attribution.campaign}</li>` : ''}
+                        ${attribution?.term ? `<li><strong>Mot-clé recherché :</strong> ${attribution.term}</li>` : ''}
+                        ${attribution?.landing_page ? `<li><strong>Page de capture :</strong> ${attribution.landing_page}</li>` : ''}
+                    </ul>
+                `;
 
-            await resend.emails.send({
-                from: `${siteName} <hello@expertbornerecharge.com>`,
-                to: ['hello@expertbornerecharge.com', `bonjour@${domain}`],
-                subject,
-                html
-            });
+                try {
+                    await resend.emails.send({
+                        from: `${siteName} <hello@expertbornerecharge.com>`,
+                        to: ['hello@expertbornerecharge.com'],
+                        subject,
+                        html
+                    });
+                } catch (sendErr) {
+                    await resend.emails.send({
+                        from: `${siteName} <contact@expertpompeachaleur.com>`,
+                        to: ['hello@expertbornerecharge.com'],
+                        subject,
+                        html
+                    });
+                }
+            }
+        } catch (emailErr) {
+            console.error("⚠️ [Resend Error] (non-blocking):", emailErr);
         }
 
         const vudDetails = arbitrageResult?.devis_data?.devis_id ? {
