@@ -7,15 +7,15 @@ import type { Metadata } from 'next';
 import { createClient } from "@supabase/supabase-js";
 
 // Initialize Supabase Client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yzsvnjguuhdihchpwfkl.supabase.co';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6c3Zuamd1dWhkaWhjaHB3ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTAyMjUsImV4cCI6MjA5Njg2NjIyNX0.NBDqjBQ1mFtEnhTP3yYa18CcLMj32x6UR5llGE_4SE8';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
-    title: "Guides et Conseils Pompes à Chaleur | Expert Thermostat Copropriété",
-    description: "Tout comprendre sur l'installation de pompes à chaleur. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
+    title: "Guides et Réglementation Thermostat Copropriété | Décret BACS & CEE",
+    description: "Tout comprendre sur l'installation de thermostats connectés en copropriété, le Décret BACS, les fiches CEE BAR-TH-173 et BAR-TH-166.",
 };
 
 export default async function GuidesIndex() {
@@ -35,7 +35,7 @@ export default async function GuidesIndex() {
                 category:blog_categories(name)
             `)
             .eq('status', 'published')
-            .contains('tags', ['pac'])
+            .contains('tags', ['thermostat'])
             .order('published_at', { ascending: false })
         : { data: null };
 

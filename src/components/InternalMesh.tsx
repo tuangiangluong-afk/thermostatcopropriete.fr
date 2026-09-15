@@ -39,7 +39,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                     <div>
                         <h4 className="text-white font-bold mb-6 text-lg">Nos Services</h4>
                         <ul className="space-y-3">
-                            {[{"title": "Thermostat Connecté Collectif", "href": "/type/thermostat-connecte"}, {"title": "Robinets Thermostatiques Connectés", "href": "/type/robinets-thermostatiques"}, {"title": "Vannes de Régulation BMS/GTB", "href": "/type/vannes-collectives"}, {"title": "Pilotage Connecté Chaufferie", "href": "/type/pilotage-chaudiere"}, {"title": "Guides & Fiches CEE Officielles", "href": "/guides"}].map((service, i) => (
+                            {[{"title": "Thermostat Connecté Collectif", "href": "/type/thermostat-connecte"}, {"title": "Robinets Thermostatiques Connectés", "href": "/type/robinets-thermostatiques"}, {"title": "Vannes de Régulation BMS/GTB", "href": "/type/vannes-collectives"}, {"title": "Pilotage Connecté Chaufferie", "href": "/type/pilotage-chaudiere"}, {"title": "Guides & Fiches CEE Officielles", "href": "/blog"}].map((service, i) => (
                                 <li key={i}>
                                     <Link href={service.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
                                         <span className="bg-emerald-500 rounded-full h-1 w-1 shrink-0"></span>
@@ -90,10 +90,10 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Documentation & Conseils</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Prix d'un thermostat collectif", href: "/guides/prix-installation-thermostat-collectif" },
-                                { label: "Obligation & décret BACS en copropriété", href: "/guides/obligation-thermostat-copropriete-decret-bacs" },
-                                { label: "Économies d'énergie en copropriété", href: "/guides/economies-energie-thermostat-copropriete" },
-                                { label: "Tous nos guides", href: "/guides" }
+                                { label: "Obligation Thermostat Copropriété 2027", href: "/blog/obligation-thermostat-connecte-copropriete-2027-guide-loi" },
+                                { label: "Aides CEE Fiche BAR-TH-173", href: "/blog/aides-cee-thermostat-connecte-copropriete-fiche-bar-th-173" },
+                                { label: "Décret BACS Seuil 70kW 2027", href: "/blog/decret-bacs-copropriete-tertiaire-seuil-70kw-2027" },
+                                { label: "Tous nos guides & articles", href: "/blog" }
                             ].map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
