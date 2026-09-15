@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: `${baseUrl}${path}`,
       images: [
         {
-          url: `${baseUrl}/images/og-image.png`,
+          url: `${baseUrl}/api/og`,
           width: 1200,
           height: 630,
           alt: "Thermostat Copropriété® - Régulation thermique et robinets thermostatiques collectifs",
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Thermostat Copropriété® - Régulation Thermique & BACS 100% CEE",
       description: "Installation de thermostats connectés et régulation de chauffage collectif pour syndics et copropriétés. Dispositif 100% financé CEE, zéro reste à charge.",
-      images: [`${baseUrl}/images/og-image.png`],
+      images: [`${baseUrl}/api/og`],
     },
     icons: {
       icon: "/icon.png",

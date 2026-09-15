@@ -43,6 +43,10 @@ export async function generateMetadata({
         description: pseo.meta_description,
         alternates: {
             canonical: `https://www.thermostatcopropriete.fr/ville/${resolvedParams.slug}`,
+            languages: {
+                "fr-FR": `https://www.thermostatcopropriete.fr/ville/${resolvedParams.slug}`,
+                "x-default": `https://www.thermostatcopropriete.fr/ville/${resolvedParams.slug}`,
+            },
         },
         openGraph: {
             title: pseo.meta_title,
@@ -50,7 +54,7 @@ export async function generateMetadata({
             siteName: site.name,
             images: [
                 {
-                    url: site.heroImage,
+                    url: `https://www.thermostatcopropriete.fr/api/og?q=${resolvedParams.slug}`,
                     width: 1200,
                     height: 630,
                     alt: `${site.name} ${site.city}`

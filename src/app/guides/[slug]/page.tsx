@@ -175,7 +175,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         "@type": "Article",
         "headline": guide.title,
         "description": guide.description,
-        "image": guide.image ? [`https://www.thermostatcopropriete.fr${guide.image}`] : [`https://www.thermostatcopropriete.fr/images/og-image.png`],
+        "image": guide.image ? [`https://www.thermostatcopropriete.fr${guide.image}`] : [`https://www.thermostatcopropriete.fr/api/og`],
         "datePublished": guide.date,
         "author": [{
             "@type": "Organization",
