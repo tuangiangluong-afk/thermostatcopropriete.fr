@@ -7,6 +7,7 @@ import Reviews from "@/components/Reviews";
 import { LocalFAQ } from "@/components/LocalFAQ";
 import { InternalMesh } from "@/components/InternalMesh";
 import { CheckCircle, Award } from "lucide-react";
+import LocalSources from "@/components/LocalSources";
 export interface ContentSection { title: string; html: string; }
 interface ThermoContentPageProps {
     site: CityConfig; heroBadge: string; pageTitle: string; introHtml: string;
@@ -84,7 +85,8 @@ export default function ThermoContentPage({ site, heroBadge, pageTitle, introHtm
             {sections.map((s) => (<section key={s.title} className="py-14"><div className="container mx-auto px-4 max-w-4xl"><h2 className="text-3xl font-bold text-slate-900 mb-8">{s.title}</h2><div className="prose prose-lg max-w-none text-slate-600" dangerouslySetInnerHTML={{ __html: s.html }} /></div></section>))}
             <section className="py-16 bg-slate-50 border-y border-slate-200"><div className="container mx-auto px-4 max-w-4xl"><h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Questions fréquentes</h2><div className="space-y-4">{faqs.map((f) => (<details key={f.question} className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 group"><summary className="font-bold text-slate-900 cursor-pointer flex justify-between items-center">{f.question}<span className="text-rose-600 group-open:rotate-45 transition-transform">+</span></summary><p className="mt-4 text-slate-600 leading-relaxed">{f.reponse}</p></details>))}</div></div></section>
             <section className="py-16" id="simulateur"><div className="container mx-auto px-4"><div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-xl border border-slate-100"><div className="text-center mb-10"><h2 className="text-3xl font-bold text-slate-900 mb-4">Audit gratuit pour votre syndic</h2><p className="text-slate-600">Estimez les économies de votre copropriété et les primes CEE</p></div><LeadForm city={site.city} domain="thermostatcopropriete.fr" targetType="COPRO" themeColor={themeColor} /></div></div></section>
-            <Reviews site={site} themeColor={themeColor} /><LocalFAQ site={site} segment="COPRO" /><InternalMesh city={site.city} config={site} /><Footer config={site} />
+            <Reviews site={site} themeColor={themeColor} /><LocalFAQ site={site} segment="COPRO" /><InternalMesh city={site.city} config={site} /><LocalSources site={site} url={canonicalUrl} />
+            <Footer config={site} />
         </div>
     );
 }
