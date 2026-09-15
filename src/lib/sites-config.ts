@@ -198,9 +198,9 @@ export const SITES: Record<string, SiteConfig> = {
         department: "83",
         coordinates: { lat: 43.1242, lng: 5.928 }
     },
-    "saint-tienne": {
+    "saint-etienne": {
         ..._hubConfig,
-        slug: "saint-tienne",
+        slug: "saint-etienne",
         city: "Saint-Étienne",
         postalCode: "42000",
         region: "Auvergne-Rhône-Alpes",
@@ -252,9 +252,9 @@ export const SITES: Record<string, SiteConfig> = {
         department: "69",
         coordinates: { lat: 45.7667, lng: 4.8803 }
     },
-    "n-mes": {
+    "nimes": {
         ..._hubConfig,
-        slug: "n-mes",
+        slug: "nimes",
         city: "Nîmes",
         postalCode: "30000",
         region: "Occitanie",
