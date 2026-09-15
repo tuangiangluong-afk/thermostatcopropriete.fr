@@ -14,7 +14,8 @@ import AttributionTracker from "@/components/AttributionTracker";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const canonicalDomain = headersList.get("x-irve-canonical-domain") || "www.thermostatcopropriete.fr";
+  // Canonical host is ALWAYS this site's own host.
+  const canonicalDomain = "www.thermostatcopropriete.fr";
   const path = headersList.get("x-irve-path") || "";
   const baseUrl = `https://${canonicalDomain}`;
 
@@ -23,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     template: `%s | Thermostat Copropriété®`,
     default: `Thermostat Copropriété® - N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.`,
   },
-    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
+    description: "Installation de thermostats connectés et régulation thermique pour copropriétés et syndics en France. Conformité décret BACS, 100% pris en charge CEE sans reste à charge. Devis et audit gratuits.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}${path}`,
@@ -40,9 +41,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
-      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
-      siteName: "Expert Thermostat Copropriété",
+      title: "Thermostat Copropriété® - Régulation Thermique & BACS 100% CEE",
+      description: "Installation de thermostats connectés et régulation de chauffage collectif pour syndics et copropriétés. Dispositif 100% financé CEE, zéro reste à charge.",
+      siteName: "Thermostat Copropriété",
       locale: "fr_FR",
       type: "website",
       url: `${baseUrl}${path}`,
@@ -51,14 +52,14 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${baseUrl}/images/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
+          alt: "Thermostat Copropriété® - Régulation thermique et robinets thermostatiques collectifs",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Expert Thermostat Copropriété - Devis Thermostat Copropriété",
-      description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France. Devis sous 48h gratuit.",
+      title: "Thermostat Copropriété® - Régulation Thermique & BACS 100% CEE",
+      description: "Installation de thermostats connectés et régulation de chauffage collectif pour syndics et copropriétés. Dispositif 100% financé CEE, zéro reste à charge.",
       images: [`${baseUrl}/images/og-image.png`],
     },
     icons: {

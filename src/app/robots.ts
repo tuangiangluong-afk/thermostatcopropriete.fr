@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
             }
         ],
-        sitemap: 'https://thermostatcopropriete.fr/sitemap.xml',
+        sitemap: 'https://www.thermostatcopropriete.fr/sitemap.xml',
     };
 }

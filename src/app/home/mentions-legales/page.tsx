@@ -51,7 +51,7 @@ export default function MentionsLegales() {
                     <div className="mb-8 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
                         <h2 className="mb-4 text-2xl font-bold text-slate-900">2. Service Proposé</h2>
                         <p>
-                            Expert Thermostat Copropriété est une plateforme nationale de mise en relation entre les particuliers ou les entreprises et des installateurs certifiés RGE QualiPAC (pompes à chaleur).
+                            Expert Thermostat Copropriété est une plateforme nationale de mise en relation entre les particuliers ou les entreprises et des professionnels spécialisés dans le pilotage et la régulation du chauffage collectif.
                         </p>
                     </div>
 
@@ -76,7 +76,7 @@ export default function MentionsLegales() {
                     <div className="mb-8 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
                         <h2 className="mb-4 text-2xl font-bold text-slate-900">5. Données Personnelles (RGPD)</h2>
                         <p>
-                            Les données collectées (nom, téléphone, adresse d'installation, facture d'électricité moyenne, système de chauffage actuel) sont utilisées uniquement pour l'établissement d'études de rentabilité, de devis et la mise en relation avec nos partenaires installateurs certifiés QualiPAC.
+                            Les données collectées (nom, téléphone, adresse d'installation, nombre de logements, système de chauffage collectif et régulation existante) sont utilisées uniquement pour l'établissement d'études de rentabilité, de devis et la mise en relation avec nos partenaires installateurs certifiés QualiPAC.
                         </p>
                         <p>
                             Vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données. Pour l&apos;exercer, contactez-nous via la page contact.

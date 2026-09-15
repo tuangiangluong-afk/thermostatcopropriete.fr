@@ -136,21 +136,33 @@ export function Footer({ config }: FooterProps) {
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Nos Guides</h5>
                             <ul className="space-y-3 text-sm">
                                 <li>
-                                    <Link href="/guides/prix-beton-desactive-m2" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/economies-energie-thermostat-copropriete" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Prix du Thermostats connectés 2026
+                                        Économies d'Énergie avec un Thermostat en Copropriété (2026)
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/guides/avantages-beton-imprime" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/obligation-decret-bacs-copropriete-2027-echeances-sanctions" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Avantages du Vannes thermostatiques
+                                        Décret BACS Copropriété
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/guides/idees-terrasse-beton-decoratif" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/obligation-thermostat-copropriete-decret-bacs" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Idées de terrasses en béton
+                                        Obligation Thermostat en Copropriété
+                                    </Link>
+                                </li>
+<li>
+                                    <Link href="/guides/prix-installation-robinets-thermostatiques-connectes-copropriete-cout-par-lot" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
+                                        Prix Robinets Thermostatiques Connectés en Copropriété
+                                    </Link>
+                                </li>
+<li>
+                                    <Link href="/guides/prix-installation-thermostat-collectif" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
+                                        Prix Installation Thermostat Collectif
                                     </Link>
                                 </li>
                                 <li>
@@ -171,7 +183,7 @@ export function Footer({ config }: FooterProps) {
                         <div>
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Finitions</h5>
                             <ul className="space-y-3 text-sm mb-8">
-                                {["Thermostats connectés","Vannes thermostatiques","Têtes thermostatiques","Béton Balayé"].map((brand) => (
+                                {["Thermostats connectés","Robinets thermostatiques","Têtes thermostatiques","Systèmes BACS"].map((brand) => (
                                     <li key={brand}>
                                         <Link href={`#simulateur`} className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                             <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>

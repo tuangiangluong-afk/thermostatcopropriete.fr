@@ -1,18 +1,29 @@
 import Link from "next/link";
 import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText, Landmark, Building2 } from "lucide-react";
 import type { CityConfig } from "@/lib/db";
+import type { PseoPageContent } from "@/lib/pseo";
 
 interface LocalAeoSectionProps {
     site: CityConfig;
+    /** Contenu pSEO local (faits vérifiables, contraintes, délais) */
+    pseo?: PseoPageContent;
 }
 
 const pricingMatrix = [{"name": "Pack Thermostats Connectés (Par Logement)", "usage": "Têtes électroniques intelligentes par radiateur", "price": "350€ - 650€ / lot", "aid": "Prime CEE Coup de Pouce 100%", "net": "0€ reste à charge"}, {"name": "Régulation Centrale & Sonde d'ambiance", "usage": "Pilotage chaufferie & équilibrage colonnes", "price": "1 200€ - 2 800€", "aid": "Financement CEE éligible", "net": "0€ reste à charge"}, {"name": "Gestion Technique Bâtiment (GTB) Copro", "usage": "Suivi conso en temps réel pour le syndic", "price": "Sur devis", "aid": "Primes CEE Bonifiées", "net": "Sur mesure"}, {"name": "Maintenance & Accompagnement résidents", "usage": "Remplacement piles & hotline dédiée", "price": "Inclus contrat CEE", "aid": "Garantie matériel 5 ans", "net": "Inclus"}];
 const steps = [{"title": "Audit technique de la copropriété & Comptage", "desc": "Visite de la chaufferie, inventaire des radiateurs et vérification d'éligibilité CEE à 100%."}, {"title": "Préparation de la résolution d'AG", "desc": "Rédaction clé en main de la résolution pour le syndic avec vote à la majorité simple (art. 24)."}, {"title": "Planning de pose appartement par appartement", "desc": "Information des résidents, créneaux de 30 min par logement et remplacement des têtes thermostatiques."}, {"title": "Clôture du dossier CEE & Économies immédiates", "desc": "Signature des attestations sur l'honneur, versement de la prime CEE et baisse immédiate des charges."}];
 
-export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
+export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
     const neighborhoods = site.neighborhoods || [];
+    const facts = pseo?.local_facts || [];
+    const priceLine = pseo?.pricing_estimated && !pseo.pricing_estimated.includes("partir")
+        ? pseo.pricing_estimated
+        : site.pricing?.base || "Sur devis";
+    const f0 = facts.find(f => f.label === "Département")?.value;
+    const f1 = facts.find(f => f.label === "Région")?.value;
+    const f2 = facts.find(f => f.label === "Profil climatique")?.value;
+    const f3 = facts.find(f => f.label === "Préfecture")?.value;
     const neighborhoodsText = neighborhoods.length > 0 
         ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
         : "";
@@ -47,6 +58,24 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                         <strong>En résumé : </strong>À {city}{dept}, le coût moyen d'une prestation de thermostat copropriété réalisée par nos artisans qualifiés s'établit entre 0€ de reste à charge (CEE) avant déduction des éventuelles aides financières. Nos techniciens certifiés interviennent sous 24h à 48h avec garantie décennale.
                     </p>
 
+                                        {facts.length > 0 && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2 mb-6">
+                            {facts.slice(0, 8).map((f) => (
+                                <div key={f.label} className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4">
+                                    <div className="text-xs text-slate-500 font-medium">{f.label}</div>
+                                    <div className="text-sm font-bold text-slate-900 mt-1 leading-snug">{f.value}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {f0 && (
+                        <p className="text-sm text-slate-600 leading-relaxed mb-6 pt-1 border-t border-slate-100">
+                            <strong>Contexte local : </strong>{city} se situe dans le département {f0}, en {f1} ({f2}). {" "}Ce contexte détermine la longueur de la saison de chauffe, donc l'intérêt économique d'une régulation fine dans votre immeuble.
+                        </p>
+                    )}
+
+                    
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2">
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Prix estimé</div>

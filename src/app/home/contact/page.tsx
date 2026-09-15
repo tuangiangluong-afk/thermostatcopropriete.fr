@@ -21,7 +21,7 @@ export default function HubContactPage() {
                         Service National
                     </span>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900">
-                        Un projet de <span className="text-slate-500">pompe à chaleur</span> ?
+                        Un projet de <span className="text-slate-500">régulation thermique</span> ?
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         Particuliers, copropriétés, locaux professionnels.
@@ -72,8 +72,8 @@ export default function HubContactPage() {
                                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Pourquoi nous choisir ?</h3>
                                 <ul className="space-y-4">
                                     {[
-                                        "Réseau national d'installateurs qualifiés RGE QualiPAC",
-                                        "Accompagnement administratif complet (aides CEE, MaPrimeRénov')",
+                                        "Réseau national de professionnels du chauffage collectif et de la régulation",
+                                        "Accompagnement du syndic dans l'audit et le déploiement de la régulation",
                                         "Chauffage haute performance pour des économies durables",
                                         "Simulation gratuite d'éligibilité aux subventions de l'État"
                                     ].map((item, i) => (
@@ -87,7 +87,7 @@ export default function HubContactPage() {
 
                             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
                                 <h4 className="font-bold text-slate-900 mb-2">Vous êtes installateur ?</h4>
-                                <p className="text-sm text-slate-700 mb-4">Rejoignez notre réseau de professionnels RGE QualiPAC sur toute la France.</p>
+                                <p className="text-sm text-slate-700 mb-4">Rejoignez notre réseau de professionnels du chauffage collectif sur toute la France.</p>
                                 <Link href="#form" className="text-sm font-bold text-slate-600 hover:underline flex items-center gap-1">
                                     Devenir partenaire <ArrowLeft className="rotate-180" size={14} />
                                 </Link>

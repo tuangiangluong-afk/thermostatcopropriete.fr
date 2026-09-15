@@ -90,9 +90,9 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Documentation & Conseils</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Prix du Vannes thermostatiques", href: "/guides/prix-beton-imprime-m2" },
-                                { label: "Thermostats connectés vs Imprimé", href: "/guides/beton-desactive-ou-imprime" },
-                                { label: "Entretien des Thermostats", href: "/guides/entretien-beton-decoratif" },
+                                { label: "Prix d'un thermostat collectif", href: "/guides/prix-installation-thermostat-collectif" },
+                                { label: "Obligation & décret BACS en copropriété", href: "/guides/obligation-thermostat-copropriete-decret-bacs" },
+                                { label: "Économies d'énergie en copropriété", href: "/guides/economies-energie-thermostat-copropriete" },
                                 { label: "Tous nos guides", href: "/guides" }
                             ].map((link, i) => (
                                 <li key={i}>

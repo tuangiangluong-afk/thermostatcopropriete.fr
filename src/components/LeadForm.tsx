@@ -94,7 +94,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 city,
                 postalCode: formData.zipCode,
                 domain,
-                niche: 'beton',
+                niche: 'thermostat',
                 country: 'FR',
                 leadScore: formData.monthlyBill === 'plus_50' ? 80 : 50,
                 timestamp: new Date().toISOString()
@@ -198,7 +198,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
 
                 {step === 3 && (
                     <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-neutral-900 mb-4">L&apos;accès pour un camion toupie de béton est-il possible ?</h4>
+                        <h4 className="text-xl font-bold text-neutral-900 mb-4">La chaufferie / le local technique est-il accessible pour l&apos;intervention ?</h4>
                         <button onClick={() => { handleOptionSelect('roofType', 'toupie_oui'); setStep(4); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Home className="text-slate-500" />
                             <div>

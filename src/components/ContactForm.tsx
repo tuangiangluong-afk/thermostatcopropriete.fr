@@ -166,7 +166,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                     name="message"
                     id="message"
                     rows={5}
-                    placeholder="Bonjour, je souhaite installer une pompe à chaleur pour ma maison de 120m²..."
+                    placeholder="Bonjour, je souhaite équiper ma copropriété de thermostats connectés et réduire les charges de chauffage..."
                     className={`${inputClasses} resize-none`}
                 />
             </div>

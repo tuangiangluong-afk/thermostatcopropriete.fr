@@ -8,20 +8,20 @@ export const NATIONAL_CONFIG: CityConfig = {
     phoneNumber: "01 84 80 00 00",
     email: "contact@thermostatcopropriete.fr",
     heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
-    description: "Le réseau n°1 d'installateurs de pompes à chaleur en France. Devis gratuit, étude de rentabilité et artisans certifiés RGE.",
+    description: "Le réseau n°1 de l'équipement et de la régulation thermique en copropriété. Thermostats connectés et systèmes BACS financés par la prime CEE. Devis gratuit.",
     meta: {
-        title: "Expert Thermostat Copropriété | Chauffage Écologique & Économies d'Énergie",
-        description: "Installation de pompes à chaleur pour particuliers partout en France. Devis gratuit sous 24h. Simulateur d'éligibilité aux aides RGE QualiPAC."
+        title: "Thermostat Copropriété | Régulation Thermique & Prime CEE",
+        description: "Équipement et régulation thermique en copropriété : thermostats connectés et systèmes BACS financés par la prime CEE. Devis gratuit sous 24h."
     },
     features: [
-        "Rendement Garanti",
+        "Régulation Connectée",
         "Devis Gratuit sous 24h",
-        "Éligible MaPrimeRénov'",
-        "Artisans RGE QualiPAC"
+        "Financé par la Prime CEE",
+        "Techniciens Certifiés"
     ],
     pricing: {
         base: "Sur Devis",
-        description: "Devis gratuit personnalisé selon votre chauffage actuel"
+        description: "Devis gratuit personnalisé selon la taille de la copropriété"
     },
     hospitals: [],
     stations: [],

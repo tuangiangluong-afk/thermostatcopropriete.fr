@@ -1,4 +1,5 @@
 import { CityConfig } from "@/lib/db";
+import { DEPARTEMENTS } from "@/data/fr-departements";
 
 interface LocalFAQProps {
     site: CityConfig;
@@ -41,32 +42,36 @@ export function LocalFAQ({ site, segment }: LocalFAQProps) {
         </section>
     );
 }
-
-function cityHash(city: string): number {
-    let hash = 0;
-    for (let i = 0; i < city.length; i++) {
-        hash = ((hash << 5) - hash + city.charCodeAt(i)) | 0;
-    }
-    return Math.abs(hash);
-}
-
-export function getLocalFAQData(city: string, department: string | undefined, segment: "B2C" | "COPRO" | "ENTREPRISE") {
-    const dept = department || "";
-    const h = cityHash(city);
-    const installCount = 40 + (h % 80);
+/**
+ * Exporté pour que SchemaJSON génère les données structurées FAQPage.
+ *
+ * IMPORTANT : aucune statistique n'est inventée ici. Les réponses s'appuient
+ * uniquement sur des faits vérifiables (département, région, profil
+ * climatique) et sur les échéances publiques du décret BACS.
+ */
+export function getLocalFAQData(city: string, department: string | undefined, _segment: "B2C" | "COPRO" | "ENTREPRISE" = "B2C") {
+    const dept = department ? DEPARTEMENTS[department] : undefined;
+    const deptRef = dept ? `${dept.name} (${dept.code})` : "votre département";
+    const region = dept?.region || "France";
+    const montagne = !!dept?.montagne;
+    const froid = ["Hauts-de-France", "Grand Est", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Île-de-France"].includes(region);
 
     return [
         {
-            question: `Quel est le prix au m² du Vannes thermostatiques à ${city} ?`,
-            answer: `Le prix du Vannes thermostatiques à ${city} se situe généralement entre 60€ et 120€ par mètre carré, incluant les fournitures, la pose et les finitions. Cela dépend de la surface totale et de la complexité des motifs.`
+            question: `Quel est le prix d'une régulation de chauffage collectif à ${city} ?`,
+            answer: `À ${city}, comptez généralement entre 120 € et 180 € par radiateur pour la fourniture et la pose d'un robinet thermostatique connecté, et entre 60 € et 120 € pour un modèle classique. À cela s'ajoute, lorsque le bâtiment dépasse les seuils, la régulation centrale (BACS), dont le coût dépend du nombre de logements et de la configuration du réseau.`
         },
         {
-            question: `Combien de temps faut-il pour réaliser une chauffage collectif à ${city} ?`,
-            answer: `Nos artisans partenaires à ${city} réalisent généralement un chantier de 50m² en 2 à 3 jours, du coulage à l'application du vernis de finition. Nous avons coulé plus de ${installCount} chantiers dans le ${dept} récemment.`
+            question: `Quel est le délai d'une intervention à ${city} ?`,
+            answer: `Après la visite technique, la pose des robinets à ${city} et sur le département ${deptRef} se fait généralement cage d'escalier par cage d'escalier, sur 1 à 2 jours selon le nombre de logements. La mise en service de la régulation centrale nécessite ensuite un réglage et un équilibrage du réseau.`
         },
         {
-            question: `Le Vannes thermostatiques résiste-t-il au gel à ${city} ?`,
-            answer: `Oui, la loi sur l'individualisation des frais de chauffage et le décret tertiaire rendent obligatoire l'installation de thermostats connectés ou vannes thermostatiques pour la majorité des immeubles à ${city}.`
+            question: `Le décret BACS s'applique-t-il à ${city} ?`,
+            answer: `Oui : le décret BACS s'applique nationalement, donc aux copropriétés de ${city} comme partout en France. Les échéances sont fixées au 1er janvier 2025 pour les bâtiments de plus de 290 kW et au 1er janvier 2027 pour ceux de plus de 70 kW. Un immeuble collectif équipé d'un chauffage central dépasse fréquemment ces seuils.`
+        },
+        {
+            question: `Quel est l'intérêt de la régulation selon le climat de ${city} ?`,
+            answer: `Le département ${deptRef} se situe en ${region}.${froid ? " Cette région connaît une saison de chauffe longue : la régulation pièce par pièce et le pilotage central y produisent une économie annuelle particulièrement importante." : " Dans cette région, l'enjeu principal réside dans les surconsommations d'intersaison et les logements surchauffés, que la régulation par logement corrige directement."}${montagne ? " Les communes d'altitude connaissent en outre une saison de chauffe plus longue qu'en plaine." : ""}`
         }
     ];
 }

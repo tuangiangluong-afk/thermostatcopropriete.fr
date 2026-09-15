@@ -143,45 +143,6 @@ export default function StructuredData() {
                 }
             }
         },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "86",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
-        "review": [
-            {
-                "@type": "Review",
-                "author": {
-                    "@type": "Person",
-                    "name": "Syndic Conseil Paris 15"
-                },
-                "datePublished": "2026-02-12",
-                "reviewBody": "Installation des thermostats connectés sur l'ensemble de notre immeuble de 45 lots. Économies d'énergie directes.",
-                "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                }
-            },
-            {
-                "@type": "Review",
-                "author": {
-                    "@type": "Person",
-                    "name": "Philippe B."
-                },
-                "datePublished": "2026-03-19",
-                "reviewBody": "Prise en charge Coup de Pouce CEE à 100%, aucune avance de frais pour la copropriété.",
-                "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                }
-            }
-        ]
     };
 
     return (

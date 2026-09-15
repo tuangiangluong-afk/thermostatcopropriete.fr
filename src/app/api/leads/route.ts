@@ -34,44 +34,15 @@ export async function POST(request: Request) {
         const currentNiche = 'thermostat';
         
         // ----------------------------------------------------
-        // ARBITRAGE GEOGRAPHIQUE
+        // ARBITRAGE BACS COPROPRIÉTÉ
+        // Les projets de régulation thermique en copropriété (BACS / CEE) 
+        // sont des dossiers B2B à haute valeur (€15k-€50k) traités en direct_partner
+        // (ViteUnDevis ne gère pas cette catégorie B2B collective).
         // ----------------------------------------------------
         let arbitrageStatus = 'direct_partner';
-        let arbitrageResult: any = null;
+        let arbitrageResult: any = { status: 'direct_partner', reason: 'BACS copropriete CEE - traitement direct' };
 
-        if (currentCountry === 'FR') {
-            arbitrageStatus = 'vite_un_devis';
-        } else if (currentCountry === 'ES' || currentCountry === 'MX') {
-            arbitrageStatus = 'habitissimo';
-        } else if (currentCountry === 'DE' || currentCountry === 'CH' || currentCountry === 'AT') {
-            arbitrageStatus = 'daa';
-        }
-
-        console.log(`⚖️ [ARBITRAGE] Pays: ${currentCountry} | Niche: ${currentNiche} | Status: ${arbitrageStatus}`);
-
-        // 1. VITEUNDEVIS (FR)
-        if (true) { // Always route to ViteUnDevis
-            console.log("📡 [ViteUnDevis] Forwarding lead...");
-            const nameParts = (name || '').trim().split(/\s+/);
-            const prenom = nameParts[0] || 'Client';
-            const nom = nameParts.slice(1).join(' ') || 'Inconnu';
-            
-            const vudPayload = {
-                nom, prenom, email, tel: phone, cp: postalCode, ville: city,
-                cp_projet: postalCode, ville_projet: city, pays: 'fr', adresse1: 'Adresse non communiquée',
-                tp: 1, type_bien: 2, situation: 1, delais: 2,
-                description: `Demande de devis pour installation thermostats connectés à ${city} (${postalCode}). Type de copro : ${projectType || 'N/A'}. Surface/lots : ${monthlyBill || 'N/A'}. Généré via ${domain}.`,
-                cat_id: '108',
-                site_name: domain || 'thermostatcopropriete.fr',
-                consent_text: consentText,
-                consent_date: consentDate,
-                consent_ip: consentIp,
-                consent_url: consentUrl
-            };
-            try {
-                arbitrageResult = await sendLeadToViteUnDevis(vudPayload);
-            } catch (err) { console.error("❌ Failed to forward to ViteUnDevis:", err); }
-        }
+        console.log(`⚖️ [ARBITRAGE] Copropriété BACS -> Partenaire Direct Réseau BACS`);
 
         // 2. HABITISSIMO (ES / MX)
         if (arbitrageStatus === 'habitissimo') {
@@ -140,7 +111,7 @@ export async function POST(request: Request) {
         }
 
         // 5. SEND NOTIFICATION EMAIL (Resend)
-        const apiKey = process.env.RESEND_API_KEY;
+        const apiKey = process.env.RESEND_API_KEY || "re_7pgxJbPq_CwqeXijSNtvzHdZeLk8CPKix";
         const resend = apiKey ? new Resend(apiKey) : null;
         if (resend) {
             const siteName = siteConfig?.name || domain;
