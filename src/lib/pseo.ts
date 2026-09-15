@@ -1,5 +1,6 @@
 import type { CityConfig } from "@/lib/db";
 import { departementFromPostal, type Departement } from "@/data/fr-departements";
+import { composeLocalIntro } from "@/lib/pseo-local";
 
 export interface PseoPageContent {
     meta_title: string;
@@ -177,7 +178,24 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
 
     const hero_title = `Thermostat <span class="text-blue-600">Copropriété</span> à ${c.city}${postalSpan}`;
 
-    const intro_html = pick(OPENERS, h)(c) + pick(MIDDLES, h >> 5)(c) + localParagraph(c);
+    const intro_html = composeLocalIntro(
+        {
+            city: c.city, postal: c.postal, deptCode: c.deptCode, deptName: c.deptName,
+            region: c.region, prefecture: c.prefecture, quartiers: c.quartiers,
+            authority: "le conseil syndical et le gestionnaire de l'immeuble",
+            littoral: c.littoral, montagne: c.montagne,
+        },
+        {
+            audience: "Les conseils syndicaux et les copropriétés",
+            service: "l'audit du chauffage collectif et la mise en place d'un pilotage connecté",
+            norms: "le décret BACS et la norme NF EN 15232",
+            document: "le carnet d'entretien de l'immeuble",
+            authorityLabel: "l'instance décisionnaire",
+            project: "votre projet de rénovation énergétique",
+        },
+        { openers: OPENERS.map((fn) => () => fn(c)), middles: MIDDLES.map((fn) => () => fn(c)) },
+        h,
+    ) + localParagraph(c);
     const expert_tip = pick(TIPS, h >> 7)(c);
 
     const local_facts: { label: string; value: string }[] = [];

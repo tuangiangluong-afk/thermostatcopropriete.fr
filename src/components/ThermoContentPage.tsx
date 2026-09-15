@@ -18,38 +18,50 @@ export default function ThermoContentPage({ site, heroBadge, pageTitle, introHtm
     const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.reponse } })) };
     const bc = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.thermostatcopropriete.fr" }, ...breadcrumb.map((b, i) => ({ "@type": "ListItem", position: i + 2, name: b.name, item: b.item }))] };
     
-    // Robust Price Parsing for AggregateOffer Schema (supporting Prix, Budget, Tarif)
+    // Fourchette de prix lue sur les faits affichés (Prix / Budget / Tarif)
     const priceFact = facts.find(f => {
         const l = f.label.toLowerCase();
         return l.includes('prix') || l.includes('budget') || l.includes('tarif');
     });
     const priceStr = priceFact?.value || "5000";
     const prices = priceStr.match(/\d+(?:[.,\s]\d+)?/g)?.map(p => parseInt(p.replace(/\D/g, ''), 10)) || [5000, 15000];
+    const hasVisiblePrice = !!priceFact;
     const lowPrice = Math.min(...prices) || 5000;
     const highPrice = prices.length > 1 ? Math.max(...prices) : Math.floor(lowPrice * 1.2);
 
-    const productSchema = {
+        // « Service » et non « Product » : ces pages mettent en relation avec des
+    // professionnels, elles ne vendent pas un article de catalogue. Un balisage
+    // Product (stock, SKU, livraison, offerCount) est inexact et peut être ignoré.
+    const serviceOfferSchema = {
         "@context": "https://schema.org",
-        "@type": "Product",
+        "@type": "Service",
         "name": pageTitle,
+        "serviceType": pageTitle,
         "image": `https://www.thermostatcopropriete.fr${heroImage}`,
         "description": introHtml.replace(/<[^>]*>?/gm, ''),
-        "brand": {
-            "@type": "Brand",
-            "name": "Thermostat Copropriété"
+        "provider": {
+            "@type": "Organization",
+            "name": "Expert Thermostat Copropriété",
+            "url": "https://www.thermostatcopropriete.fr"
         },
-        "offers": {
-            "@type": "AggregateOffer",
-            "priceCurrency": "EUR",
-            "lowPrice": lowPrice.toString(),
-            "highPrice": highPrice.toString(),
-            "offerCount": "12",
-            "availability": "https://schema.org/InStock",
-            "seller": {
-                "@type": "Organization",
-                "name": "Thermostat Copropriété"
+        "areaServed": {
+            "@type": "Country",
+            "name": "FR"
+        },
+        // La fourchette n'est déclarée que si elle figure réellement sur la page.
+        ...(hasVisiblePrice ? {
+            "offers": {
+                "@type": "Offer",
+                "url": `https://www.thermostatcopropriete.fr/#simulateur`,
+                "priceCurrency": "EUR",
+                "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "EUR",
+                    "minPrice": lowPrice.toString(),
+                    "maxPrice": highPrice.toString()
+                }
             }
-        }
+        } : {})
     };
 
     return (
