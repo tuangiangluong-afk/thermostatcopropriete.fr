@@ -5,6 +5,12 @@ import { ArrowLeft, Mail, Phone, MapPin, Zap, CheckCircle } from "lucide-react";
 import { getTheme } from "@/lib/theme";
 import Header from "@/components/Header";
 
+export const metadata = {
+    title: "Contact : audit de régulation collective",
+    description: "Syndics et conseils syndicaux : demandez l'audit de régulation et le chiffrage des travaux de chauffage collectif.",
+};
+
+
 export default function HubContactPage() {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-slate-500 selection:text-white">

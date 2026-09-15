@@ -14,7 +14,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
-    title: "Guides et Réglementation Thermostat Copropriété | Décret BACS & CEE",
+    title: "Guides : décret BACS, CEE et chauffage collectif",
     description: "Tout comprendre sur l'installation de thermostats connectés en copropriété, le Décret BACS, les fiches CEE BAR-TH-173 et BAR-TH-166.",
 };
 

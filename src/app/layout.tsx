@@ -21,10 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
           title: {
-    template: `%s | Thermostat Copropriété®`,
-    default: `Thermostat Copropriété® - N°1 du suivi et régulation thermique pour syndics de copropriétés et gestionnaires d'immeubles.`,
+    template: "%s",
+    default: "Thermostat Copropriété® - Régulation du chauffage collectif",
   },
-    description: "Installation de thermostats connectés et régulation thermique pour copropriétés et syndics en France. Conformité décret BACS, 100% pris en charge CEE sans reste à charge. Devis et audit gratuits.",
+    description: "Régulation thermique et thermostats connectés pour copropriétés. Conformité décret BACS, prise en charge CEE. Audit gratuit.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}${path}`,

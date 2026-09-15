@@ -15,7 +15,7 @@ import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
 
 export const metadata = {
-    title: "Expert Thermostat Copropriété | Devis Thermostat Copropriété",
+    title: "Thermostat collectif : devis et régulation",
     description: "Trouvez un artisan qualifié pour la réalisation de vos allées et terrasses en Thermostats Connectés.",
 };
 
