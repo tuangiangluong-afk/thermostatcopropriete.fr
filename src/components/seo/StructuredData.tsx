@@ -65,12 +65,6 @@ export default function StructuredData() {
             "name": "FR"
         },
         "description": "Équipement complet des immeubles et résidences en têtes thermostatiques connectées (CEE).",
-        "offers": {
-            "@type": "Offer",
-            "priceCurrency": "EUR",
-            "price": "0",
-            "validFrom": "2026-01-01"
-        }
     };
 
     // Eligible Product Schema: 100% compliant with Google Product & Review Snippets
@@ -90,14 +84,6 @@ export default function StructuredData() {
             "@type": "Brand",
             "name": "Thermostat Copropriété"
         },
-        "offers": {
-            "@type": "Offer",
-            "url": `${baseUrl}/#simulateur`,
-            "priceCurrency": "EUR",
-            "price": "0",
-            "validFrom": "2026-01-01",
-            "priceValidUntil": "2026-12-31",
-                                },
     };
 
     return (
