@@ -1,5 +1,6 @@
 import type { CityConfig } from "@/lib/db";
 import type { ThermoBrand } from "@/data/thermo-brands";
+import { composeLocalIntro } from "@/lib/pseo-local";
 
 const REGIONAL: Record<string, { conseil: string; prix: string }> = {
     "75": { conseil: "À Paris, la densité de copropriétés est la plus forte de France : les CEE 'Coup de pouce Pilotage' sont cumulables avec les aides de la Ville de Paris pour la rénovation énergétique.", prix: "190 € – 250 € / logement" },
@@ -23,18 +24,55 @@ function hash(s: string): number { return s.split("").reduce((a, c) => a + c.cha
 export function getPseoThermoContent(city: CityConfig, marque: ThermoBrand): PseoThermoContent {
     const dept = (city.department || "").substring(0, 2);
     const r = REGIONAL[dept] || DEFAULT;
-    const q = (city.neighborhoods || []).slice(0, 3).join(", ");
-    const qm = q.length > 2 ? `Nous intervenons dans les copropriétés de tous les secteurs : ${q} et communes environnantes.` : "";
     const h = hash(city.city + marque.slug);
+
+    // Intro : six emplacements factuels assemblés par pseo-local.ts, comme sur la
+    // page ville. L'ancienne version piochait un texte parmi deux par hash, donc
+    // toutes les copropriétés de France recevaient la même introduction à un mot
+    // près : le motif « doorway ».
+    const intro_html = composeLocalIntro(
+        {
+            city: city.city,
+            postal: city.postalCode,
+            deptCode: dept,
+            region: city.region,
+            quartiers: city.neighborhoods,
+            authority: "le conseil syndical et le gestionnaire de l'immeuble",
+        },
+        {
+            audience: "Les conseils syndicaux et les copropriétés",
+            service: "l'audit du chauffage collectif et la mise en place d'un pilotage connecté",
+            norms: "le décret BACS et la norme NF EN 15232",
+            document: "le carnet d'entretien de l'immeuble",
+            authorityLabel: "l'instance décisionnaire",
+            project: "votre projet de rénovation énergétique",
+        },
+        {
+            openers: [
+                (f) => `À ${f.city}, le chauffage collectif se pilote logement par logement avec un thermostat ${marque.name}.`,
+                (f) => `Votre copropriété à ${f.city}${f.postal ? ` (${f.postal})` : ""} peut être équipée de la gamme ${marque.name} (${marque.modeles[0]}) sans travaux dans la chaufferie.`,
+                (f) => `À ${f.city}, la pose d'un thermostat ${marque.name} prend une heure par logement.`,
+                (f) => `Réguler le chauffage collectif à ${f.city} avec ${marque.name} : chaque logement maîtrise sa consommation, la copropriété réduit sa facture de 15 à 20 %.`,
+                (f) => `Le budget par logement à ${f.city} part de ${marque.prix}, avant déduction des primes CEE « Coup de pouce Pilotage ».`,
+                (f) => `Un conseil syndical à ${f.city} peut équiper l'immeuble en ${marque.name} logement par logement, au rythme des volontaires.`,
+            ],
+            middles: [
+                () => `L'audit du chauffage collectif précède le devis : il identifie les points de régulation à reprendre dans l'immeuble.`,
+                () => `La pose dure une heure par logement et ne nécessite aucune intervention sur la chaufferie.`,
+                () => `Les primes CEE « Coup de pouce Pilotage » couvrent jusqu'à 200 € par lot, et le montage du dossier est pris en charge.`,
+                () => `Chaque copropriétaire garde la main sur sa température : la régulation par logement remplace le réglage collectif unique.`,
+                () => `Le pilotage installé respecte le décret BACS et la norme NF EN 15232.`,
+                () => `Le carnet d'entretien de l'immeuble est mis à jour après l'installation, pour les contrôles ultérieurs.`,
+            ],
+        },
+        h,
+    );
 
     return {
         meta_title: `Thermostat ${marque.name} copropriété à ${city.city}${city.department ? ` (${city.department})` : ""} | CEE & Devis`,
         meta_description: `Installation de thermostat connecté ${marque.name} en copropriété à ${city.city}. ${marque.prix} avant CEE. Audit gratuit, primes CEE 'Coup de pouce'.`,
         hero_title: `<span class="text-rose-600">Thermostat ${marque.name}</span> pour copropriété à ${city.city}`,
-        intro_html: [
-            `<p class="mb-4">Équipez votre copropriété d'un <strong>thermostat connecté ${marque.name}</strong> à <strong>${city.city}${city.postalCode ? ` (${city.postalCode})` : ""}</strong> : la gamme ${marque.modeles[0]} se pose en 1h par logement, sans travaux dans la chaufferie. ${qm}</p><p>Comptez <strong>${marque.prix}</strong> par logement, avant déduction des primes CEE 'Coup de pouce Pilotage' (jusqu'à 200€/lot). Audit gratuit pour le syndic.</p>`,
-            `<p class="mb-4">Réguler la température du chauffage collectif avec <strong>${marque.name}</strong> à <strong>${city.city}</strong> : chaque logement maîtrise sa consommation, la copropriété réduit sa facture de 15 à 20%. ${qm}</p><p>Budget : <strong>${marque.prix}</strong> par logement, installation comprise. Les primes CEE 'Coup de pouce Pilotage' réduisent le coût.</p>`,
-        ][h % 2],
+        intro_html,
         prix: marque.prix,
         local_conseil: r.conseil,
         conseil_html: `<div class="bg-rose-50 border border-rose-100 rounded-xl p-4 mb-6"><p class="text-sm text-slate-700"><strong>À ${city.city} :</strong> ${r.conseil}</p></div>`,
