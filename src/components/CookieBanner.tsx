@@ -55,7 +55,7 @@ const CookieBanner = ({ slug, cityName }: CookieBannerProps) => {
                             onClick={acceptAll}
                             className="w-full py-2 bg-slate-600 hover:bg-slate-500 text-white font-bold rounded-lg transition-colors"
                         >
-                            ${cityName ? "Tout accepter" : "Tout accepter"}
+                            Tout accepter
                         </button>
                         <button
                             onClick={rejectAll}

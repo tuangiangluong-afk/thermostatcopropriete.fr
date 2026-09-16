@@ -150,7 +150,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 <div className="flex items-center justify-between">
                     <div>
                         <span className="text-xs font-semibold tracking-wider uppercase text-emerald-400">Étude Thermique & CEE</span>
-                        <h3 className="font-bold text-lg mt-0.5">{`Simulateur Thermostats Connectés Copropriété ${city ? `· ${city}` : ""}`}</h3>
+                        <h3 className="font-bold text-lg mt-0.5">{`Simulateur Thermostat Connecté Copropriété ${city ? `· ${city}` : ""}`}</h3>
                     </div>
                     <Cpu className="text-emerald-400" size={28} />
                 </div>

@@ -24,9 +24,9 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
     function getVariedAnchor(name: string, index: number) {
         const variations = [
             `Vannes thermostatiques ${name}`,
-            `Artisan Thermostats connectés ${name}`,
+            `Artisan thermostat connecté ${name}`,
             `chauffage collectif ${name}`,
-            `Aménagement allée ${name}`,
+            `Régulation chauffage ${name}`,
             `Têtes thermostatiques ${name}`
         ];
         return variations[index % variations.length];

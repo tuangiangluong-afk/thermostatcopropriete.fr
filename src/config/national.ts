@@ -7,7 +7,7 @@ export const NATIONAL_CONFIG: CityConfig = {
     city: "France",
     phoneNumber: "01 84 80 00 00",
     email: "contact@thermostatcopropriete.fr",
-    heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
+    heroImage: "/images/generated/thermostat-hero.png",
     description: "Le réseau n°1 de l'équipement et de la régulation thermique en copropriété. Thermostats connectés et systèmes BACS financés par la prime CEE. Devis gratuit.",
     meta: {
         title: "Thermostat Copropriété | Régulation Thermique & Prime CEE",

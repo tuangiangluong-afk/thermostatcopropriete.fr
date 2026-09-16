@@ -34,7 +34,7 @@ export function Footer({ config }: FooterProps) {
         }, {} as Record<string, SiteConfig[]>);
 
     const getGlobalDiverseAnchor = (cityName: string, index: number) => {
-        const variations = ["Thermostats connectés ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostats Connectés ${cityName}"];
+        const variations = ["Thermostat connecté ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostat Connecté ${cityName}"];
         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
     };
 
@@ -43,7 +43,7 @@ export function Footer({ config }: FooterProps) {
             <div className="container mx-auto px-4 text-center">
                 <h4 className="text-white font-bold mb-4">À propos de {config.name}</h4>
                 <p className="max-w-2xl mx-auto text-sm mb-8">
-                    {config.name} est le comparateur n°1 pour la pose de Thermostats Connectés et désactivé à {config.city}. Nous sélectionnons des artisans locaux hautement qualifiés et assurés en décennale.
+                    {config.name} est le comparateur n°1 pour l'installation de thermostats connectés en copropriété à {config.city}. Nous sélectionnons des artisans locaux hautement qualifiés et assurés en décennale.
                 </p>
 
                 <div className="inline-flex items-center gap-2 bg-slate-500/10 border-slate-500/20 text-slate-400 px-4 py-2 rounded-full mb-8">
@@ -113,7 +113,7 @@ export function Footer({ config }: FooterProps) {
                                     }
 
                                     const getVariedFooterAnchor = (cityName: string, index: number) => {
-                                        const variations = ["Thermostats connectés ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostats Connectés ${cityName}"];
+                                        const variations = ["Thermostat connecté ${cityName}","Vannes thermostatiques ${cityName}","Chauffage collectif ${cityName}","artisan chauffagiste RGE ${cityName}","Devis Thermostat Connecté ${cityName}"];
                                         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
                                     };
 
@@ -181,7 +181,7 @@ export function Footer({ config }: FooterProps) {
                         </div>
 
                         <div>
-                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Finitions</h5>
+                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Solutions</h5>
                             <ul className="space-y-3 text-sm mb-8">
                                 {["Thermostats connectés","Robinets thermostatiques","Têtes thermostatiques","Systèmes BACS"].map((brand) => (
                                     <li key={brand}>
@@ -213,7 +213,7 @@ export function Footer({ config }: FooterProps) {
 
                 <div className="border-t border-white/10 pt-12 mt-4 text-left max-w-7xl mx-auto mb-16 px-4 md:px-0">
                     <h5 className="text-white font-bold mb-8 text-xl tracking-tight text-center md:text-left">
-                        Notre Réseau National d&apos;Artisans Thermostats Connectés
+                        Notre Réseau National d&apos;Artisans Chauffagistes RGE
                     </h5>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
                         {Object.entries(sitesByRegion).map(([region, sites]) => (

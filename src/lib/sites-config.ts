@@ -36,17 +36,17 @@ export interface SiteConfig {
 
 const TEMPLATE_CERTIFICATIONS = [
     "Artisans Qualifiés Décennale",
-    "Matériaux Certifiés NF",
-    "Respect des normes DTU"
+    "Matériel Certifié NF",
+    "Conformité décret BACS"
 ];
 const TEMPLATE_AIDES = [
-    "Devis gratuits sous 48h",
-    "Assurance décennale incluse"
+    "Prime CEE Coup de pouce Pilotage",
+    "Audit technique gratuit sous 48h"
 ];
 const TEMPLATE_FEATURES = [
-    "Grand choix de finitions",
-    "Haute durabilité",
-    "Accès camion toupie étudié"
+    "Pose en 1 h par logement",
+    "Compatibilité chauffage gaz, fioul et réseau de chaleur",
+    "Passerelle radio ou 4G sans travaux dans les parties communes"
 ];
 
 const _hubConfig: SiteConfig = {
@@ -59,21 +59,22 @@ const _hubConfig: SiteConfig = {
     name: "Expert Thermostat Copropriété",
     phoneNumber: "01 84 80 00 00",
     email: "contact@thermostatcopropriete.fr",
-    targetType: "CONCRETE",
+    targetType: "MIXED",
     priceRange: 'STANDARD',
     theme: 'premium',
-    heroImage: "/images/generated/concrete-hero.webp",
-    description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France.",
+    heroImage: "/images/generated/thermostat-hero.png",
+    description: "Thermostats connectés et régulation de chauffage collectif en copropriété : conformité décret BACS, primes CEE et devis gratuits partout en France.",
     meta: {
         title: "Expert Thermostat Copropriété | Devis Thermostat Copropriété",
-        description: "Trouvez un artisan qualifié pour la réalisation de vos dalles, terrasses et allées de garage en Thermostats Connectés en France."
+        description: "Thermostats connectés et régulation de chauffage collectif en copropriété : conformité décret BACS, primes CEE et devis gratuits partout en France."
     },
     certifications: TEMPLATE_CERTIFICATIONS,
     aidesDisponibles: TEMPLATE_AIDES,
     features: TEMPLATE_FEATURES,
     localKeywords: [
-    "pose beton desactive",
-    "beton imprime prix m2"
+    "thermostat connecte copropriete",
+    "regulation chauffage collectif",
+    "decret bacs copropriete"
 ],
     quartiers: [],
     coproprietes: [],

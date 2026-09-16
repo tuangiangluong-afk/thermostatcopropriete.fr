@@ -9,12 +9,12 @@ export interface ThermoBrand {
 }
 
 const IMG = {
-    netatmo: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2670&auto=format&fit=crop",
-    tado: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=2670&auto=format&fit=crop",
-    somfy: "https://images.unsplash.com/photo-1585478259715-4b7e4e1b9b3c?q=80&w=2670&auto=format&fit=crop",
-    deltadore: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2670&auto=format&fit=crop",
-    qivivo: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2670&auto=format&fit=crop",
-    legrand: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2670&auto=format&fit=crop",
+    netatmo: "/images/generated/thermostat-hero.png",
+    tado: "/images/generated/thermostat-realization-1.png",
+    somfy: "/images/generated/thermostat-realization-2.png",
+    deltadore: "/images/generated/thermostat-realization-3.png",
+    qivivo: "/images/generated/thermostat-realization-4.png",
+    legrand: "/images/generated/thermostat-hero.png",
 };
 
 export const THERMO_BRANDS: ThermoBrand[] = [

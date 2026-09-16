@@ -18,7 +18,7 @@ export function LocalFAQ({ site, segment }: LocalFAQProps) {
                         Questions fréquentes à {city}
                     </h2>
                     <p className="text-slate-600 mt-3 text-lg">
-                        Tout savoir sur la pose de Vannes thermostatiques et désactivé dans votre ville.
+                        Tout savoir sur la pose de thermostats connectés en copropriété dans votre ville.
                     </p>
                 </div>
                 <div className="space-y-4">

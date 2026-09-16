@@ -53,8 +53,8 @@ export default function StructuredData() {
         "@context": "https://schema.org",
         "@type": "Service",
         "@id": `${baseUrl}/#service`,
-        "name": "Installation Thermostats Connectés en Copropriété",
-        "serviceType": "Installation Thermostats Connectés en Copropriété",
+        "name": "Installation de thermostats connectés en copropriété",
+        "serviceType": "Installation de thermostats connectés en copropriété",
         "provider": {
             "@id": `${baseUrl}/#organization`,
             "@type": "Organization",

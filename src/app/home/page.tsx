@@ -17,7 +17,7 @@ import RealizationsGrid from "@/components/RealizationsGrid";
 
 export const metadata = {
     title: "Thermostat collectif : devis et régulation",
-    description: "Trouvez un artisan qualifié pour la réalisation de vos allées et terrasses en Thermostats Connectés.",
+    description: "Thermostats connectés et régulation de chauffage collectif en copropriété : conformité décret BACS, audit et devis gratuits sous 24h.",
 };
 
 export default function HomePage() {
@@ -35,11 +35,11 @@ export default function HomePage() {
                             <div>
                                 <div className="inline-flex items-center rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-sm font-bold text-rose-700 mb-6">
                                     <CheckCircle size={16} className="mr-2" />
-                                    Audit Gratuits sous 48h & Assurance Décennale
+                                    Audit gratuit sous 48h & Assurance décennale
                                 </div>
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Donnez du cachet à votre extérieur avec le <span class="text-slate-600">Thermostats Connectés</span>` }} />
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Réduisez la facture de chauffage de votre copropriété avec des <span class="text-slate-600">thermostats connectés</span>` }} />
                                 <p className="text-xl text-slate-600 mb-4 max-w-xl mx-auto lg:mx-0">
-                                    Esthétique, durable et sans entretien. Allée de garage carrossable ou terrasse personnalisée : estimez vos travaux sous 24h.
+                                    Conformité au décret BACS, têtes thermostatiques connectées et pilotage de chaufferie : estimez votre budget par logement sous 24h.
                                 </p>
                             </div>
 
@@ -65,8 +65,8 @@ export default function HomePage() {
                         <div className="lg:col-span-5 flex flex-col justify-center">
                             <div className="relative h-[300px] lg:h-[450px] w-full rounded-2xl overflow-hidden border bg-white">
                                 <Image
-                                    src="/images/generated/concrete-hero.webp"
-                                    alt="Expert Thermostat Copropriété"
+                                    src="/images/generated/thermostat-hero.png"
+                                    alt="Thermostat connecté sur radiateur de chauffage collectif"
                                     fill
                                     className="object-cover"
                                 />

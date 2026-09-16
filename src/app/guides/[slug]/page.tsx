@@ -297,7 +297,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                                 </div>
                             </div>
                             <p className="text-slate-600 mb-4">
-                                Nos guides sont rédigés par des techniciens et experts en chauffage et pompes à chaleur pour vous aider à comparer les meilleures solutions de confort thermique. Les informations sur les aides (MaPrimeRénov&apos;, CEE, TVA réduite à 5.5%) sont vérifiées régulièrement auprès des organismes officiels.
+                                Nos guides sont rédigés par des techniciens et experts du chauffage collectif et de la régulation pour vous aider à comparer les meilleures solutions de confort thermique. Les informations sur les aides (MaPrimeRénov&apos;, CEE, TVA réduite à 5.5%) sont vérifiées régulièrement auprès des organismes officiels.
                             </p>
                         </div>
                     </div>
