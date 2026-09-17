@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         }
 
         const data = await resend.emails.send({
-            from: 'Expert Thermostat Copropriété <contact@thermostatcopropriete.fr>',
+            from: 'Expert Thermostat Copropriété <hello@expertbornerecharge.com>',
             to: ['bonjour@thermostatcopropriete.fr'],
             replyTo: email,
             subject: `[${postalCode || city}] Contact: ${subject} - ${name}`,
