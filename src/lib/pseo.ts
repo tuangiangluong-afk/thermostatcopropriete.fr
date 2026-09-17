@@ -1,6 +1,7 @@
 import type { CityConfig } from "@/lib/db";
 import { departementFromPostal, type Departement } from "@/data/fr-departements";
 import { composeLocalIntro } from "@/lib/pseo-local";
+import { getLocalFacts, type LocalFacts } from "@/data/local-facts";
 
 export interface PseoPageContent {
     meta_title: string;
@@ -42,6 +43,8 @@ const HIVER_DOUX = new Set([
 // CONTEXTE LOCAL RÉEL
 // ========================================
 interface LocalContext {
+    /** Slug de la commune, sert à retrouver ses mesures réelles */
+    slug: string;
     city: string;
     postal: string;
     /** Communes limitrophes réelles, et non des quartiers inventés */
@@ -62,6 +65,7 @@ function buildContext(c: CityConfig): LocalContext {
     const dept = departementFromPostal(postal);
     const region = dept?.region || c.region || "France";
     return {
+        slug: c.slug,
         city: c.city,
         postal,
         // Communes limitrophes réelles (et non la liste de quartiers du maillage)
@@ -134,6 +138,36 @@ function localParagraph(c: LocalContext): string {
 // ========================================
 // CONSEILS D'EXPERT (ancrés localement, jamais inventés)
 // ========================================
+/** Énumération à la française : « a, b et c ». */
+function joinFr(items: string[]): string {
+    if (items.length <= 1) return items.join("");
+    return `${items.slice(0, -1).join(", ")} et ${items[items.length - 1]}`;
+}
+
+/**
+ * Paragraphe bâti sur les mesures réelles de la commune (NASA POWER,
+ * climatologie sur vingt ans) : degrés-jours de chauffage, minimum de janvier,
+ * précipitations. Le besoin de chauffage n'est plus supposé, il est mesuré.
+ */
+function measuredLocalParagraph(c: LocalContext, local: LocalFacts | undefined): string {
+    if (!local) return "";
+    const items: string[] = [];
+    if (local.dju18 !== null) {
+        items.push(`la saison de chauffe y représente ${local.dju18.toLocaleString("fr-FR")} degrés-jours base 18`);
+    }
+    if (local.tminJan !== null) {
+        items.push(`le minimum moyen de janvier y descend à ${local.tminJan.toLocaleString("fr-FR")} °C`);
+    }
+    if (local.tmean !== null) {
+        items.push(`la température moyenne annuelle est de ${local.tmean.toLocaleString("fr-FR")} °C`);
+    }
+    if (local.rainMm !== null) {
+        items.push(`les précipitations cumulées atteignent ${local.rainMm.toLocaleString("fr-FR")} mm par an`);
+    }
+    if (items.length === 0) return "";
+    return `<p class="leading-relaxed">Données locales : à ${c.city}, ${joinFr(items)}. C'est ce volume de chauffe qui détermine l'intérêt réel d'une régulation par sonde extérieure et le rythme d'entretien de la chaufferie collective.</p>`;
+}
+
 const TIPS: ((c: LocalContext) => string)[] = [
     (c) => `À ${c.city}, le décret BACS impose des échéances précises : ${BACS_1}, puis ${BACS_2}. Ces seuils sont nationaux et concernent les copropriétés comme le tertiaire.`,
     (c) => `La pose de robinets thermostatiques est généralement compatible avec un réseau existant : elle ne nécessite pas de remplacer les radiateurs.`,
@@ -197,17 +231,25 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
         },
         { openers: OPENERS.map((fn) => () => fn(c)), middles: MIDDLES.map((fn) => () => fn(c)) },
         h,
-    ) + localParagraph(c);
+    ) + localParagraph(c) + measuredLocalParagraph(c, getLocalFacts(c.slug, c.city));
     const expert_tip = pick(TIPS, h >> 7)(c);
 
+    // --- Mesures réelles de la commune, en tête de bloc ---
+    // La longueur de la saison de chauffe n'est plus déduite d'un profil
+    // régional supposé : c'est le degré-jour base 18 mesuré par NASA POWER.
+    const local = getLocalFacts(c.slug, c.city);
     const local_facts: { label: string; value: string }[] = [];
+    if (local) {
+        if (local.dju18 !== null) local_facts.push({ label: "Degrés-jours base 18", value: `${local.dju18.toLocaleString("fr-FR")} DJU/an` });
+        if (local.tmean !== null) local_facts.push({ label: "Température moyenne", value: `${local.tmean.toLocaleString("fr-FR")} °C` });
+        if (local.tminJan !== null) local_facts.push({ label: "Minimum moyen de janvier", value: `${local.tminJan.toLocaleString("fr-FR")} °C` });
+        if (local.rainMm !== null) local_facts.push({ label: "Précipitations annuelles", value: `${local.rainMm.toLocaleString("fr-FR")} mm` });
+        if (local.sunKwh !== null) local_facts.push({ label: "Rayonnement solaire", value: `${local.sunKwh.toLocaleString("fr-FR")} kWh/m²/an` });
+        if (local.windDir) local_facts.push({ label: "Vent dominant", value: `${local.windDir} — ${(local.windKmh ?? 0).toLocaleString("fr-FR")} km/h` });
+    }
     if (c.deptCode) local_facts.push({ label: "Département", value: `${c.deptCode} — ${c.deptName}` });
     if (c.region !== "France") local_facts.push({ label: "Région", value: c.region });
     if (c.prefecture) local_facts.push({ label: "Préfecture", value: c.prefecture });
-    local_facts.push({
-        label: "Profil climatique",
-        value: c.froid ? "Hiver froid — saison de chauffe longue" : c.doux ? "Hiver doux — saison de chauffe courte" : "Hiver tempéré",
-    });
     local_facts.push({ label: "Échéance BACS", value: "1er janvier 2027 (bâtiments > 70 kW)" });
     if (c.postal) local_facts.push({ label: "Code postal", value: c.postal });
     local_facts.push({ label: "Coût indicatif", value: PRICE_RANGE });

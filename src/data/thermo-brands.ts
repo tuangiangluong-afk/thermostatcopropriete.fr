@@ -3,9 +3,12 @@
 // Prix cohérents avec le site : thermostat 190€, robinet 89€
 // ========================================
 
+// Le champ « modeles » a été supprimé : il ne contenait que des noms de produits
+// inventés (« Legrand Valise », « Qivivo App »). Un nom de gamme non publié par le
+// fabricant ne peut plus être affiché puisqu'il n'y a plus de champ pour l'accueillir.
 export interface ThermoBrand {
     slug: string; name: string; type: string; gamme: string; compat: string;
-    prix: string; modeles: string[]; atouts: string[]; limites: string[]; expertTip: string; image: string;
+    prix: string; atouts: string[]; limites: string[]; expertTip: string; image: string;
 }
 
 const IMG = {
@@ -21,7 +24,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "netatmo", name: "Netatmo", type: "Thermostat intelligent", gamme: "Thermostat, robinets, capteurs",
         compat: "Chaudières collectives et individuelles (bus OpenTherm + relais)", prix: "190 € à 250 € / logement",
-        modeles: ["Netatmo Thermostat", "Netatmo Valve", "Netatmo Énergie"],
         atouts: [
             "La référence française de la régulation connectée",
             "Compatible avec les chaufferies collectives via relais",
@@ -35,7 +37,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "tado", name: "Tado", type: "Régulation par pièce", gamme: "Thermostats, vannes, capteurs",
         compat: "Chaudières, pompes à chaleur, planchers chauffants", prix: "199 € à 280 € / logement",
-        modeles: ["Tado Smart Thermostat", "Tado V3+", "Tado Kit Extension"],
         atouts: [
             "L'expert européen de la régulation par pièce",
             "Géorepérage : coupe le chauffage quand le logement est vide",
@@ -49,7 +50,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "somfy", name: "Somfy", type: "Régulation connectée", gamme: "Thermostats, robinets, domotique",
         compat: "Chaufferies collectives, Tado/Netatmo compatibles, TaHoma", prix: "180 € à 240 € / logement",
-        modeles: ["Somfy Thermostat", "Somfy Zigbee", "Somfy TaHoma"],
         atouts: [
             "Le géant français de la maison connectée",
             "Intégration domotique TaHoma : volets + chauffage + alarme",
@@ -63,7 +63,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "delta-dore", name: "Delta Dore", type: "Régulation bâtiment", gamme: "Thermostats, vannes, GTC",
         compat: "Chaufferies collectives, télégestion, GTB", prix: "170 € à 220 € / logement",
-        modeles: ["Delta Dore Tydom", "Delta Dore Miway", "Delta Dore GTC"],
         atouts: [
             "Le spécialiste français de la régulation du bâtiment",
             "Solution GTC complète pour les chaufferies collectives",
@@ -77,7 +76,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "qivivo", name: "Qivivo", type: "Régulation connectée", gamme: "Thermostats, sondes, programmation",
         compat: "Chaufferies, chauffe-eau, clim réversible", prix: "180 € à 230 € / logement",
-        modeles: ["Qivivo Thermostat", "Qivivo Sonde", "Qivivo App"],
         atouts: [
             "La pépite française de la régulation intelligente",
             "Algorithmes d'auto-apprentissage des habitudes",
@@ -91,7 +89,6 @@ export const THERMO_BRANDS: ThermoBrand[] = [
     {
         slug: "legrand", name: "Legrand", type: "Régulation et électrique", gamme: "Thermostats, robinets, écosystème",
         compat: "Chaufferies, programmeurs, Home + Control", prix: "175 € à 225 € / logement",
-        modeles: ["Legrand Thermostat", "Legrand Home + Control", "Legrand Valise"],
         atouts: [
             "Le n°1 de l'appareillage électrique français",
             "Écosystème Home + Control complet",

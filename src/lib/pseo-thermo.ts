@@ -50,7 +50,7 @@ export function getPseoThermoContent(city: CityConfig, marque: ThermoBrand): Pse
         {
             openers: [
                 (f) => `À ${f.city}, le chauffage collectif se pilote logement par logement avec un thermostat ${marque.name}.`,
-                (f) => `Votre copropriété à ${f.city}${f.postal ? ` (${f.postal})` : ""} peut être équipée de la gamme ${marque.name} (${marque.modeles[0]}) sans travaux dans la chaufferie.`,
+                (f) => `Votre copropriété à ${f.city}${f.postal ? ` (${f.postal})` : ""} peut être équipée en ${marque.gamme.toLowerCase()} ${marque.name} sans travaux dans la chaufferie.`,
                 (f) => `À ${f.city}, la pose d'un thermostat ${marque.name} prend une heure par logement.`,
                 (f) => `Réguler le chauffage collectif à ${f.city} avec ${marque.name} : chaque logement maîtrise sa consommation, la copropriété réduit sa facture de 15 à 20 %.`,
                 (f) => `Le budget par logement à ${f.city} part de ${marque.prix}, avant déduction des primes CEE « Coup de pouce Pilotage ».`,
