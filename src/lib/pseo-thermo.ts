@@ -36,7 +36,7 @@ export function getPseoThermoContent(city: CityConfig, marque: ThermoBrand): Pse
             postal: city.postalCode,
             deptCode: dept,
             region: city.region,
-            quartiers: city.neighborhoods,
+            zones: (city.zones || []).map((z) => z.nom),
             authority: "le conseil syndical et le gestionnaire de l'immeuble",
         },
         {

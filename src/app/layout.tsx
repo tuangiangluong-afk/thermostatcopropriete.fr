@@ -11,6 +11,7 @@ const inter = Inter({
 
 import StructuredData from "@/components/seo/StructuredData";
 import AttributionTracker from "@/components/AttributionTracker";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -115,6 +116,7 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
         <AttributionTracker />
         <StructuredData />
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-HFC1VPLDPL" />
         {children}
       </body>
     </html>

@@ -44,7 +44,8 @@ const HIVER_DOUX = new Set([
 interface LocalContext {
     city: string;
     postal: string;
-    quartiers: string[];
+    /** Communes limitrophes réelles, et non des quartiers inventés */
+    zones: string[];
     dept?: Departement;
     deptCode: string;
     deptName: string;
@@ -63,7 +64,8 @@ function buildContext(c: CityConfig): LocalContext {
     return {
         city: c.city,
         postal,
-        quartiers: c.neighborhoods || [],
+        // Communes limitrophes réelles (et non la liste de quartiers du maillage)
+        zones: (c.zones || []).map((z) => z.nom),
         dept,
         deptCode: dept?.code || c.department || "",
         deptName: dept?.name || "France",
@@ -102,15 +104,15 @@ const OPENERS: ((c: LocalContext) => string)[] = [
 ];
 
 // ========================================
-// PARAGRAPHES TECHNIQUES (quartiers réels + prestations)
+// PARAGRAPHES TECHNIQUES (communes limitrophes réelles + prestations)
 // ========================================
 const MIDDLES: ((c: LocalContext) => string)[] = [
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Nos équipes interviennent dans les secteurs de <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et dans les communes voisines.` : "Nos équipes couvrent la commune et les communes voisines."} Pose de robinets thermostatiques, régulation centrale, équilibrage des colonnes et télésuivi des consommations.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Interventions régulières à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Interventions régulières sur la commune."} L'équilibrage hydraulique est indispensable : sans lui, les logements les plus éloignés de la chaufferie restent froids même avec des robinets neufs.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Du centre de ${c.city} aux immeubles de <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>,` : `Sur tous les immeubles de ${c.city},`} nous adaptons la solution au type de réseau : colonnes montantes, chauffage individuel gaz ou réseau de chaleur urbain.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">Sur le département ${c.deptCode} : ${c.quartiers.length >= 2 ? `nous suivons en priorité les copropriétés de <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "nous suivons les copropriétés de la commune."} Devis détaillé par logement, utile pour la présentation en assemblée générale.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Déjà équipés à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Déjà équipés sur la commune."} Robinets thermostatiques connectés avec programmation horaire et suivi à distance, ou modèles classiques selon le budget voté.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Secteurs couverts : <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et environs.` : "Couverture communale complète."} Après pose, nous accompagnons le syndic sur la déclaration d'achèvement et le dossier de prime CEE.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Nos équipes interviennent dans les communes limitrophes suivantes : <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Nos équipes couvrent la commune et les communes voisines."} Pose de robinets thermostatiques, régulation centrale, équilibrage des colonnes et télésuivi des consommations.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Interventions régulières à <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Interventions régulières sur la commune."} L'équilibrage hydraulique est indispensable : sans lui, les logements les plus éloignés de la chaufferie restent froids même avec des robinets neufs.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `À ${c.city} et dans les communes voisines : <strong>${c.zones.slice(0, 3).join(", ")}</strong>,` : `Sur tous les immeubles de ${c.city},`} nous adaptons la solution au type de réseau : colonnes montantes, chauffage individuel gaz ou réseau de chaleur urbain.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Sur le département ${c.deptCode} : ${c.zones.length >= 2 ? `nous suivons en priorité les copropriétés de <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "nous suivons les copropriétés de la commune."} Devis détaillé par logement, utile pour la présentation en assemblée générale.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Zones déjà couvertes par nos équipes : <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Déjà équipés sur la commune."} Robinets thermostatiques connectés avec programmation horaire et suivi à distance, ou modèles classiques selon le budget voté.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Secteurs couverts : <strong>${c.zones.slice(0, 3).join(", ")}</strong> et environs.` : "Couverture communale complète."} Après pose, nous accompagnons le syndic sur la déclaration d'achèvement et le dossier de prime CEE.</p>`,
 ];
 
 // ========================================
@@ -137,7 +139,7 @@ const TIPS: ((c: LocalContext) => string)[] = [
     (c) => `La pose de robinets thermostatiques est généralement compatible avec un réseau existant : elle ne nécessite pas de remplacer les radiateurs.`,
     (c) => `Un robinet thermostatique seul ne suffit pas s'il n'est pas piloté par une régulation centrale : c'est l'ensemble qui est exigé par le décret BACS.`,
     (c) => `À ${c.city}, la prime CEE (Certificats d'Économies d'Énergie) peut couvrir une part importante du coût des travaux de régulation, à condition de respecter les exigences techniques de l'opération.`,
-    (c) => `${c.quartiers.length ? `Dans les immeubles de ${c.quartiers[0]} (${c.city}), ` : `À ${c.city}, `}l'équilibrage des colonnes montantes est souvent l'étape oubliée : sans lui, les logements mal desservis restent froids malgré des robinets neufs.`,
+    (c) => `${c.zones.length ? `À ${c.city} comme dans les communes voisines : ${c.zones.slice(0, 2).join(" et ")}, ` : `À ${c.city}, `}l'équilibrage des colonnes montantes est souvent l'étape oubliée : sans lui, les logements mal desservis restent froids malgré des robinets neufs.`,
     (c) => `En ${c.region}, la programmation horaire et le passage en mode réduit la nuit comptent autant que la température de consigne, surtout en intersaison.`,
     (c) => `Chaque logement doit pouvoir agir sur sa propre consommation : c'est le principe de la régulation pièce par pièce, et c'est aussi ce qui limite les litiges entre copropriétaires.`,
     (c) => `Avant de voter les travaux en ${c.city}, faites chiffrer le nombre exact de radiateurs : c'est la base du budget, et un comptage approximatif provoque toujours un dépassement en assemblée générale.`,
@@ -181,7 +183,7 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
     const intro_html = composeLocalIntro(
         {
             city: c.city, postal: c.postal, deptCode: c.deptCode, deptName: c.deptName,
-            region: c.region, prefecture: c.prefecture, quartiers: c.quartiers,
+            region: c.region, prefecture: c.prefecture, zones: c.zones,
             authority: "le conseil syndical et le gestionnaire de l'immeuble",
             littoral: c.littoral, montagne: c.montagne,
         },

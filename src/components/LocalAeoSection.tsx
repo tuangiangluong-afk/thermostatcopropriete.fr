@@ -16,6 +16,7 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
     const neighborhoods = site.neighborhoods || [];
+    const zones = site.zones || [];
     const facts = pseo?.local_facts || [];
     const priceLine = pseo?.pricing_estimated && !pseo.pricing_estimated.includes("partir")
         ? pseo.pricing_estimated
@@ -24,9 +25,22 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const f1 = facts.find(f => f.label === "Région")?.value;
     const f2 = facts.find(f => f.label === "Profil climatique")?.value;
     const f3 = facts.find(f => f.label === "Préfecture")?.value;
-    const neighborhoodsText = neighborhoods.length > 0 
-        ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
+    // Deux ensembles distincts, tous deux réels :
+    // - `neighborhoods` = quartiers et communes du maillage propre à la ville ;
+    // - `zones` = communes limitrophes avec distance (source IGN/Etalab).
+    const neighborhoodsText = neighborhoods.length > 0
+        ? `, ainsi que dans les secteurs suivants : ${neighborhoods.slice(0, 4).join(', ')}`
         : "";
+    const zonesText = zones
+        .slice(0, 4)
+        .map((z) => `${z.nom} (${z.km.toLocaleString("fr-FR")} km)`)
+        .join(", ");
+    const identityText = [
+        site.insee ? `code INSEE ${site.insee}` : null,
+        site.population ? `${site.population.toLocaleString("fr-FR")} habitants` : null,
+        site.epci ? `membre de ${site.epci}` : null,
+        site.deptName ? `département ${site.deptName} (${site.department})` : null,
+    ].filter(Boolean).join(", ");
 
     return (
         <section className="py-12 bg-slate-50/50 border-t border-slate-200">
@@ -164,11 +178,18 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
                                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
                                     <Building2 size={20} />
                                 </span>
-                                <h3 className="font-bold text-slate-900 text-base">Résidences collectives & Quartiers à {city}</h3>
+                                <h3 className="font-bold text-slate-900 text-base">Résidences collectives & zones desservies autour de {city}</h3>
                             </div>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Nos installateurs se déplacent dans toutes les résidences et grands ensembles de {city}{neighborhoodsText}. Nous intervenons directement sur chaque radiateur sans purge de circuit et sans arrêt de la chaudière collective, assurant un chantier silencieux et propre avec des créneaux de pose de 30 minutes convenus avec chaque copropriétaire ou locataire.
                             </p>
+                            {(identityText || zonesText) && (
+                                <p className="mt-3 text-xs text-slate-500 leading-relaxed">
+                                    {identityText && <>Identité administrative : {identityText}.</>}
+                                    {identityText && zonesText && " "}
+                                    {zonesText && <>Communes limitrophes : {zonesText}.</>}
+                                </p>
+                            )}
                         </div>
 
                         {/* Card 3: Climat, Performance & Aides */}
