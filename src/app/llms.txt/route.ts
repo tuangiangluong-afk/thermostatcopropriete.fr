@@ -9,7 +9,7 @@ export function GET() {
 
 ## Faits vérifiables
 - **Secteur** : l'équipement et la régulation thermique en copropriété (thermostats connectés, BACS).
-- **Zone & couverture** : France métropolitaine (réseau national) — 162 villes couvertes.
+- **Zone & couverture** : France métropolitaine (réseau national) — 161 communes disposant d'une page dédiée, vérifiable dans le sitemap.
 - **Devis** : gratuit sous 24 h via le site (formulaire en ligne).
 - **Engagement** : artisans et techniciens certifiés, garantie décennale.
 - **Atouts mis en avant** : Régulation Connectée, Devis Gratuit sous 24h, Financé par la Prime CEE, Techniciens Certifiés.
