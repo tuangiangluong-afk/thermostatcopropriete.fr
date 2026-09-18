@@ -1,6 +1,7 @@
 import type { CityConfig } from "@/lib/db";
 import type { ThermoBrand } from "@/data/thermo-brands";
 import { composeLocalIntro } from "@/lib/pseo-local";
+import { clampTitle, clampDescription } from "@/lib/seo-meta";
 
 const REGIONAL: Record<string, { conseil: string; prix: string }> = {
     "75": { conseil: "À Paris, la densité de copropriétés est la plus forte de France : les CEE 'Coup de pouce Pilotage' sont cumulables avec les aides de la Ville de Paris pour la rénovation énergétique.", prix: "190 € – 250 € / logement" },
@@ -69,8 +70,8 @@ export function getPseoThermoContent(city: CityConfig, marque: ThermoBrand): Pse
     );
 
     return {
-        meta_title: `Thermostat ${marque.name} copropriété à ${city.city}${city.department ? ` (${city.department})` : ""} | CEE & Devis`,
-        meta_description: `Installation de thermostat connecté ${marque.name} en copropriété à ${city.city}. ${marque.prix} avant CEE. Audit gratuit, primes CEE 'Coup de pouce'.`,
+        meta_title: clampTitle(`Thermostat ${marque.name} copropriété à ${city.city}${city.department ? ` (${city.department})` : ""} | CEE & Devis`),
+        meta_description: clampDescription(`Installation de thermostat connecté ${marque.name} en copropriété à ${city.city}. ${marque.prix} avant CEE. Audit gratuit, primes CEE 'Coup de pouce'.`),
         hero_title: `<span class="text-rose-600">Thermostat ${marque.name}</span> pour copropriété à ${city.city}`,
         intro_html,
         prix: marque.prix,
