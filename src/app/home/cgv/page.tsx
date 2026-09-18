@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Conditions Générales de Vente - Expert Thermostat Copropriété",
+    title: "CGV | Thermostat Copropriété",
     description: "Consultez les CGV du réseau Expert Thermostat Copropriété : mise en relation avec des professionnels du pilotage du chauffage collectif, devis gratuits.",
 };
 
