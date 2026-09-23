@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Header from '@/components/Header';
 import { ArrowLeft, Clock, Calendar, Zap, ArrowRight } from 'lucide-react';
 import SimulatorWidget from '@/components/blog/SimulatorWidget';
+import LeadForm from '@/components/LeadForm';
 import LocalLinkerComponent from '@/components/blog/LocalLinker';
 import { createClient } from "@supabase/supabase-js";
 import { marked } from 'marked';
@@ -336,6 +337,17 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                         </div>
                     </aside>
                 </div>
+
+                {/* In-page conversion section: gives `#simulateur` a real target on guides. */}
+                <section id="simulateur" className="mt-20 max-w-4xl mx-auto scroll-mt-32">
+                    <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                        <div className="text-center mb-8">
+                            <h2 className="text-3xl font-bold text-slate-900 mb-3">Devis gratuit pour votre copropriété</h2>
+                            <p className="text-slate-600">Estimez les aides CEE mobilisables et recevez jusqu'à 3 devis d'installateurs certifiés.</p>
+                        </div>
+                        <LeadForm city="France" domain="thermostatcopropriete.fr" targetType="COPRO" themeColor="rose" />
+                    </div>
+                </section>
             </main>
 
             {/* MOBILE STICKY CTA (Bottom Bar) */}
