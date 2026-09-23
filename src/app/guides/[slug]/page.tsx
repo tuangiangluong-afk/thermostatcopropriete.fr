@@ -352,7 +352,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
             {/* MOBILE STICKY CTA (Bottom Bar) */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur border-t border-slate-200 lg:hidden z-40">
-                <a href="/#simulateur" className="flex items-center justify-center gap-2 w-full bg-slate-600 text-white font-bold py-3 rounded-xl shadow-lg">
+                <a href="#simulateur" className="flex items-center justify-center gap-2 w-full bg-slate-600 text-white font-bold py-3 rounded-xl shadow-lg">
                     <Zap size={18} />
                     Comparer les devis gratuits
                 </a>
