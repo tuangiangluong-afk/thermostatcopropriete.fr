@@ -103,6 +103,10 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body className={`${inter.variable} antialiased bg-white text-slate-900`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.thermostatcopropriete.fr/#organization", "name": "Thermostat Copropriété", "url": "https://www.thermostatcopropriete.fr", "logo": {"@type": "ImageObject", "url": "https://www.thermostatcopropriete.fr/favicon.ico"}}, {"@type": "WebSite", "@id": "https://www.thermostatcopropriete.fr/#website", "url": "https://www.thermostatcopropriete.fr", "name": "Thermostat Copropriété", "inLanguage": "fr", "publisher": {"@id": "https://www.thermostatcopropriete.fr/#organization"}}, {"@type": "WebPage", "@id": "https://www.thermostatcopropriete.fr/#webpage", "url": "https://www.thermostatcopropriete.fr", "name": "Thermostat Copropriété", "isPartOf": {"@id": "https://www.thermostatcopropriete.fr/#website"}, "about": {"@id": "https://www.thermostatcopropriete.fr/#organization"}, "publisher": {"@id": "https://www.thermostatcopropriete.fr/#organization"}, "datePublished": "2026-06-20T00:00:00Z", "dateModified": "2026-09-26T00:00:00Z"}]}).replace(/</g, '\\u003c') }}
+      />
         <Script src="https://answershaper.com/api/v1/m2m/local-tag/24.js" strategy="lazyOnload" defer />
         {/* Google Tag Manager (noscript) */}
         <noscript>
