@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { Zap } from "lucide-react";
+import { Zap, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 interface HeaderProps {
@@ -40,14 +40,26 @@ export default function Header({
 
     const navLinks = [
         {
-                "href": "/blog",
-                "text": "Guides & Réglementation"
+            href: "/operateurs",
+            text: "Opérateurs & BACS"
         },
         {
-                "href": "#simulateur",
-                "text": "Simulateur"
+            href: "/marques",
+            text: "Marques & Vannes"
+        },
+        {
+            href: "/comparatifs",
+            text: "Comparatifs"
+        },
+        {
+            href: "/dpe-collectif",
+            text: "DPE Collectif"
+        },
+        {
+            href: "/guides",
+            text: "Guides & Décret 2027"
         }
-];
+    ];
 
     const pathname = usePathname();
 
@@ -85,9 +97,9 @@ export default function Header({
                         </div>
                     )}
 
-                    <div className="hidden lg:flex items-center gap-2 bg-slate-500/10 border-slate-500/20 text-slate-700 px-3 py-1.5 rounded-full">
-                        <span className="w-2 h-2 rounded-full bg-slate-500 animate-pulse"></span>
-                        <span className="text-xs font-bold">Artisan RGE Décennale</span>
+                    <div className="hidden lg:flex items-center gap-1.5 bg-sky-500/10 border border-sky-500/20 text-sky-700 px-3 py-1.5 rounded-full">
+                        <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
+                        <span className="text-xs font-bold">Installation Certifiée RGE</span>
                     </div>
 
                     <Link

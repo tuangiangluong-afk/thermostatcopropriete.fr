@@ -1,25 +1,13 @@
 import { ImageResponse } from "next/og";
 
-/**
- * Carte Open Graph générée à la volée.
- *
- * POURQUOI PAS UN PNG STATIQUE
- * ----------------------------
- * Avant, toutes les pages d'un site partageaient un seul PNG : jusqu'à 1,3 Mo
- * pour 1200x630, ou bien un carré 1024x1024 annoncé comme 1200x630. Les
- * aperçus de partage étaient donc lourds, parfois refusés par les messageries,
- * et jamais personnalisés par ville. Ici chaque page reçoit sa propre carte.
- *
- * Paramètres : ?q=<slug ou nom de ville>&sub=<accroche libre>
- */
 export const runtime = "nodejs";
 
 const BRAND = {
     name: "Thermostat Copropriété",
     domain: "www.thermostatcopropriete.fr",
     color: "#0284c7",
-    baseline: "Régulation du chauffage collectif",
-    cta: "Étude gratuite pour le conseil syndical",
+    baseline: "Régulation du chauffage collectif & Décret BACS 2027",
+    cta: "Prise en charge CEE BAR-TH-173 jusqu'à 100%",
 };
 
 function pretty(raw: string): string {
@@ -31,9 +19,10 @@ function pretty(raw: string): string {
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const q = (searchParams.get("q") || "").slice(0, 48);
-    const sub = (searchParams.get("sub") || BRAND.baseline).slice(0, 92);
-    const city = q ? pretty(q) : "";
+    const q = (searchParams.get("q") || "").slice(0, 70);
+    const sub = (searchParams.get("sub") || BRAND.baseline).slice(0, 110);
+    const badge = (searchParams.get("badge") || "").slice(0, 36);
+    const title = q ? pretty(q) : BRAND.name;
 
     return new ImageResponse(
         (
@@ -50,27 +39,54 @@ export async function GET(request: Request) {
                     fontFamily: "sans-serif",
                 }}
             >
-                <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-                    <div style={{ display: "flex", width: 16, height: 62, backgroundColor: BRAND.color, borderRadius: 4 }} />
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ display: "flex", color: "#f8fafc", fontSize: 36, fontWeight: 700 }}>{BRAND.name}</div>
-                        <div style={{ display: "flex", color: "#94a3b8", fontSize: 22, marginTop: 4 }}>{BRAND.domain}</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+                        <div style={{ display: "flex", width: 14, height: 56, backgroundColor: BRAND.color, borderRadius: 4 }} />
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", color: "#f8fafc", fontSize: 32, fontWeight: 700 }}>{BRAND.name}</div>
+                            <div style={{ display: "flex", color: "#94a3b8", fontSize: 20, marginTop: 2 }}>{BRAND.domain}</div>
+                        </div>
                     </div>
+                    {badge ? (
+                        <div
+                            style={{
+                                display: "flex",
+                                backgroundColor: "rgba(2, 132, 199, 0.15)",
+                                border: "1px solid rgba(2, 132, 199, 0.4)",
+                                color: "#38bdf8",
+                                padding: "8px 18px",
+                                borderRadius: "9999px",
+                                fontSize: 18,
+                                fontWeight: 700,
+                                textTransform: "uppercase",
+                                letterSpacing: "1px",
+                            }}
+                        >
+                            {badge}
+                        </div>
+                    ) : null}
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    {city ? (
-                        <div style={{ display: "flex", color: "#f8fafc", fontSize: 84, fontWeight: 800, lineHeight: 1.05 }}>
-                            {city}
-                        </div>
-                    ) : null}
                     <div
                         style={{
                             display: "flex",
-                            color: BRAND.color,
-                            fontSize: 34,
-                            fontWeight: 600,
-                            marginTop: city ? 12 : 0,
+                            color: "#f8fafc",
+                            fontSize: title.length > 35 ? 54 : 68,
+                            fontWeight: 800,
+                            lineHeight: 1.1,
+                            maxWidth: 1050,
+                        }}
+                    >
+                        {title}
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            color: "#cbd5e1",
+                            fontSize: 26,
+                            fontWeight: 500,
+                            marginTop: 16,
                             maxWidth: 1000,
                         }}
                     >
@@ -78,7 +94,10 @@ export async function GET(request: Request) {
                     </div>
                 </div>
 
-                <div style={{ display: "flex", color: "#cbd5e1", fontSize: 24 }}>{BRAND.cta}</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 20 }}>
+                    <div style={{ display: "flex", color: "#e2e8f0", fontSize: 22, fontWeight: 600 }}>{BRAND.cta}</div>
+                    <div style={{ display: "flex", color: "#94a3b8", fontSize: 18 }}>Décret Thermostat 2027 • Syndics & Conseils Syndicaux</div>
+                </div>
             </div>
         ),
         {

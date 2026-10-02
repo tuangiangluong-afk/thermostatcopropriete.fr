@@ -3,7 +3,7 @@ import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { slugify } from "@/lib/slugify";
 import { getHubConfig } from "@/lib/sites-config";
 import { NATIONAL_TARGETS } from "@/config/national-targets";
-import { Zap, Award, ArrowRight, Home, CheckCircle } from "lucide-react";
+import { Zap, Award, ArrowRight, Home, CheckCircle, ShieldCheck, Cpu, SlidersHorizontal, Scale, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -14,10 +14,26 @@ import InstallationSteps from "@/components/InstallationSteps";
 import PricingTable from "@/components/PricingTable";
 import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
+import { ogImageUrl } from "@/lib/seo-meta";
 
 export const metadata = {
-    title: "Thermostat collectif : devis et régulation",
+    title: "Thermostat collectif : devis et régulation copropriété",
     description: "Thermostats connectés et régulation de chauffage collectif en copropriété : conformité décret BACS, audit et devis gratuits sous 24h.",
+    openGraph: {
+        title: "Thermostat collectif : devis et régulation copropriété",
+        description: "Thermostats connectés et régulation de chauffage collectif en copropriété : conformité décret BACS, audit et devis gratuits sous 24h.",
+        images: [
+            {
+                url: ogImageUrl({
+                    q: "Thermostats & Régulation Copropriété",
+                    sub: "Conformité Décret BACS 2027 & Décret n° 2023-444 • 12 Opérateurs Certifiés",
+                    badge: "Audit Copropriété 2026",
+                }),
+                width: 1200,
+                height: 630,
+            },
+        ],
+    },
 };
 
 export default function HomePage() {
@@ -81,6 +97,98 @@ export default function HomePage() {
             <PricingTable />
             <TestimonialsSection />
             <RealizationsGrid />
+
+            {/* Knowledge Base & Cluster Hubs Section */}
+            <section className="py-16 bg-slate-900 text-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-3">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            Observatoire Réglementaire & Technique 2026
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                            Guide & Décision Thermostats en Copropriété
+                        </h2>
+                        <p className="mt-3 text-slate-400 text-sm md:text-base">
+                            Anticipez l&apos;obligation du Décret n° 2023-444 (1er janvier 2027) et le Décret BACS : comparez les installateurs certifiés RGE, les équipements agréés et optimisez vos subventions CEE.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-4 gap-6">
+                        <Link
+                            href="/operateurs"
+                            className="group p-6 rounded-2xl bg-slate-800/80 border border-slate-700 hover:border-rose-500/50 transition-all"
+                        >
+                            <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <ShieldCheck className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-lg font-bold group-hover:text-rose-400 transition-colors">
+                                12 Opérateurs RGE & BACS
+                            </h3>
+                            <p className="text-sm text-slate-400 mt-2">
+                                Dalkia, ENGIE Solutions, Idex, Proxiserve, Ista : benchmark des contrats d&apos;exploitation et GTB.
+                            </p>
+                            <div className="mt-4 flex items-center text-xs font-bold text-rose-400 gap-1">
+                                Consulter le comparatif opérateurs <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </Link>
+
+                        <Link
+                            href="/marques"
+                            className="group p-6 rounded-2xl bg-slate-800/80 border border-slate-700 hover:border-rose-500/50 transition-all"
+                        >
+                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <Cpu className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-lg font-bold group-hover:text-blue-400 transition-colors">
+                                Fabricants & Matériel Agréé
+                            </h3>
+                            <p className="text-sm text-slate-400 mt-2">
+                                Netatmo Pro, Tado°, Somfy, Delta Dore, Legrand : têtes thermostatiques connectées Zigbee & LoRaWAN.
+                            </p>
+                            <div className="mt-4 flex items-center text-xs font-bold text-blue-400 gap-1">
+                                Explorer les marques <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </Link>
+
+                        <Link
+                            href="/comparatifs"
+                            className="group p-6 rounded-2xl bg-slate-800/80 border border-slate-700 hover:border-rose-500/50 transition-all"
+                        >
+                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <Scale className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-lg font-bold group-hover:text-amber-400 transition-colors">
+                                Duels & Arbitrages BACS
+                            </h3>
+                            <p className="text-sm text-slate-400 mt-2">
+                                Têtes connectées vs robinets manuels, LoRaWAN vs Zigbee, Dalkia vs Idex, rentabilité CEE BAR-TH-173.
+                            </p>
+                            <div className="mt-4 flex items-center text-xs font-bold text-amber-400 gap-1">
+                                Voir tous les duels <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </Link>
+
+                        <Link
+                            href="/guides"
+                            className="group p-6 rounded-2xl bg-slate-800/80 border border-slate-700 hover:border-rose-500/50 transition-all"
+                        >
+                            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <BookOpen className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-lg font-bold group-hover:text-emerald-400 transition-colors">
+                                Guides & Réglementation
+                            </h3>
+                            <p className="text-sm text-slate-400 mt-2">
+                                Modalités de vote en Assemblée Générale (loi de 1965), DPE collectif et fiches CEE pour syndics et conseils syndicaux.
+                            </p>
+                            <div className="mt-4 flex items-center text-xs font-bold text-emerald-400 gap-1">
+                                Lire les guides <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+            </section>
             
             {/* Local Cities Section */}
             <section className="py-16 bg-slate-50">

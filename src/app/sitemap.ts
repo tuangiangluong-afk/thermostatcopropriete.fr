@@ -7,6 +7,7 @@ import { THERMO_BRANDS } from '@/data/thermo-brands';
 import { THERMO_TYPES } from '@/data/thermo-types';
 import { THERMO_TAILLES } from '@/data/thermo-tailles';
 import { THERMO_COMPARATIFS } from '@/data/thermo-comparatifs';
+import { OPERATORS } from '@/data/operators';
 
 // Base URL (Hub)
 const BASE_URL = 'https://www.thermostatcopropriete.fr';
@@ -26,6 +27,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${BASE_URL}/guides`,
             lastModified: new Date(),
             changeFrequency: 'daily',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/operateurs`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/marques`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/comparatifs`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
@@ -113,8 +132,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const typeRoutes = THERMO_TYPES.map((t) => ({ url: `${BASE_URL}/type/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
     const tailleRoutes = THERMO_TAILLES.map((t) => ({ url: `${BASE_URL}/taille/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
     const comparatifRoutes = THERMO_COMPARATIFS.map((c) => ({ url: `${BASE_URL}/comparatif/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.85 }));
+    const operatorRoutes = OPERATORS.map((op) => ({
+        url: `${BASE_URL}/operateurs/${op.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.85,
+    }));
 
-    return [...routes, ...guideRoutes, ...blogRoutes, ...cityRoutes, ...cityMarqueRoutes, ...marquesRoutes, ...typeRoutes, ...tailleRoutes, ...comparatifRoutes].map(item => ({
+    return [...routes, ...guideRoutes, ...blogRoutes, ...operatorRoutes, ...cityRoutes, ...cityMarqueRoutes, ...marquesRoutes, ...typeRoutes, ...tailleRoutes, ...comparatifRoutes].map(item => ({
         ...item,
         url: item.url.toLowerCase()
     }));
