@@ -5,8 +5,8 @@ export default function PricingTable() {
             <div className="max-w-4xl mx-auto px-4">
                 <h2 className="text-3xl font-extrabold text-center mb-6">Budget estimatif par lot (Appartement)</h2>
                 <p className="text-center text-slate-500 mb-12">Les coûts sont largement absorbés par les primes CEE (Certificats d'Économies d'Énergie) et la prime "Coup de pouce thermostat".</p>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse border border-slate-200">
+                <div className="overflow-x-auto w-full">
+                    <table className="w-full min-w-[640px] text-left border-collapse border border-slate-200">
                         <thead>
                             <tr className="bg-slate-100">
                                 <th className="p-4 font-bold border border-slate-200">Type de Chauffage Collectif</th>

@@ -121,7 +121,7 @@ export default function DPECollectifPillarPage() {
                 <section className="container mx-auto px-4 max-w-5xl">
                     <div className="text-center mb-14">
                         <div className="inline-flex items-center gap-2 bg-rose-100 text-rose-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-                            <span className="w-2 h-2 bg-rose-600 rounded-full animate-pulse" />
+                            <span className="w-2 h-2 bg-rose-600 rounded-full" />
                             Guide pilier · Mise à jour 2026
                         </div>
                         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
