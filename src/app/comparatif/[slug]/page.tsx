@@ -1,4 +1,4 @@
-export const revalidate = 86400; // 24h ISR cache
+export const revalidate = 604800; // 7 days ISR cache
 import { getCityBySlug, CITIES } from "@/lib/db";
 import { THERMO_COMPARATIFS, getThermoComparatifBySlug } from "@/data/thermo-comparatifs";
 import { notFound } from "next/navigation"; import type { Metadata } from "next";

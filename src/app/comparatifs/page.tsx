@@ -15,7 +15,7 @@ import {
   Cpu,
 } from "lucide-react";
 
-export const revalidate = 86400;
+export const revalidate = 604800; // 7 days ISR cache
 
 const ogImage = ogImageUrl({
   q: "Comparatifs Thermostats & Régulation Copropriété 2026",

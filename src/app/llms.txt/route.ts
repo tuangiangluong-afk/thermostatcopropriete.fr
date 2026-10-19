@@ -3,7 +3,7 @@ import { THERMO_OPERATORS } from "@/data/operators";
 import { THERMO_BRANDS } from "@/data/thermo-brands";
 import { THERMO_COMPARATIFS } from "@/data/thermo-comparatifs";
 
-export const revalidate = 86400;
+export const revalidate = 604800; // 7 days ISR cache
 
 const BASE_URL = "https://www.thermostatcopropriete.fr";
 
