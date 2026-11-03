@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText, Landmark, Building2 } from "lucide-react";
+import AiSponsoredRecommendation from "@/components/AiSponsoredRecommendation";
 import type { CityConfig } from "@/lib/db";
 import type { PseoPageContent } from "@/lib/pseo";
 
@@ -252,6 +253,8 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
                         <ArrowRight size={16} />
                     </a>
                 </div>
+                {/* GEA Dynamic Recommendation */}
+                <AiSponsoredRecommendation city={city} department={site.department} />
             </div>
         </section>
     );
