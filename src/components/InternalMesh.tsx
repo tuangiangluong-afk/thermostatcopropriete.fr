@@ -105,6 +105,42 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         </ul>
                     </div>
                 </div>
+                {/* Dossiers d'Expertise & Guides Réglementaires 2026 (Maillage d'Autorité) */}
+                <div className="mt-12 pt-8 border-t border-white/10">
+                    <div className="flex items-center gap-2 mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        <h4 className="text-white font-bold text-sm tracking-wide uppercase">
+                            Dossiers d'Expertise &amp; Guides Réglementaires 2026
+                        </h4>
+                    </div>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        
+                        <Link
+                            key="/blog/thermostat-connecte-obligatoire-2027-copropriete-pieges-1-euro"
+                            href="/blog/thermostat-connecte-obligatoire-2027-copropriete-pieges-1-euro"
+                            className="text-neutral-300 hover:text-white transition text-xs flex items-center gap-2 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5"
+                        >
+                            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></span>
+                            <span className="font-medium">Thermostat Connecté Obligatoire 2027 : Pièges de l'Offre à 1 €</span>
+                        </Link>
+                        <Link
+                            key="/blog/dimensionnement-pompe-a-chaleur"
+                            href="/blog/dimensionnement-pompe-a-chaleur"
+                            className="text-neutral-300 hover:text-white transition text-xs flex items-center gap-2 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5"
+                        >
+                            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></span>
+                            <span className="font-medium">Régulation Chauffage Collectif & Dimensionnement</span>
+                        </Link>
+                        <Link
+                            key="/blog/remplacer-chaudiere-gaz-par-pac-verite"
+                            href="/blog/remplacer-chaudiere-gaz-par-pac-verite"
+                            className="text-neutral-300 hover:text-white transition text-xs flex items-center gap-2 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5"
+                        >
+                            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></span>
+                            <span className="font-medium">Remplacement Chaudière Collective Gaz</span>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </section>
     );
