@@ -159,14 +159,14 @@ export async function POST(request: Request) {
 
                 try {
                     await resend.emails.send({
-                        from: `${siteName} <hello@expertbornerecharge.com>`,
+                        from: `${siteName} <hello@thermostatcopropriete.fr>`,
                         to: ['hello@expertbornerecharge.com'],
                         subject,
                         html
                     });
                 } catch (sendErr) {
                     await resend.emails.send({
-                        from: `${siteName} <contact@expertpompeachaleur.com>`,
+                        from: `${siteName} <hello@thermostatcopropriete.fr>`,
                         to: ['hello@expertbornerecharge.com'],
                         subject,
                         html
