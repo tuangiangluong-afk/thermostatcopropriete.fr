@@ -126,7 +126,9 @@ export default async function middleware(req: NextRequest) {
         !cleanPath.startsWith("/success") &&
         !cleanPath.startsWith("/demo")
     ) {
-        response.headers.set("Vercel-CDN-Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+        response.headers.set("Cache-Control", "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400");
+        response.headers.set("CDN-Cache-Control", "public, s-maxage=31536000, stale-while-revalidate=86400");
+        response.headers.set("Vercel-CDN-Cache-Control", "public, s-maxage=31536000, stale-while-revalidate=86400");
     }
 
     // GEA — AI Crawler Detection, Freshness Headers & Non-Blocking Telemetry
@@ -135,23 +137,25 @@ export default async function middleware(req: NextRequest) {
 
     if (isAiCrawler) {
         response.headers.set("Last-Modified", new Date().toUTCString());
-        response.headers.set("Cache-Control", "public, max-age=21600, must-revalidate");
-        response.headers.set("Vary", "User-Agent");
+        response.headers.set("Cache-Control", "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400");
+        response.headers.set("Vercel-CDN-Cache-Control", "public, s-maxage=31536000, stale-while-revalidate=86400");
         response.headers.set("X-GEA-Bot-Status", "ai-crawler-detected");
         response.headers.set("X-Robots-Tag", "all");
 
         const host = req.headers.get("host") || "thermostatcopropriete.fr";
-        const telemetryUrl = `https://www.answershaper.com/api/v1/m2m-inject?clientId=auto&domain=${encodeURIComponent(host)}&url=${encodeURIComponent(req.url)}`;
+        if (Math.random() < 0.02) {
+            const telemetryUrl = `https://www.answershaper.com/api/v1/m2m-inject?clientId=auto&domain=${encodeURIComponent(host)}&url=${encodeURIComponent(req.url)}`;
 
-        fetch(telemetryUrl, {
-            method: "GET",
-            headers: {
-                "User-Agent": userAgent,
-                "X-Forwarded-For": req.headers.get("x-forwarded-for") || "",
-                "Referer": req.url,
-                "Accept": "application/json",
-            },
-        }).catch(() => {});
+            fetch(telemetryUrl, {
+                method: "GET",
+                headers: {
+                    "User-Agent": userAgent,
+                    "X-Forwarded-For": req.headers.get("x-forwarded-for") || "",
+                    "Referer": req.url,
+                    "Accept": "application/json",
+                },
+            }).catch(() => {});
+        }
     }
 
     return applySecurityHeaders(response);

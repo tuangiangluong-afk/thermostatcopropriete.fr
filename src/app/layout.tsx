@@ -1,5 +1,4 @@
 import Script from "next/script";
-import { headers } from "next/headers";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -13,14 +12,9 @@ import StructuredData from "@/components/seo/StructuredData";
 import AttributionTracker from "@/components/AttributionTracker";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  // Canonical host is ALWAYS this site's own host.
-  const canonicalDomain = "www.thermostatcopropriete.fr";
-  const path = headersList.get("x-irve-path") || "";
-  const baseUrl = `https://${canonicalDomain}`;
+const baseUrl = "https://www.thermostatcopropriete.fr";
 
-  return {
+export const metadata: Metadata = {
           title: {
     template: "%s",
     default: "Thermostat Copropriété® - Régulation du chauffage collectif",
@@ -28,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "Régulation thermique et thermostats connectés pour copropriétés. Conformité décret BACS, prise en charge CEE. Audit gratuit.",
     metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: `${baseUrl}${path}`,
+      canonical: baseUrl,
     },
     robots: {
       index: true,
@@ -47,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Thermostat Copropriété",
       locale: "fr_FR",
       type: "website",
-      url: `${baseUrl}${path}`,
+      url: baseUrl,
       images: [
         {
           url: `${baseUrl}/api/og`,
@@ -75,8 +69,6 @@ export async function generateMetadata(): Promise<Metadata> {
       ]
     },
   };
-}
-
 export const viewport: Viewport = {
   themeColor: "#16a34a",
 };
