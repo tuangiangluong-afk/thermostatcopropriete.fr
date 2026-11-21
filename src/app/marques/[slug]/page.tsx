@@ -67,6 +67,7 @@ export default async function MarquePage({ params }: { params: Params }) {
             url,
             priceCurrency: "EUR",
             price: "180",
+            validFrom: "2024-01-01",
             priceValidUntil: "2027-12-31",
             itemCondition: "https://schema.org/NewCondition",
             availability: "https://schema.org/InStock",

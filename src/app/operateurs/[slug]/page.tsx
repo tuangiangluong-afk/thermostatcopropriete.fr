@@ -142,6 +142,7 @@ export default async function OperateurDetailPage({
       url: `${BASE_URL}/operateurs/${op.slug}`,
       priceCurrency: "EUR",
       price: op.priceRangeLogement.replace(/[^0-9]/g, "").slice(0, 3) || "120",
+      validFrom: "2024-01-01",
       priceValidUntil: "2026-12-31",
       itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
